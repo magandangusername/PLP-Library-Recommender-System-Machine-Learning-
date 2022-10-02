@@ -220,6 +220,6 @@
         <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.1.0/js/bootstrap.bundle.min.js"></script>
         <script src="assets/js/script.min.js"></script> --}}
     @else
-        @extends('GuestViews.guestartsandscience')
+        @include('GuestViews.guestartsandscience')
     @endif
 @endsection

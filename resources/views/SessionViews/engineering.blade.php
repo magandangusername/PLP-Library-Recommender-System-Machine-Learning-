@@ -221,6 +221,6 @@
         <script src="assets/js/script.min.js"></script> --}}
 
     @else
-        @extends('GuestViews.guestengineering')
+        @include('GuestViews.guestengineering')
     @endif
 @endsection

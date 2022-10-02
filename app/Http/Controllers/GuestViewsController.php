@@ -28,6 +28,11 @@ class GuestViewsController extends Controller
         return view('GuestViews.guestnursing');
     }
     public function guesthomepage(){
+
+
+
+
+
         return view('GuestViews.guesthomepage');
     }
 }
