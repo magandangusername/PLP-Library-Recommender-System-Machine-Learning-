@@ -3,6 +3,9 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use DB;
+use App\Http\Requests;
+use App\Http\Controllers\Controller;
 
 class SessionViewsController extends Controller
 {
@@ -28,7 +31,8 @@ class SessionViewsController extends Controller
         return view('SessionViews.nursing');
     }
     public function homepage(){
-        return view('SessionViews.homepage');
+        $document_studies = DB::select('select * from document_studies');
+        return view('SessionViews.homepage',['document_studies'=>$document_studies]);
     }
     public function recommendationpage(){
         return view('SessionViews.recommendationpage');

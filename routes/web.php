@@ -21,7 +21,6 @@ Route::get('/SessionViews/profilepage', [SessionViewsController::class, 'profile
 Route::get('/AdminViews/manageaccount', [AdminViewsController::class, 'manageaccount']);
 Route::get('/AdminViews/managedocument', [AdminViewsController::class, 'managedocument']);
 Route::get('/AdminViews/addnewaccount', [AdminViewsController::class, 'addnewaccount']);
-Route::get('/AdminViews/addnewdocument', [AdminViewsController::class, 'addnewdocument']);
-
+Route::get('/AdminViews/addnewdocument', [AdminViewsController::class, 'addnewdocument']);  
 
 Auth::routes();

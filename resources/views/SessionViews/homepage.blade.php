@@ -62,43 +62,31 @@
 
                         <div class="clean-blog-post" style="padding:20px; margin: 10px; border-style: inset;">
                             <div class="row">
+                                @foreach ($document_studies as $document_studies)
                                 <div class="col-lg-5"><embed src="<?php //echo $links
                                 ?>" width="100%" height="100%"
-                                        style="border-style: solid" /></div>
+                                        style="border-style: solid;" /></div>   
                                 <div class="col-lg-7">
-                                    <h3 style="color:black;"><?php //echo $title;
-                                    ?>TITLE</h3>
+                                    <h3 style="color:black;">{{ $document_studies->title }}</h3>
                                     <div class="info" style="color:black;"><span class="text-dark">Submitted on
-                                            Year<?php //echo $date_finished;
-                                            ?> by:</span></div>
+                                        {{ $document_studies->date_finished }} by:</span></div>
                                     <div class="info" style="color:black;"><span
-                                            class="text-dark">Authors<?php //echo $author;
-                                            ?></span></div>
+                                            class="text-dark">{{ $document_studies->author }}</span></div>
                                     <div class="info" style="color:black;">(<span class="text-dark">Document
-                                            Type<?php //echo $document_type;
-                                            ?>&nbsp;- Document number<?php //echo $document_number;
-                                            ?>)</span></div>
-                                    <div class="info" style="color:black;"><span class="text-dark">College<?php //echo $college;
-                                    ?>
-                                            &nbsp;- Course<?php //echo $course;
+                                            Type: {{ $document_studies->document_type }}&nbsp;- {{ $document_studies->document_number }})</span></div>
+                                    <div class="info" style="color:black;"><span class="text-dark">{{ $document_studies->college }}
+                                            &nbsp;- {{ $document_studies->course }}<?php //echo $course;
                                             ?></span></div>
                                     <div class="info" style="color:black;"><span class="text-dark">Added
-                                            by<?php //echo $addedby;
-                                            ?></span></div>
+                                            by {{ $document_studies->addedby }}</span></div>
                                     <div class="info" style="color:black;"><span class="text-dark">
-                                            <div class="d-inline bg-success text-white rounded-pill">Tag 1 <?php //echo $tag1;
-                                            ?>
-                                            </div>&nbsp;|&nbsp;<div class="d-inline bg-success text-white rounded-pill"> Tag 2
-                                                <?php //echo $tag2;
-                                                ?></div>&nbsp;|&nbsp;<div
-                                                class="d-inline bg-success text-white rounded-pill"> Tag 3 <?php //echo $tag3;
-                                                ?>
-                                            </div>&nbsp;|&nbsp;<div class="d-inline bg-success text-white rounded-pill"> Tag
-                                                4<?php //echo $tag4;
-                                                ?></div>
+                                            <div class="d-inline bg-success text-white rounded-pill">{{ $document_studies->tag1 }}
+                                            </div>&nbsp;|&nbsp;<div class="d-inline bg-success text-white rounded-pill">
+                                                {{ $document_studies->tag2 }}</div>&nbsp;|&nbsp;<div
+                                                class="d-inline bg-success text-white rounded-pill"> {{ $document_studies->tag3 }}
+                                            </div>&nbsp;|&nbsp;<div class="d-inline bg-success text-white rounded-pill"> {{ $document_studies->tag4 }}</div>
                                         </span></div>
-                                    <p style="color:black;"><?php //echo $content;
-                                    ?> </p><button
+                                    <button
                                         class="btn btn-outline-primary btn-sm" type="button"><a
                                             href="<?php //echo $links
                                             ?>">Download PDF here</a></button>&nbsp;&nbsp;<button
@@ -161,6 +149,7 @@
 
                                             </form> --}}
                                 </div>
+                                @endforeach
                             </div>
                         </div>
                         <?php //}
