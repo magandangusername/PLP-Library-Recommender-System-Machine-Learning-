@@ -13,10 +13,9 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('college', function (Blueprint $table) {
-            $table->id('college_ID');
-            $table->string('college');
-            $table->string('course');
+        Schema::create('backtrack1', function (Blueprint $table) {
+            $table->id('backtrack1_ID');
+            $table->String('backtrack1');
         });
     }
 
@@ -27,6 +26,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('college');
+        Schema::dropIfExists('backtrack1');
     }
 };

@@ -13,19 +13,11 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('student_account', function (Blueprint $table) {
-            $table->id('student_ID');
-            $table->integer('student_number');
-            $table->integer('library_id_number');
-            $table->string('firstname');
-            $table->string('surname');
-            $table->string('college');
-            $table->string('course');
-            $table->string('year_level');
-            $table->string('addedby');
-            $table->string('student_status');
-            $table->timestamp('date_added')->default(\DB::raw('CURRENT_TIMESTAMP'));
-            $table->timestamp('updated_on')->default(\DB::raw('CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP'));
+        Schema::create('student_account', function (Blueprint $table) {   
+            $table->id('library_id_number');
+            $table->integer('student_info_ID');
+            $table->integer('compiled_backtrack_ID');
+            $table->string('password');
         });
     }
 

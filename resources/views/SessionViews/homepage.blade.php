@@ -62,7 +62,7 @@
 
                         <div class="clean-blog-post" style="padding:20px; margin: 10px; border-style: inset;">
                             <div class="row">
-                                @foreach ($document_studies as $document_studies)
+                                @foreach ($document_studies as $document_studies)       
                                 <div class="col-lg-5"><embed src="<?php //echo $links
                                 ?>" width="100%" height="100%"
                                         style="border-style: solid;" /></div>   
