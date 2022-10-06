@@ -69,14 +69,13 @@
                                 <div class="col-lg-7">
                                     <h3 style="color:black;">{{ $document_studies->title }}</h3>
                                     <div class="info" style="color:black;"><span class="text-dark">Submitted on
-                                        {{ $document_studies->date_finished }} by:</span></div>
+                                        {{ $document_studies->date_submitted }} by:</span></div>
                                     <div class="info" style="color:black;"><span
                                             class="text-dark">{{ $document_studies->author }}</span></div>
                                     <div class="info" style="color:black;">(<span class="text-dark">Document
                                             Type: {{ $document_studies->document_type }}&nbsp;- {{ $document_studies->document_number }})</span></div>
-                                    <div class="info" style="color:black;"><span class="text-dark">{{ $document_studies->college }}
-                                            &nbsp;- {{ $document_studies->course }}<?php //echo $course;
-                                            ?></span></div>
+                                    <div class="info" style="color:black;"><span class="text-dark">{{ $document_studies->document_college }}
+                                            &nbsp;- {{ $document_studies->document_course }}</span></div>
                                     <div class="info" style="color:black;"><span class="text-dark">Added
                                             by {{ $document_studies->addedby }}</span></div>
                                     <div class="info" style="color:black;"><span class="text-dark">

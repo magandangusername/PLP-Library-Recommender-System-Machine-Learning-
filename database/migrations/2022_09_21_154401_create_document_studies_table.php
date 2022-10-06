@@ -15,14 +15,13 @@ return new class extends Migration
     {
         Schema::create('document_studies', function (Blueprint $table) {
             $table->id('document_id');
-            $table->integer('compiled_tag_ID');
+            $table->integer('compiled_tag_ID')->unique();
+            $table->integer('document_college_ID')->unique();
             $table->string('document_number');
             $table->string('title');
             $table->timestamp('date_submitted');
             $table->string('author');
             $table->string('document_type');
-            $table->string('college');
-            $table->string('course');
             $table->string('addedby');
             $table->string('document_status');
             $table->timestamp('created_at')->default(\DB::raw('CURRENT_TIMESTAMP'));

@@ -133,10 +133,10 @@
                         Studies</a></button>
                 <button type="button"
                     class="border border-dark border border-1 btn btn-info rounded-pill text-center"><a
-                        class="navbar-brand nav-link" href="{{ url('/SessionViews/nursing') }}">Nursing</a></button>
+                        class="navbar-brand nav-link" href="{{ url('nursing') }}">Nursing</a></button>
                 <button type="button"
                     class="border border-dark border border-1 btn btn-info rounded-pill text-center"><a
-                        class="navbar-brand nav-link" href="{{ url('/SessionViews/hotelmanagement') }}">Hotel
+                        class="navbar-brand nav-link" href="{{ url('hotelmanagement') }}">Hotel
                         Management</a></button>
             </div>
         </nav>
