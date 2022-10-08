@@ -23,7 +23,7 @@ return new class extends Migration
             $table->string('contact_number');
             $table->string('email')->unique();
             $table->string('addedby');
-            $table->string('student_status');
+            $table->string('student_status')->default('active');
             $table->timestamp('date_added')->default(\DB::raw('CURRENT_TIMESTAMP'));
             $table->timestamp('updated_on')->default(\DB::raw('CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP'));
         });
