@@ -16,13 +16,20 @@
     <tr class="text-light bg-dark">
     <th>Update/Delete</th>
     <th>Document ID</th>
+    <th>Document Number</th>
     <th>Title</th>
     <th>Author</th>
-    <th>Year</th>
-    <th>Kind of Paper</th>
+    <th>Date Submitted</th>
+    <th>Document Type</th>
     <th>College</th>
-    <th>Content</th>
-    <th>Links</th>
+    <th>Course</th>
+    <th>1st Tag</th>
+    <th>2nd Tag</th>
+    <th>3rd Tag</th>
+    <th>4th Tag</th>
+    <th>Document Status</th>
+    <th>Created At</th>
+    <th>Updated On</th>
     </tr>
     </thead>
 
@@ -55,6 +62,13 @@
     <td><?php //echo $kind; ?></td>
     <td><?php //echo $college; ?></td>
     <td><?php //echo $content; ?></td>
+    <td><?php //echo $links; ?></td>
+    <td><?php //echo $links; ?></td>
+    <td><?php //echo $links; ?></td>
+    <td><?php //echo $links; ?></td>
+    <td><?php //echo $links; ?></td>
+    <td><?php //echo $links; ?></td>
+    <td><?php //echo $links; ?></td>
     <td><?php //echo $links; ?></td>
     </tr>
     <?php  
@@ -102,12 +116,93 @@
     </div>
     <div class="row my-2">
         <div class="col-4">
-        <b>Year</b>
-        <input type="text" class="form-control" id="year" name="year" value="<?php //echo $edit['Year'] ?>">
+        <b>Date Submitted</b>
+        <input type="date" class="form-control" id="year" name="year" value="<?php //echo $edit['Year'] ?>">
         </div>
     </div>
 
     <div class="row my-3">
+        <div class="col-4">
+            <?php
+            //$courses = $conn->query("SELECT DISTINCT(College) FROM tnr_dataset");
+            ?>
+            <b>Document Type</b>
+            <select id="document_type" name="document_type" required>
+                <option selected="true" disabled="disabled" value="">Document Type</option>
+                <?php
+                //while($course = $courses->fetch_assoc()){
+                ?>
+                <option value="<?php //echo $course['College']
+                ?>" {{-- <?php
+                // if($edit['course'] == $course['College']){
+                // echo "selected";
+                // }
+                ?> --}} <?php //echo $course['College']
+                ?>>
+                </option>
+                <?php
+                //}
+                ?>
+            </select>
+        </div>
+
+    </div>
+
+    <div class="row my-3">
+        <div class="col-4">
+            <?php
+            //$courses = $conn->query("SELECT DISTINCT(College) FROM tnr_dataset");
+            ?>
+            <b>College</b>
+            <select id="documenty_college" name="document_college" required>
+                <option selected="true" disabled="disabled" value="">College Selection</option>
+                <?php
+                //while($course = $courses->fetch_assoc()){
+                ?>
+                <option value="<?php //echo $course['College']
+                ?>" {{-- <?php
+                // if($edit['course'] == $course['College']){
+                // echo "selected";
+                // }
+                ?> --}} <?php //echo $course['College']
+                ?>>
+                </option>
+                <?php
+                //}
+                ?>
+            </select>
+        </div>
+
+    </div>
+
+    <div class="row my-3">
+        <div class="col-4">
+            <?php
+            //$courses = $conn->query("SELECT DISTINCT(College) FROM tnr_dataset");
+            ?>
+            <b>Course</b>
+            <select id="document_course" name="document_course" required>
+                <option selected="true" disabled="disabled" value="">Course Selection</option>
+                <?php
+                //while($course = $courses->fetch_assoc()){
+                ?>
+                <option value="<?php //echo $course['College']
+                ?>" {{-- <?php
+                // if($edit['course'] == $course['College']){
+                // echo "selected";
+                // }
+                ?> --}} <?php //echo $course['College']
+                ?>>
+                </option>
+                <?php
+                //}
+                ?>
+            </select>
+        </div>
+
+    </div>
+
+    {{-- <div class="row my-3">
         <div class="col-4">
         <?php
         //$kinds = $conn->query("SELECT DISTINCT(Kind_of_Paper) FROM tnr_dataset");
@@ -132,48 +227,63 @@
             ?>
             </select>
         </div>
-    </div>
+    </div> --}}
     
+    <div class="row my-2">
+        <div class="col-4">
+            <b>Tag 1</b>
+            <input type="text" class="form-control" id="tag1" name="tag1"
+                value="<?php //echo $edit['student_name']
+                ?>">
+        </div>
+        <div class="col-4">
+            <b>Tag 2</b>
+            <input type="text" class="form-control" id="tag2" name="tag2"
+                value="<?php //echo $edit['student_name']
+                ?>">
+        </div>
+        <div class="col-4">
+            <b>Tag 3</b>
+            <input type="text" class="form-control" id="tag3" name="tag3"
+                value="<?php //echo $edit['student_name']
+                ?>">
+        </div>
+        <div class="col-4">
+            <b>Tag 4</b>
+            <input type="text" class="form-control" id="tag4" name="tag4"
+                value="<?php //echo $edit['student_name']
+                ?>">
+        </div>
+    </div>
+
     <div class="row my-3">
         <div class="col-4">
-        <?php
-        //$courses = $conn->query("SELECT DISTINCT(College) FROM tnr_dataset");
-
-        ?>
-        <b>College</b>
-            <select id="course" name="college" required>
-            <option selected="true" disabled="disabled" value="">Course Selection</option>
             <?php
-            //while($course = $courses->fetch_assoc()){
-
+            //$courses = $conn->query("SELECT DISTINCT(College) FROM tnr_dataset");
             ?>
-            <option value="<?php //echo $course['College'] ?>" 
-            <?php 
-            //if($edit['College'] == $course['College']){
-            //echo "selected";
-            //}
-            ?>
-            ><?php //echo $course['College'] ?></option>
-            <?php 
-            //}
-            ?>
+            <b>Document Status</b>
+            <select id="document_course" name="document_course" required>
+                <option selected="true" disabled="disabled" value="">Document Status</option>
+                <?php
+                //while($course = $courses->fetch_assoc()){
+                ?>
+                <option value="<?php //echo $course['College']
+                ?>" {{-- <?php
+                // if($edit['course'] == $course['College']){
+                // echo "selected";
+                // }
+                ?> --}} <?php //echo $course['College']
+                ?>>
+                </option>
+                <?php
+                //}
+                ?>
             </select>
         </div>
-    </div>
-
-    <div class="row my-2">
-    <b>Content</b>
-    <div class="col">
-    <textarea rows="4" cols="60" name="content" ><?php //echo $edit['Content'] ?></textarea>
-    </div>
-    </div>
-    <div class="row my-2">
-        <div class="col-4">
-            <b>Links</b>
-            <input type="text" class="form-control" id="links" name="links" value="<?php //echo $edit['Links'] ?>">
-        </div>
 
     </div>
+
+    
     <!-- <input type="hidden" name="ID" value="<?php //echo $edit['profile_id'] ?>"> -->
     <button type="submit" name="submitedit" class="btn btn-dark mt-2">Update Record</button>
     </fieldset>

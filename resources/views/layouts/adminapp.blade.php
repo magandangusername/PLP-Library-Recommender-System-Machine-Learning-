@@ -59,16 +59,16 @@
             <nav class="sb-sidenav accordion sb-sidenav-dark" id="sidenavAccordion">
                 <div class="sb-sidenav-menu">
                     <div class="nav">
-                        <a class="nav-link" href="../overview.php">
+                        <a class="nav-link" href="{{ route('overview') }}">
                             <div class="sb-nav-link-icon"><i class="fas fa-book-open"></i></div>
                             Overview
                         </a>
                         <div class="sb-sidenav-menu-heading">Manage Section</div>
-                        <a class="nav-link" href="manageAccount.php">
+                        <a class="nav-link" href="{{ route('manageaccount') }}">
                             <div class="sb-nav-link-icon"><i class="fas fa-book"></i></div>
                             Manage Accounts
                         </a>
-                        <a class="nav-link" href="manageDocument.php">
+                        <a class="nav-link" href="{{ route('managedocument') }}">
                             <div class="sb-nav-link-icon"><i class="fas fa-minus-circle"></i></div>
                             Manage Documents
                         </a>
@@ -86,8 +86,8 @@
                         <div class="collapse" id="roomcollapse" aria-labelledby="headingOne"
                             data-bs-parent="#sidenavAccordion">
                             <nav class="sb-sidenav-menu-nested nav">
-                                <a class="nav-link" href="../addNew/addnewstudent.php">Create new Student Account</a>
-                                <a class="nav-link" href="../addNew/addnewdocument.php">Add new Document</a>
+                                <a class="nav-link" href="{{ route('addnewaccount') }}">Create new Student Account</a>
+                                <a class="nav-link" href="{{ route('addnewdocument') }}">Add new Document</a>
                             </nav>
                         </div>
 

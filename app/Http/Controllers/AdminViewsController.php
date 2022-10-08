@@ -6,6 +6,9 @@ use Illuminate\Http\Request;
 
 class AdminViewsController extends Controller
 {
+    public function overview(){
+        return view('AdminViews.overview');
+    }
     public function manageaccount(){
         return view('AdminViews.manageaccount');
     }
