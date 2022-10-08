@@ -13,8 +13,9 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('student_account', function (Blueprint $table) {   
-            $table->id('library_id_number');
+        Schema::create('student_account', function (Blueprint $table) {  
+            $table->id('library_ID'); 
+            $table->string('library_id_number')->unique();
             $table->integer('student_info_ID');
             $table->integer('compiled_backtrack_ID');
             $table->string('password');
