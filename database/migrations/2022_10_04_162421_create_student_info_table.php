@@ -16,12 +16,12 @@ return new class extends Migration
         Schema::create('student_info', function (Blueprint $table) {
             $table->id('student_info_ID');
             $table->integer('student_college_ID')->unique();
-            $table->string('student_number');
+            $table->string('student_number')->unique();
             $table->string('firstname');
             $table->string('surname');
             $table->string('year_level');
             $table->string('contact_number');
-            $table->string('email');
+            $table->string('email')->unique();
             $table->string('addedby');
             $table->string('student_status');
             $table->timestamp('date_added')->default(\DB::raw('CURRENT_TIMESTAMP'));
