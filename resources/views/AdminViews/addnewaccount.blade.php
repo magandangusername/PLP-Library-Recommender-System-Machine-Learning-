@@ -8,7 +8,147 @@
         <div class="card-header">
             <h2>Create New Student Record </h2>
         </div>
-            <form class="p-5" method="post" action="addnewstudent.php" enctype="multipart/form-data">
+        <form class="p-5" method="post" enctype="multipart/form-data">
+            <fieldset>
+                
+                <div class="row my-2">
+                    <div class="col-4">
+                        <b>Student Number</b>
+                        <input type="text" class="form-control" id="studentnumber" name="studentnumber"
+                            value="<?php //echo $edit['studentnumber']
+                            ?>" disabled>
+                    </div>
+
+                </div>
+                <div class="row my-2">
+                    <div class="col-4">
+                        <b>Student Firstname</b>
+                        <input type="text" class="form-control" id="student_name" name="student_name"
+                            value="<?php //echo $edit['student_name']
+                            ?>">
+                    </div>
+                    <div class="col-4">
+                        <b>Student Surname</b>
+                        <input type="text" class="form-control" id="student_name" name="student_name"
+                            value="<?php //echo $edit['student_name']
+                            ?>">
+                    </div>
+                </div>
+                <div class="row my-3">
+                    <div class="col-4">
+                        <?php
+                        //$courses = $conn->query("SELECT DISTINCT(College) FROM tnr_dataset");
+                        ?>
+                        <b>Year Level</b>
+                        <select id="year_level" name="year_level" required>
+                            <option selected="true" disabled="disabled" value="">Year Level Selection</option>
+                            <?php
+                            //while($course = $courses->fetch_assoc()){
+                            ?>
+                            <option value="<?php //echo $course['College']
+                            ?>" {{-- <?php
+                            // if($edit['course'] == $course['College']){
+                            // echo "selected";
+                            // }
+                            ?> --}} <?php //echo $course['College']
+                            ?>>
+                            </option>
+                            <?php
+                            //}
+                            ?>
+                        </select>
+                    </div>
+
+                </div>
+
+                <div class="row my-3">
+                    <div class="col-4">
+                        <?php
+                        //$courses = $conn->query("SELECT DISTINCT(College) FROM tnr_dataset");
+                        ?>
+                        <b>College</b>
+                        <select id="student_college" name="student_college" required>
+                            <option selected="true" disabled="disabled" value="">College Selection</option>
+                            <?php
+                            //while($course = $courses->fetch_assoc()){
+                            ?>
+                            <option value="<?php //echo $course['College']
+                            ?>" {{-- <?php
+                            // if($edit['course'] == $course['College']){
+                            // echo "selected";
+                            // }
+                            ?> --}} <?php //echo $course['College']
+                            ?>>
+                            </option>
+                            <?php
+                            //}
+                            ?>
+                        </select>
+                    </div>
+
+                </div>
+
+                <div class="row my-3">
+                    <div class="col-4">
+                        <?php
+                        //$courses = $conn->query("SELECT DISTINCT(College) FROM tnr_dataset");
+                        ?>
+                        <b>Course</b>
+                        <select id="student_course" name="student_course" required>
+                            <option selected="true" disabled="disabled" value="">Course Selection</option>
+                            <?php
+                            //while($course = $courses->fetch_assoc()){
+                            ?>
+                            <option value="<?php //echo $course['College']
+                            ?>" {{-- <?php
+                            // if($edit['course'] == $course['College']){
+                            // echo "selected";
+                            // }
+                            ?> --}} <?php //echo $course['College']
+                            ?>>
+                            </option>
+                            <?php
+                            //}
+                            ?>  
+                        </select>
+                    </div>
+
+                </div>
+
+                <div class="row my-2">
+                    <div class="col-4">
+                        <b>Contact Number</b>
+                        <input type="text" class="form-control" id="contact" name="contact_number"
+                            value="<?php //echo $edit['contact_number']
+                            ?>">
+                    </div>
+
+                </div>
+
+                <div class="row my-2">
+                    <div class="col-4">
+                        <b>Email</b>
+                        <input type="email" class="form-control" id="email" name="email"
+                            value="<?php //echo $edit['studentnumber']
+                            ?>">
+                    </div>
+
+                </div>
+                <div class="row my-3">
+                    <div class="col-4">
+                        <b>Profile</b>
+                        <input type="file" name="profile" accept="image/png, image/gif, image/jpeg, image/jpg" />
+                    </div>
+
+                </div>
+
+
+                <input type="hidden" name="profile_id" value="<?php //echo $edit['profile_id']
+                ?>">
+                <button type="submit" name="submit" class="btn btn-dark mt-2">Create</button>
+            </fieldset>
+        </form>
+            {{-- <form class="p-5" method="post" action="addnewstudent.php" enctype="multipart/form-data">
             <fieldset>
                 <div class="row my-2">
                     <div class="col-4">
@@ -87,7 +227,7 @@
                 </div>
                 <button type="submit" class="btn btn-dark mt-2" id="submit" name="submit">Create New Student Record</button>
             </fieldset>
-            </form>
+            </form> --}}
 
         </div>
 
@@ -100,11 +240,17 @@
                 <table id="datatablerr">
                     <thead>
                         <tr class="text-light bg-dark">
-                            <th>Student ID</th>
-                            <th>Student Name</th>
+                            <th>Student Number</th>
+                            <th>Firstname</th>
+                            <th>Surname</th>
+                            <th>Year Level</th>
+                            <th>College</th>
                             <th>Course</th>
-                            <th>Bio</th>
+                            <th>Email</th>
                             <th>Contact Number</th>
+                            <th>Student Status</th>
+                            <th>Date Added</th>
+                            <th>Updated On</th>
                             <th>Password</th>
                             <th>Profile</th>
                         </tr>
@@ -126,13 +272,30 @@
                         
                                 ?>
                                 <tr>
-                                <td><?php //echo $studentnumber; ?></td>
-                                <td><?php //echo $studentname; ?></td>
-                                <td><?php //echo $course; ?></td>
-                                <td><?php //echo $bio; ?></td>
-                                <td><?php //echo $contact; ?></td>
-                                <td><?php //echo $password; ?></td>
-                                <td><img class = "img-fluid" src="data:image;base64,<?php //echo base64_encode($profilepic); ?>" alt="Profile Picture"></td>
+                                    <td><?php //echo $studentnumber;
+                                        ?></td>
+                                        <td><?php //echo $studentname;
+                                        ?></td>
+                                        <td><?php //echo $course;
+                                        ?></td>
+                                        <td><?php //echo $bio;
+                                        ?></td>
+                                        <td><?php //echo $contact;
+                                        ?></td>
+                                        <td><?php //echo $password;
+                                        ?></td>
+                                        <td><?php //echo $studentnumber;
+                                        ?></td>
+                                        <td><?php //echo $studentnumber;
+                                        ?></td>
+                                        <td><?php //echo $studentnumber;
+                                        ?></td>
+                                        <td><?php //echo $studentnumber;
+                                        ?></td>
+                                        <td><?php //echo $studentnumber;
+                                        ?></td>
+                                        <td><?php //echo $studentnumber;
+                                        ?></td>
                                 
                                 </tr>
                                 <?php  
