@@ -21,6 +21,6 @@ class AdminViewsController extends Controller
     public function addnewdocument(){
         return view('AdminViews.addnewdocument');
     }
-    
+
 
 }

@@ -5,7 +5,9 @@ namespace App\Http\Controllers\Auth;
 use App\Http\Controllers\Controller;
 use App\Providers\RouteServiceProvider;
 use App\Models\User;
+use Carbon\Carbon;
 use Illuminate\Foundation\Auth\RegistersUsers;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
 
@@ -51,7 +53,11 @@ class RegisterController extends Controller
     {
         return Validator::make($data, [
             'library_ID_number' => ['required', 'string', 'max:255'],
-            'name' => ['required', 'string', 'max:255'],
+            'student_college_ID' => ['required', 'integer'],
+            'firstname' => ['required', 'string', 'max:255'],
+            'surname' => ['required', 'string', 'max:255'],
+            'year_level' => ['required', 'string', 'max:255'],
+            'contact_number' => ['required', 'string', 'max:255'],
             'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
             'password' => ['required', 'string', 'min:8', 'confirmed'],
         ]);
@@ -65,9 +71,29 @@ class RegisterController extends Controller
      */
     protected function create(array $data)
     {
+        $total_accounts = DB::select("SELECT COUNT() as total_accounts
+            FROM student_info");
+
+        $student_number = Str(Carbon::now()->format('y')).sprintf('%05d', $total_accounts['total_accounts']);
+
+        DB::table('student_info')->insert(
+            [
+                'student_number' => $student_number,
+                'student_college_ID' => $data['student_college_ID'],
+                'firstname' => $data['firstname'],
+                'surname' => $data['surname'],
+                'year_level' => $data['year_level'],
+                'email' => $data['email'],
+                'contact_number' => $data['contact_number'],
+            ]
+        );
+
+        $student_info_id = DB::select("SELECT student_info_ID
+        FROM student_info WHERE $student_number");
+
         return User::create([
             'library_ID_number' => $data['library_ID_number'],
-            'name' => $data['name'],
+            'student_info_id' => $student_info_id['student_info_ID'],
             'email' => $data['email'],
             'password' => Hash::make($data['password']),
         ]);
