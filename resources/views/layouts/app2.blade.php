@@ -24,66 +24,36 @@
         }
         </style> --}}
 </head>
+
 <body style="background-image: linear-gradient(to left, green,#fde8ec);">
-<header>
+    <header>
 
-    <?php
-    // if (!isset($_SESSION)) {
-    //     session_start();
-    // }
-    // if (isset($_SESSION['studentnumber']) && isset($_SESSION['password'])) {
-    ?>
+        <?php
+        // if (!isset($_SESSION)) {
+        //     session_start();
+        // }
+        // if (isset($_SESSION['studentnumber']) && isset($_SESSION['password'])) {
+        ?>
 
 
-    <nav class="navbar navbar-light bg-light" style="background-image: linear-gradient(to left, green,#fde8ec);">
-        <div class="container-fluid" style="background-image: linear-gradient(to left, green,#fde8ec);">
-            <a class="navbar-brand text-dark    " href="#" style="color: white; "><img src="assets/img/tech/plplogo.png"
-                    alt="PLP Logo" style="width: 50px; height: 50px;">Thesis and Research</a>
-                    <div class="d-flex">
-                        <img class="rounded-circle"src="data:image/jpg;charset=utf8;base64,<?php //echo base64_encode($profilepic);
-                        ?>"
-                            style="width:40px;height:40px; border-style: solid; border-color: green; margin-right:10px;">
-                        {{-- <div class="dropdown">
-                            <button class="btn btn-success dropdown-toggle" type="button" id="dropdownMenuButton"
-                                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                <?php //echo $studentname
-                                ?>
-                            </button>
-                            <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                                <a class="dropdown-item" href="profile.php">Profile</a>
-                                <a class="dropdown-item" href="recommend_test.php">Recomendation</a>
-                                <a class="dropdown-item" href="myfavorites.php">Your Favorites</a>
-                                <a class="dropdown-item" target="_blank" href="ckeditor.php">Your Editor</a>
-                                <div class="dropdown-divider"></div>
-                                <a class="dropdown-item" href="logout.php">Log out</a>
-                            </div>
-                        </div> --}}
-                        <button class="btn btn-link btn-sm order-1 order-lg-0 me-4 me-lg-0" id="sidebarToggle" href="#!"><i
-                            class="fas fa-bars"></i></button>
-                    <!-- Navbar Search-->
-            
-                    <!-- Navbar-->
-                    {{-- <ul class="navbar-nav ms-auto ms-md-0 me-3 me-lg-4">
-                        <li class="nav-item dropdown"> --}}
-            
-                    <a class="nav-link dropdown-toggle position-absolute top-50 end-0 translate-middle-y rounded-3 bg-dark" id="navbarDropdown"
-                        href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false"><i
-                            class="fas fa-user fa-fw"></i></a>
-                    <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
-                        <li><a class="dropdown-item" href="#!">Profile</a></li>
-                        <li><a class="dropdown-item" href="#adminlogout">Logout</a></li>
-                    </ul>   
-                        
-                    </div>
-        </div>
-        
-    </nav>
-    
+        <nav class="navbar navbar-light bg-light" style="background-image: linear-gradient(to left, green,#fde8ec);">
+            <div class="container-fluid" style="background-image: linear-gradient(to left, green,#fde8ec);">
+                <a class="navbar-brand text-dark    " href="#" style="color: white; "><img
+                        src="assets/img/tech/plplogo.png" alt="PLP Logo" style="width: 50px; height: 50px;">Thesis and
+                    Research</a>
+                <div class="d-flex">
+
+
+            </div>
+            </div>
+
+        </nav>
 
 
 
-@yield('content2')
-{{-- <body>
+
+        @yield('content2')
+        {{-- <body>
     <div id="app">
         <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm">
             <div class="container">
@@ -134,7 +104,7 @@
                                 </div>
                             </li>
                         @endguest
-                    </ul>       
+                    </ul>
                 </div>
             </div>
         </nav>
@@ -147,4 +117,5 @@
 
 
 </body>
+
 </html>

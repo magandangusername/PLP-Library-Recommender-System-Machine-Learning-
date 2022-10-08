@@ -4,6 +4,7 @@ use App\Http\Controllers\GuestViewsController;
 use App\Http\Controllers\SessionViewsController;
 use App\Http\Controllers\AdminViewsController;
 use Illuminate\Support\Facades\Route;
+use Illuminate\Support\Facades\Auth;
 
 
 
@@ -21,6 +22,6 @@ Route::get('/SessionViews/profilepage', [SessionViewsController::class, 'profile
 Route::get('/AdminViews/manageaccount', [AdminViewsController::class, 'manageaccount']);
 Route::get('/AdminViews/managedocument', [AdminViewsController::class, 'managedocument']);
 Route::get('/AdminViews/addnewaccount', [AdminViewsController::class, 'addnewaccount']);
-Route::get('/AdminViews/addnewdocument', [AdminViewsController::class, 'addnewdocument']);  
+Route::get('/AdminViews/addnewdocument', [AdminViewsController::class, 'addnewdocument']);
 
-Auth::routes();
+Auth::routes(['register' => false]);

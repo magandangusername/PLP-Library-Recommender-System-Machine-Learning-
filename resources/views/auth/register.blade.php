@@ -12,6 +12,20 @@
                         @csrf
 
                         <div class="row mb-3">
+                            <label for="library_ID_number" class="col-md-4 col-form-label text-md-end">{{ __('Library Number') }}</label>
+
+                            <div class="col-md-6">
+                                <input id="library_ID_number" type="text" class="form-control @error('library_ID_number') is-invalid @enderror" name="library_ID_number" value="{{ old('library_ID_number') }}" required autocomplete="library_ID_number" autofocus>
+
+                                @error('library_ID_number')
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                @enderror
+                            </div>
+                        </div>
+
+                        <div class="row mb-3">
                             <label for="name" class="col-md-4 col-form-label text-md-end">{{ __('Name') }}</label>
 
                             <div class="col-md-6">
