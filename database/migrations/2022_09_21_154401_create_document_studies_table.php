@@ -15,8 +15,8 @@ return new class extends Migration
     {
         Schema::create('document_studies', function (Blueprint $table) {
             $table->id('document_id');
-            $table->integer('compiled_tag_ID')->unique();
-            $table->integer('document_college_ID')->unique();
+            $table->integer('compiled_tag_ID');
+            $table->integer('course_ID');
             $table->string('document_number');
             $table->string('title');
             $table->timestamp('date_submitted');

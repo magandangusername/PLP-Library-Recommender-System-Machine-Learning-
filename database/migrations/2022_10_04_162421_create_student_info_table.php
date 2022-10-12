@@ -15,14 +15,14 @@ return new class extends Migration
     {
         Schema::create('student_info', function (Blueprint $table) {
             $table->id('student_info_ID');
-            $table->integer('student_college_ID')->unique();
+            $table->integer('course_ID');
             $table->string('student_number')->unique();
             $table->string('firstname');
             $table->string('surname');
-            $table->string('year_level')->nullable();
+            $table->string('year_level');
             $table->string('contact_number');
             $table->string('email')->unique();
-            $table->string('addedby')->nullable();
+            $table->string('addedby');
             $table->string('student_status')->default('active');
             $table->timestamp('date_added')->default(\DB::raw('CURRENT_TIMESTAMP'));
             $table->timestamp('updated_on')->default(\DB::raw('CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP'));
