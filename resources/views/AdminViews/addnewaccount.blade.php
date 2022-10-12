@@ -7,15 +7,19 @@
                 <div class="card-header">
                     <h2>Create New Student Record </h2>
                 </div>
+
                 <form class="p-5" method="post" enctype="multipart/form-data" action="{{ route('register') }}"">
                     @csrf
+                    @if ($errors->any())
+                        {!! implode('', $errors->all('<div>:message</div>')) !!}
+                    @endif
                     <fieldset>
 
                         <div class="row my-2">
                             <div class="col-4">
                                 <b>Student Number</b>
-                                <input type="text" class="form-control" id="studentnumber" name="studentnumber"
-                                    value="{{$student_number}}" disabled>
+                                <input type="text" class="form-control" id="library_ID_number" name="library_ID_number"
+                                    value="{{ $student_number }}" readonly>
                             </div>
 
                         </div>
@@ -26,6 +30,7 @@
                                     value="<?php //echo $edit['student_name']
                                     ?>">
                             </div>
+
                             <div class="col-4">
                                 <b>Student Surname</b>
                                 <input type="text" class="form-control" id="student_name" name="surname"

@@ -55,12 +55,12 @@ class RegisterController extends Controller
             'library_ID_number' => ['required', 'string', 'max:255'],
             'firstname' => ['required', 'string', 'max:255'],
             'surname' => ['required', 'string', 'max:255'],
-            'year_level' => ['required', 'string', 'max:255'],
-            'student_college_ID' => ['integer'],
-            'student_course_ID' => ['integer'],
+            // 'year_level' => ['required', 'string', 'max:255'],
+            // 'student_college_ID' => ['integer'],
+            // 'student_course_ID' => ['integer'],
             'contact_number' => ['required', 'string', 'max:255'],
             'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
-            'password' => ['required', 'string', 'min:8', 'confirmed'],
+            // 'password' => ['required', 'string', 'min:8', 'confirmed'],
         ]);
     }
 
@@ -80,7 +80,7 @@ class RegisterController extends Controller
         DB::table('student_info')->insert(
             [
                 'student_number' => $student_number,
-                'student_college_ID' => 117,
+                'student_college_ID' => $student_number, //temporary value: change this soon
                 'firstname' => $data['firstname'],
                 'surname' => $data['surname'],
                 'year_level' => "level 1",
@@ -92,11 +92,11 @@ class RegisterController extends Controller
         $student_info_id = DB::select("SELECT student_info_ID
         FROM student_info WHERE $student_number");
 
-        return User::create([
+        return DB::table('users')->insert([
             'library_ID_number' => $data['library_ID_number'],
-            'student_info_id' => $student_info_id[0]->student_info_ID,
+            'student_info_id' => intval($student_info_id[0]->student_info_ID),
             'email' => $data['email'],
-            'password' => Hash::make($data['password']),
+            'password' => Hash::make($data['library_ID_number'])
         ]);
     }
 }
