@@ -225,7 +225,7 @@
         // if($curPageName != "recommend_test.php"){
         ?>
 
-        <form class="" method="POST">
+        <form class="" method="GET">
             {{-- <div class="form-group"><label for="search-field"></label><input class="form-control search-field"
                     type="search" name="search_bar" value="<?php //if (isset($_POST['search'])) {
                     //echo $_POST['search_bar'];
@@ -238,8 +238,16 @@
             ?>"> --}}
             <div class="container my-3">
                 <div class="input-group mb-3">
-                    <input type="search" class="form-control" placeholder="Search" aria-label="Search"
-                        aria-describedby="basic-addon2">
+
+                        @if (isset($search))
+                            <input type="search" class="form-control" placeholder="Search" aria-label="Search" name="search"
+                            aria-describedby="basic-addon2" value="@php
+                                echo $search
+                            @endphp">
+                        @else
+                            <input type="search" class="form-control" placeholder="Search" aria-label="Search" name="search"
+                            aria-describedby="basic-addon2">
+                        @endif
                     <span class="input-group-text" id="basic-addon2"><button
                             class="btn btn-primary">Search</button></span>
                 </div>

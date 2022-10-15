@@ -9,6 +9,7 @@ use Illuminate\Support\Facades\Auth;
 
 
 Route::get('/accountancy', [SessionViewsController::class, 'accountancy'])->name('accountancy');
+Route::get('/{college}/search', [SessionViewsController::class, 'search'])->name('search');
 Route::get('/artsandscience', [SessionViewsController::class, 'artsandscience'])->name('artsandscience');
 Route::get('/computerstudies', [SessionViewsController::class, 'computerstudies'])->name('computerstudies');
 Route::get('/education', [SessionViewsController::class, 'education'])->name('education');

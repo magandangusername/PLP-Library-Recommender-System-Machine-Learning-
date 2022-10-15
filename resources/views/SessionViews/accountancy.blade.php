@@ -64,28 +64,31 @@
 
                         <div class="clean-blog-post" style="padding:20px; margin: 10px; border-style: inset;">
                             <div class="row">
-                                @foreach ($document_studies as $document_studies)       
+                                @if ($document_studies == null)
+                                    <p>WALANG NAKITA</p>
+                                @endif
+                                @foreach ($document_studies as $document_study)
                                 <div class="col-lg-5"><embed src="<?php //echo $links
                                 ?>" width="100%" height="100%"
-                                        style="border-style: solid;" /></div>   
+                                        style="border-style: solid;" /></div>
                                 <div class="col-lg-7">
-                                    <h3 style="color:black;">{{ $document_studies->title }}</h3>
+                                    <h3 style="color:black;">{{ $document_study->title }}</h3>
                                     <div class="info" style="color:black;"><span class="text-dark">Submitted on
-                                        {{ $document_studies->date_submitted }} by:</span></div>
+                                        {{ $document_study->date_submitted }} by:</span></div>
                                     <div class="info" style="color:black;"><span
-                                            class="text-dark">{{ $document_studies->author }}</span></div>
+                                            class="text-dark">{{ $document_study->author }}</span></div>
                                     <div class="info" style="color:black;">(<span class="text-dark">Document
-                                            Type: {{ $document_studies->document_type }}&nbsp;- {{ $document_studies->document_number }})</span></div>
-                                    <div class="info" style="color:black;"><span class="text-dark">{{ $document_studies->document_college }}
-                                            &nbsp;- {{ $document_studies->document_course }}</span></div>
+                                            Type: {{ $document_study->document_type }}&nbsp;- {{ $document_study->document_number }})</span></div>
+                                    <div class="info" style="color:black;"><span class="text-dark">{{ $document_study->college }}
+                                            &nbsp;- {{ $document_study->course }}</span></div>
                                     <div class="info" style="color:black;"><span class="text-dark">Added
-                                            by {{ $document_studies->addedby }}</span></div>
+                                            by {{ $document_study->addedby }}</span></div>
                                     <div class="info" style="color:black;"><span class="text-dark">
-                                            <div class="d-inline bg-success text-white rounded-pill">{{ $document_studies->tag1 }}
+                                            <div class="d-inline bg-success text-white rounded-pill">{{ $document_study->tag1 }}
                                             </div>&nbsp;|&nbsp;<div class="d-inline bg-success text-white rounded-pill">
-                                                {{ $document_studies->tag2 }}</div>&nbsp;|&nbsp;<div
-                                                class="d-inline bg-success text-white rounded-pill"> {{ $document_studies->tag3 }}
-                                            </div>&nbsp;|&nbsp;<div class="d-inline bg-success text-white rounded-pill"> {{ $document_studies->tag4 }}</div>
+                                                {{ $document_study->tag2 }}</div>&nbsp;|&nbsp;<div
+                                                class="d-inline bg-success text-white rounded-pill"> {{ $document_study->tag3 }}
+                                            </div>&nbsp;|&nbsp;<div class="d-inline bg-success text-white rounded-pill"> {{ $document_study->tag4 }}</div>
                                         </span></div>
                                     <button
                                         class="btn btn-outline-primary btn-sm" type="button"><a
