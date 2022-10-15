@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\URL;
 use PhpParser\Node\Expr\AssignOp\ShiftLeft;
 use Symfony\Component\Mime\RawMessage;
@@ -15,22 +16,89 @@ class SessionViewsController extends Controller
     public function accountancy(Request $request)
     {
         $document_studies = DB::select("SELECT document_studies.document_id, document_studies.compiled_tag_ID, document_studies.course_ID, document_studies.document_number, document_studies.title, document_studies.date_submitted, document_studies.author, document_studies.document_type, document_studies.addedby, document_studies.document_status, document_studies.created_at, document_studies.updated_on, course.course, college.college_ID, college.college, tag.tag1_ID, tag.tag2_ID, tag.tag3_ID, tag.tag4_ID, tag1.tag1_ID, tag1.tag1, tag2.tag2_ID, tag2.tag2, tag3.tag3_ID, tag3.tag3, tag4.tag4_ID, tag4.tag4
-        FROM document_studies
-        LEFT JOIN course ON document_studies.course_ID = course.course_ID
-        LEFT JOIN tag ON document_studies.document_id = tag.compiled_tag_ID
-        LEFT JOIN tag1 ON document_studies.document_id = tag1.tag1_ID
-		LEFT JOIN tag2 ON document_studies.document_id = tag2.tag2_ID
-		LEFT JOIN tag3 ON document_studies.document_id = tag3.tag3_ID
-		LEFT JOIN tag4 ON document_studies.document_id = tag4.tag4_ID
-        LEFT JOIN college ON document_studies.document_id = college.college_ID
-        WHERE course.college_ID = 2
-        ");
-
+            FROM document_studies
+            LEFT JOIN course ON document_studies.course_ID = course.course_ID
+            LEFT JOIN tag ON document_studies.document_id = tag.compiled_tag_ID
+            LEFT JOIN tag1 ON document_studies.document_id = tag1.tag1_ID
+            LEFT JOIN tag2 ON document_studies.document_id = tag2.tag2_ID
+            LEFT JOIN tag3 ON document_studies.document_id = tag3.tag3_ID
+            LEFT JOIN tag4 ON document_studies.document_id = tag4.tag4_ID
+            LEFT JOIN college ON document_studies.document_id = college.college_ID
+            WHERE course.college_ID = 2
+            ");
         $allParameters = $request->query();
         if (isset($allParameters['search'])) {
-            $document_studies = $this->Search('accountancy', $allParameters['search'])[0];
-            $search = $this->Search('accountancy', $allParameters['search'])[1];
-            return view('SessionViews.accountancy')->with(compact('document_studies', 'search' ));
+            $search = $allParameters['search'];
+
+
+            $uid = Auth::user()->id;
+            $compiled_backtrack_id = Auth::user()->compiled_backtrack_id;
+            if ($compiled_backtrack_id != null) {
+                $is_existing = false;
+                //gets the backtrack record
+                $backtrack_record = DB::select("SELECT * from backtrack
+                where compiled_backtrack_ID = $compiled_backtrack_id
+            ");
+                $backtrack1 = $backtrack_record[0]->backtrack1;
+                $backtrack2 = $backtrack_record[0]->backtrack2;
+                $backtrack3 = $backtrack_record[0]->backtrack3;
+                //compares if the search has been done before and update it
+                if ($backtrack2 == $search) {
+                    DB::table('bracktrack')
+                        ->where('compiled_backtrack_ID', $compiled_backtrack_id)
+                        ->update([
+                            'backtrack1' => $backtrack2,
+                            'backtrack2' => $backtrack1
+                        ]);
+                    $is_existing = true;
+                }
+                if ($backtrack3 == $search) {
+                    DB::table('bracktrack')
+                        ->where('compiled_backtrack_ID', $compiled_backtrack_id)
+                        ->update([
+                            'backtrack1' => $backtrack3,
+                            'backtrack2' => $backtrack1,
+                            'backtrack2' => $backtrack2
+                        ]);
+                    $is_existing = true;
+                }
+                if ($backtrack1 == $search) {
+                    $is_existing = true;
+                }
+
+                //creates new record if the search is new
+                if (!$is_existing) {
+                    DB::table('backtrack')
+                        ->where('compiled_backtrack_ID', $compiled_backtrack_id)
+                        ->update([
+                            'backtrack1' => $search,
+                            'backtrack2' => $backtrack1,
+                            'backtrack3' => $backtrack2
+                        ]);
+                }
+            } else { //creates new record of backtrack if user is first time searching
+                DB::table('backtrack')
+                    ->insert([
+                        'backtrack1' => $search,
+                    ]);
+                $compiled_backtrack_ID = DB::select("SELECT compiled_backtrack_ID
+                from backtrack
+                ORDER BY compiled_backtrack_ID DESC LIMIT 1
+                ");
+                DB::table('users')
+                    ->where('id', $uid)
+                    ->update([
+                        'compiled_backtrack_id' => $compiled_backtrack_ID[0]->compiled_backtrack_ID
+                    ]);
+            }
+
+
+
+
+            $document_studies = $this->Search('accountancy', $search)[0];
+            $search = $this->Search('accountancy', $search)[1];
+
+            return view('SessionViews.accountancy')->with(compact('document_studies', 'search'));
         } else {
             return view('SessionViews.accountancy', ['document_studies' => $document_studies]);
         }

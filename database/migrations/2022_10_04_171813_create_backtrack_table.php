@@ -15,9 +15,9 @@ return new class extends Migration
     {
         Schema::create('backtrack', function (Blueprint $table) {
             $table->id('compiled_backtrack_ID');
-            $table->integer('backtrack1_ID');
-            $table->integer('backtrack2_ID');
-            $table->integer('backtrack3_ID');
+            $table->string('backtrack1')->nullable();
+            $table->string('backtrack2')->nullable();
+            $table->string('backtrack3')->nullable();
             $table->timestamp('date_added')->default(\DB::raw('CURRENT_TIMESTAMP'));
             $table->timestamp('updated_on')->default(\DB::raw('CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP'));
         });
