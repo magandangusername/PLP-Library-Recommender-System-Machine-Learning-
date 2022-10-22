@@ -225,34 +225,36 @@
         // if($curPageName != "recommend_test.php"){
         ?>
 
-        <form class="" method="GET">
-            {{-- <div class="form-group"><label for="search-field"></label><input class="form-control search-field"
-                    type="search" name="search_bar" value="<?php //if (isset($_POST['search'])) {
-                    //echo $_POST['search_bar'];
-                    //}
-                    ?>" id="search-field"
-                    style="color:rgb(0,0,0);background-color:#e8e8e8;width:900px; margin-left:150px;"></div>
-            <input class="btn btn-dark mr-auto form-group" type="submit" name="search" value="Search"
-                style="background-color:rgb(255,255,255);color:rgb(0,0,0); margin-left: 10px;">
-            <input type="hidden" name="page" value="<?php //echo $curPageName
-            ?>"> --}}
-            <div class="container my-3">
-                <div class="input-group mb-3">
+        @if (Request::url() != route('home'))
+            <form class="" method="GET">
+                {{-- <div class="form-group"><label for="search-field"></label><input class="form-control search-field"
+                        type="search" name="search_bar" value="<?php //if (isset($_POST['search'])) {
+                        //echo $_POST['search_bar'];
+                        //}
+                        ?>" id="search-field"
+                        style="color:rgb(0,0,0);background-color:#e8e8e8;width:900px; margin-left:150px;"></div>
+                <input class="btn btn-dark mr-auto form-group" type="submit" name="search" value="Search"
+                    style="background-color:rgb(255,255,255);color:rgb(0,0,0); margin-left: 10px;">
+                <input type="hidden" name="page" value="<?php //echo $curPageName
+                ?>"> --}}
+                <div class="container my-3">
+                    <div class="input-group mb-3">
 
-                        @if (isset($search))
-                            <input type="search" class="form-control" placeholder="Search" aria-label="Search" name="search"
-                            aria-describedby="basic-addon2" value="@php
-                                echo $search
-                            @endphp">
-                        @else
-                            <input type="search" class="form-control" placeholder="Search" aria-label="Search" name="search"
-                            aria-describedby="basic-addon2">
-                        @endif
-                    <span class="input-group-text" id="basic-addon2"><button
-                            class="btn btn-primary">Search</button></span>
+                            @if (isset($search))
+                                <input type="search" class="form-control" placeholder="Search" aria-label="Search" name="search"
+                                aria-describedby="basic-addon2" value="@php
+                                    echo $search
+                                @endphp">
+                            @else
+                                <input type="search" class="form-control" placeholder="Search" aria-label="Search" name="search"
+                                aria-describedby="basic-addon2">
+                            @endif
+                        <span class="input-group-text" id="basic-addon2"><button
+                                class="btn btn-primary">Search</button></span>
+                    </div>
                 </div>
-            </div>
-        </form>
+            </form>
+        @endif
         </div>
         <?php //}
         ?>
