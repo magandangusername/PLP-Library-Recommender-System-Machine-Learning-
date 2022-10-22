@@ -44,7 +44,7 @@ class SessionViewsController extends Controller
                 $backtrack3 = $backtrack_record[0]->backtrack3;
                 //compares if the search has been done before and update it
                 if ($backtrack2 == $search) {
-                    DB::table('bracktrack')
+                    DB::table('backtrack')
                         ->where('compiled_backtrack_ID', $compiled_backtrack_id)
                         ->update([
                             'backtrack1' => $backtrack2,
@@ -53,7 +53,7 @@ class SessionViewsController extends Controller
                     $is_existing = true;
                 }
                 if ($backtrack3 == $search) {
-                    DB::table('bracktrack')
+                    DB::table('backtrack')
                         ->where('compiled_backtrack_ID', $compiled_backtrack_id)
                         ->update([
                             'backtrack1' => $backtrack3,
@@ -103,7 +103,7 @@ class SessionViewsController extends Controller
             return view('SessionViews.accountancy', ['document_studies' => $document_studies]);
         }
     }
-    
+
     public function artsandscience(Request $request)
     {
         $document_studies = DB::select("SELECT document_studies.document_id, document_studies.compiled_tag_ID, document_studies.course_ID, document_studies.document_number, document_studies.title, document_studies.date_submitted, document_studies.author, document_studies.document_type, document_studies.addedby, document_studies.document_status, document_studies.created_at, document_studies.updated_on, course.course, college.college_ID, college.college, tag.tag1_ID, tag.tag2_ID, tag.tag3_ID, tag.tag4_ID, tag1.tag1_ID, tag1.tag1, tag2.tag2_ID, tag2.tag2, tag3.tag3_ID, tag3.tag3, tag4.tag4_ID, tag4.tag4
@@ -135,7 +135,7 @@ class SessionViewsController extends Controller
                 $backtrack3 = $backtrack_record[0]->backtrack3;
                 //compares if the search has been done before and update it
                 if ($backtrack2 == $search) {
-                    DB::table('bracktrack')
+                    DB::table('backtrack')
                         ->where('compiled_backtrack_ID', $compiled_backtrack_id)
                         ->update([
                             'backtrack1' => $backtrack2,
@@ -144,7 +144,7 @@ class SessionViewsController extends Controller
                     $is_existing = true;
                 }
                 if ($backtrack3 == $search) {
-                    DB::table('bracktrack')
+                    DB::table('backtrack')
                         ->where('compiled_backtrack_ID', $compiled_backtrack_id)
                         ->update([
                             'backtrack1' => $backtrack3,
@@ -226,7 +226,7 @@ class SessionViewsController extends Controller
                 $backtrack3 = $backtrack_record[0]->backtrack3;
                 //compares if the search has been done before and update it
                 if ($backtrack2 == $search) {
-                    DB::table('bracktrack')
+                    DB::table('backtrack')
                         ->where('compiled_backtrack_ID', $compiled_backtrack_id)
                         ->update([
                             'backtrack1' => $backtrack2,
@@ -235,7 +235,7 @@ class SessionViewsController extends Controller
                     $is_existing = true;
                 }
                 if ($backtrack3 == $search) {
-                    DB::table('bracktrack')
+                    DB::table('backtrack')
                         ->where('compiled_backtrack_ID', $compiled_backtrack_id)
                         ->update([
                             'backtrack1' => $backtrack3,
@@ -285,7 +285,7 @@ class SessionViewsController extends Controller
             return view('SessionViews.computerstudies', ['document_studies' => $document_studies]);
         }
     }
-    
+
     public function education(Request $request)
     {
         $document_studies = DB::select("SELECT document_studies.document_id, document_studies.compiled_tag_ID, document_studies.course_ID, document_studies.document_number, document_studies.title, document_studies.date_submitted, document_studies.author, document_studies.document_type, document_studies.addedby, document_studies.document_status, document_studies.created_at, document_studies.updated_on, course.course, college.college_ID, college.college, tag.tag1_ID, tag.tag2_ID, tag.tag3_ID, tag.tag4_ID, tag1.tag1_ID, tag1.tag1, tag2.tag2_ID, tag2.tag2, tag3.tag3_ID, tag3.tag3, tag4.tag4_ID, tag4.tag4
@@ -317,7 +317,7 @@ class SessionViewsController extends Controller
                 $backtrack3 = $backtrack_record[0]->backtrack3;
                 //compares if the search has been done before and update it
                 if ($backtrack2 == $search) {
-                    DB::table('bracktrack')
+                    DB::table('backtrack')
                         ->where('compiled_backtrack_ID', $compiled_backtrack_id)
                         ->update([
                             'backtrack1' => $backtrack2,
@@ -326,7 +326,7 @@ class SessionViewsController extends Controller
                     $is_existing = true;
                 }
                 if ($backtrack3 == $search) {
-                    DB::table('bracktrack')
+                    DB::table('backtrack')
                         ->where('compiled_backtrack_ID', $compiled_backtrack_id)
                         ->update([
                             'backtrack1' => $backtrack3,
@@ -408,7 +408,7 @@ class SessionViewsController extends Controller
                 $backtrack3 = $backtrack_record[0]->backtrack3;
                 //compares if the search has been done before and update it
                 if ($backtrack2 == $search) {
-                    DB::table('bracktrack')
+                    DB::table('backtrack')
                         ->where('compiled_backtrack_ID', $compiled_backtrack_id)
                         ->update([
                             'backtrack1' => $backtrack2,
@@ -417,7 +417,7 @@ class SessionViewsController extends Controller
                     $is_existing = true;
                 }
                 if ($backtrack3 == $search) {
-                    DB::table('bracktrack')
+                    DB::table('backtrack')
                         ->where('compiled_backtrack_ID', $compiled_backtrack_id)
                         ->update([
                             'backtrack1' => $backtrack3,
@@ -499,7 +499,7 @@ class SessionViewsController extends Controller
                 $backtrack3 = $backtrack_record[0]->backtrack3;
                 //compares if the search has been done before and update it
                 if ($backtrack2 == $search) {
-                    DB::table('bracktrack')
+                    DB::table('backtrack')
                         ->where('compiled_backtrack_ID', $compiled_backtrack_id)
                         ->update([
                             'backtrack1' => $backtrack2,
@@ -508,7 +508,7 @@ class SessionViewsController extends Controller
                     $is_existing = true;
                 }
                 if ($backtrack3 == $search) {
-                    DB::table('bracktrack')
+                    DB::table('backtrack')
                         ->where('compiled_backtrack_ID', $compiled_backtrack_id)
                         ->update([
                             'backtrack1' => $backtrack3,
@@ -590,7 +590,7 @@ class SessionViewsController extends Controller
                 $backtrack3 = $backtrack_record[0]->backtrack3;
                 //compares if the search has been done before and update it
                 if ($backtrack2 == $search) {
-                    DB::table('bracktrack')
+                    DB::table('backtrack')
                         ->where('compiled_backtrack_ID', $compiled_backtrack_id)
                         ->update([
                             'backtrack1' => $backtrack2,
@@ -599,7 +599,7 @@ class SessionViewsController extends Controller
                     $is_existing = true;
                 }
                 if ($backtrack3 == $search) {
-                    DB::table('bracktrack')
+                    DB::table('backtrack')
                         ->where('compiled_backtrack_ID', $compiled_backtrack_id)
                         ->update([
                             'backtrack1' => $backtrack3,
@@ -651,13 +651,20 @@ class SessionViewsController extends Controller
     }
     public function homepage()
     {
-        $compiled_backtrack_id = Auth::user()->compiled_backtrack_id;
-        $backtrack_record = DB::select("SELECT * from backtrack
-                where compiled_backtrack_ID = $compiled_backtrack_id
-            ");
-        $backtrack1 = $backtrack_record[0]->backtrack1;
-        $backtrack2 = $backtrack_record[0]->backtrack2;
-        $backtrack3 = $backtrack_record[0]->backtrack3;
+        if(Auth::user()->compiled_backtrack_id != null) {
+            $compiled_backtrack_id = Auth::user()->compiled_backtrack_id;
+            $backtrack_record = DB::select("SELECT * from backtrack
+                    where compiled_backtrack_ID = $compiled_backtrack_id
+                ");
+            $backtrack1 = $backtrack_record[0]->backtrack1;
+            $backtrack2 = $backtrack_record[0]->backtrack2;
+            $backtrack3 = $backtrack_record[0]->backtrack3;
+        }else {
+            $backtrack1 = null;
+            $backtrack2 = null;
+            $backtrack3 = null;
+        }
+
         //all of these are temporary query
         if($backtrack1 != null){
             $document_studies = DB::select("SELECT document_studies.document_id, document_studies.compiled_tag_ID, document_studies.course_ID, document_studies.document_number, document_studies.title, document_studies.date_submitted, document_studies.author, document_studies.document_type, document_studies.addedby, document_studies.document_status, document_studies.created_at, document_studies.updated_on, course.course, college.college_ID, college.college, tag.tag1_ID, tag.tag2_ID, tag.tag3_ID, tag.tag4_ID, tag1.tag1_ID, tag1.tag1, tag2.tag2_ID, tag2.tag2, tag3.tag3_ID, tag3.tag3, tag4.tag4_ID, tag4.tag4
@@ -673,6 +680,7 @@ class SessionViewsController extends Controller
             OR tag1.tag1 LIKE '%$backtrack1%'
             OR tag2.tag2 LIKE '%$backtrack1%'
             OR tag3.tag3 LIKE '%$backtrack1%'
+            OR tag4.tag4 LIKE '%$backtrack1%'
             ORDER BY RAND()
             limit 5
             ");
@@ -691,6 +699,7 @@ class SessionViewsController extends Controller
             OR tag1.tag1 LIKE '%$backtrack2%'
             OR tag2.tag2 LIKE '%$backtrack2%'
             OR tag3.tag3 LIKE '%$backtrack2%'
+            OR tag4.tag4 LIKE '%$backtrack2%'
             ORDER BY RAND()
             limit 5
             ");
@@ -710,14 +719,14 @@ class SessionViewsController extends Controller
             OR tag1.tag1 LIKE '%$backtrack3%'
             OR tag2.tag2 LIKE '%$backtrack3%'
             OR tag3.tag3 LIKE '%$backtrack3%'
+            OR tag4.tag4 LIKE '%$backtrack3%'
             ORDER BY RAND()
             limit 5
             ");
         } else $document_studies3 = [];
         $document_studies = array_merge($document_studies, $document_studies2);
         $document_studies = array_merge($document_studies, $document_studies3);
-
-
+        $document_studies = array_unique($document_studies, SORT_REGULAR);
 
 
 
@@ -731,7 +740,22 @@ class SessionViewsController extends Controller
     public function Search($college, $search)
     {
         if ($college != null) {
+            // dd("SELECT document_studies.document_id, document_studies.compiled_tag_ID, document_studies.course_ID, document_studies.document_number, document_studies.title, document_studies.date_submitted, document_studies.author, document_studies.document_type, document_studies.addedby, document_studies.document_status, document_studies.created_at, document_studies.updated_on, course.course, college.college_ID, college.college, tag.tag1_ID, tag.tag2_ID, tag.tag3_ID, tag.tag4_ID, tag1.tag1_ID, tag1.tag1, tag2.tag2_ID, tag2.tag2, tag3.tag3_ID, tag3.tag3, tag4.tag4_ID, tag4.tag4
+            // FROM document_studies
+            // LEFT JOIN course ON document_studies.course_ID = course.course_ID
+            // LEFT JOIN college ON course.college_ID = college.college_ID
+            // LEFT JOIN tag ON document_studies.compiled_tag_ID = tag.compiled_tag_ID
+            // LEFT JOIN tag1 ON tag.tag1_ID = tag1.tag1_ID
+            // LEFT JOIN tag2 ON tag.tag2_ID = tag2.tag2_ID
+            // LEFT JOIN tag3 ON tag.tag3_ID = tag3.tag3_ID
+            // LEFT JOIN tag4 ON tag.tag4_ID = tag4.tag4_ID
+            // WHERE (document_studies.title LIKE '%" . $search . "%'
+            // OR tag1.tag1 LIKE '%$search%'
+            // OR tag2.tag2 LIKE '%$search%'
+            // OR tag3.tag3 LIKE '%$search%')
+            // AND college.college LIKE '%" . $college . "%'
 
+            // ");
             $document_studies = DB::select("SELECT document_studies.document_id, document_studies.compiled_tag_ID, document_studies.course_ID, document_studies.document_number, document_studies.title, document_studies.date_submitted, document_studies.author, document_studies.document_type, document_studies.addedby, document_studies.document_status, document_studies.created_at, document_studies.updated_on, course.course, college.college_ID, college.college, tag.tag1_ID, tag.tag2_ID, tag.tag3_ID, tag.tag4_ID, tag1.tag1_ID, tag1.tag1, tag2.tag2_ID, tag2.tag2, tag3.tag3_ID, tag3.tag3, tag4.tag4_ID, tag4.tag4
                 FROM document_studies
                 LEFT JOIN course ON document_studies.course_ID = course.course_ID
@@ -741,7 +765,11 @@ class SessionViewsController extends Controller
                 LEFT JOIN tag2 ON tag.tag2_ID = tag2.tag2_ID
                 LEFT JOIN tag3 ON tag.tag3_ID = tag3.tag3_ID
                 LEFT JOIN tag4 ON tag.tag4_ID = tag4.tag4_ID
-                WHERE document_studies.title LIKE '%" . $search . "%'
+                WHERE (document_studies.title LIKE '%" . $search . "%'
+                OR tag1.tag1 LIKE '%$search%'
+                OR tag2.tag2 LIKE '%$search%'
+                OR tag3.tag3 LIKE '%$search%'
+                OR tag4.tag4 LIKE '%$search%')
                 AND college.college LIKE '%" . $college . "%'
                 ");
         } else {
