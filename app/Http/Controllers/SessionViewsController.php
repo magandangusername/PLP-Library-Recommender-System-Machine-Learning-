@@ -11,6 +11,8 @@ use Illuminate\Support\Facades\URL;
 use PhpParser\Node\Expr\AssignOp\ShiftLeft;
 use Symfony\Component\Mime\RawMessage;
 
+use function PHPUnit\Framework\isEmpty;
+
 class SessionViewsController extends Controller
 {
     public function accountancy(Request $request)
@@ -651,7 +653,7 @@ class SessionViewsController extends Controller
     }
     public function homepage()
     {
-        if(Auth::user()->compiled_backtrack_id != null) {
+        if(isset(Auth::user()->compiled_backtrack_id) and Auth::user()->compiled_backtrack_id != null) {
             $compiled_backtrack_id = Auth::user()->compiled_backtrack_id;
             $backtrack_record = DB::select("SELECT * from backtrack
                     where compiled_backtrack_ID = $compiled_backtrack_id
