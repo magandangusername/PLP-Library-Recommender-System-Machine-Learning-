@@ -62,7 +62,7 @@
                         //         $rate = number_format($rate_sum / $i, 1);
                         ?>
 
-                        @include("layouts.documents")
+                        @include("layouts.documenttitles")
                         <?php //}
                         //}
                         ?>

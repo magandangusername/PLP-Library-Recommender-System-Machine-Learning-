@@ -48,7 +48,7 @@
                     @auth
 
 
-                        <img class="rounded-circle"src="{{ asset('img/avatars/avatar1.jpg') }}<?php //echo base64_encode($profilepic);
+                        <img class="rounded-circle"src="{{ asset('img/avatars/profiles.png') }}<?php //echo base64_encode($profilepic);
                         ?>"
                             {{-- data:image/jpg;charset=utf8;base64, --}}
                             style="width:40px;height:40px; border-style: solid; border-color: green; margin-right:10px;">
@@ -65,9 +65,9 @@
                             aria-expanded="false"><i class="fas fa-user fa-fw"></i></a>
                         <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
                             <li><a class="dropdown-item" href="{{ url('/SessionViews/profilepage') }}">Profile</a></li>
-                            <li><a class="dropdown-item"
+                            {{-- <li><a class="dropdown-item"
                                     href="{{ url('/SessionViews/recommendationpage') }}">Recommendations</a></li>
-                            <li><a class="dropdown-item" href="{{ url('/SessionViews/savedpage') }}">Saved</a></li>
+                            <li><a class="dropdown-item" href="{{ url('/SessionViews/savedpage') }}">Saved</a></li> --}}
                             <li>
                                 <a class="dropdown-item" href="{{ route('logout') }}"
                                     onclick="event.preventDefault(); document.getElementById('logout-form').submit();">Logout</a>
