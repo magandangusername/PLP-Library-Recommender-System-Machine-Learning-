@@ -39,7 +39,7 @@
         <nav class="navbar navbar-light bg-light" style="background-image: linear-gradient(to left, green,#fde8ec);">
             <div class="container-fluid" style="background-image: linear-gradient(to left, green,#fde8ec);">
                 <a class="navbar-brand text-dark    " href="#" style="color: white; "><img
-                        src="assets/img/tech/plplogo.png" alt="PLP Logo" style="width: 50px; height: 50px;">Thesis and
+                        src="img/tech/plplogo.png" alt="PLP Logo" style="width: 50px; height: 50px;">Thesis and
                     Research</a>
                 <div class="d-flex">
 

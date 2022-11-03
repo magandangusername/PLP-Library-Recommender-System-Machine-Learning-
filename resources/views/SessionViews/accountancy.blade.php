@@ -34,7 +34,7 @@
                         //     $page = 1;
                         // }
                         // $start_from = ($page - 1) * $per_page_record;
-                        // if (!isset($_POST['search'])) {
+                        // if (!isset($_POST['  h'])) {
                         //     $sql = $conn->query("SELECT * FROM tnr_dataset WHERE College = 'Accountancy' LIMIT $start_from, $per_page_record");
                         // }
                         // elseif ($resultcount == 0){

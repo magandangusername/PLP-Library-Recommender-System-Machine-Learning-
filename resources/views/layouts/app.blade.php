@@ -108,9 +108,10 @@
         <nav class="navbar navbar-light"
             style="margin:2px 0px 0px 0px;background-color:rgba(255,255,255,0); background-image: linear-gradient(to left, black,green);">
             <div class="container-fluid">
+                @auth
                 <button type="button"
                     class="border border-dark border border-1 btn btn-info rounded-pill text-center"><a
-                        class="navbar-brand nav-link" href="{{ route('home') }}">Home</a></button>
+                        class="navbar-brand nav-link" href="{{ route('home') }}">Home</a></button>@endauth
                 <button type="button"
                     class="border border-dark border border-1 btn btn-info rounded-pill text-center"><a
                         class="navbar-brand nav-link"
