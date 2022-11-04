@@ -246,6 +246,11 @@
                                 aria-describedby="basic-addon2" value="@php
                                     echo $search
                                 @endphp">
+                                <ul id="history">
+                                    <li>{{ dd($document_studies[0]->backtrack1) }}</li>
+                                    <li>{{ $document_studies2[0]->backtrack2 }}</li>
+                                    <li>{{ $document_studies3[0]->backtrack3}}</li>
+                                </ul>
                             @else
                                 <input type="search" class="form-control" placeholder="Search" aria-label="Search" name="search"
                                 aria-describedby="basic-addon2">
@@ -481,6 +486,11 @@
             </div>
         </div>
     </footer>
+    <script>
+        function showhistory() {
+          document.getElementById("history").innerHTML;
+        }
+    </script>
 </body>
 
 </html>

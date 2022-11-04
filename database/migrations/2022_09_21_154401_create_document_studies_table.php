@@ -24,6 +24,7 @@ return new class extends Migration
             $table->string('document_type');
             $table->string('addedby');
             $table->string('document_status');
+            $table->integer('views_count');
             $table->timestamp('created_at')->default(\DB::raw('CURRENT_TIMESTAMP'));
             $table->timestamp('updated_on')->default(\DB::raw('CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP')); 
         });
