@@ -20,7 +20,7 @@ Route::get('/', [SessionViewsController::class, 'homepage'])->name('home')->midd
 Route::get('/SessionViews/recommendationpage', [SessionViewsController::class, 'recommendationpage']);
 Route::get('/SessionViews/savedpage', [SessionViewsController::class, 'savedpage']);
 Route::get('/SessionViews/profilepage', [SessionViewsController::class, 'profilepage']);
-Route::get('/viewpage', [SessionViewsController::class, 'viewpage'])->name('viewpage');
+Route::get('/viewpage/{title}', [SessionViewsController::class, 'viewpage'])->name('viewpage');
 Route::get('/overview', [AdminViewsController::class, 'overview'])->name('overview');
 Route::get('/manageaccount', [AdminViewsController::class, 'manageaccount'])->name('manageaccount');
 Route::get('/managedocument', [AdminViewsController::class, 'managedocument'])->name('managedocument');

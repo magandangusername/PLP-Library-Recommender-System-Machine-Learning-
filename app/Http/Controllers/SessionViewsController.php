@@ -766,9 +766,26 @@ class SessionViewsController extends Controller
         return [$document_studies, $search];
     }
 
-    public function viewpage(){
-        $document_studies = DB::table("document_studies")->where("title", $title)->first();
+    public function viewpage($title){
+        $document_studies = DB::table("document_studies")
+        ->leftJoin("course", "document_studies.course_ID", "=", "course.course_ID")
+        ->leftJoin("college", "course.college_ID", "=", "college.college_ID")
+        ->leftJoin("tag", "document_studies.compiled_tag_ID", "=", "tag.compiled_tag_ID")
+        ->leftJoin("tag1", "tag.tag1_ID", "=", "tag1.tag1_ID")
+        ->leftJoin("tag2", "tag.tag2_ID", "=", "tag2.tag2_ID")
+        ->leftJoin("tag3", "tag.tag3_ID", "=", "tag3.tag3_ID")
+        ->leftJoin("tag4", "tag.tag4_ID", "=", "tag4.tag4_ID")
+        ->where("document_studies.title", $title)->first();
+
+        $view_count = $document_studies->views_count;
+
+        DB::table("document_studies")
+        ->where("title", $title)
+        ->update([
+            'document_studies.views_count' => $view_count + 1
+        ]);
+
         // $document_studies = DB::table('document_studies')->select('SELECT * FROM document_studies LIMIT 1');
-        return view('SessionViews.viewpage', ['title'=>$document_studies]);
+        return view('SessionViews.viewpage', ['document_studies'=>$document_studies]);
     }
 }
