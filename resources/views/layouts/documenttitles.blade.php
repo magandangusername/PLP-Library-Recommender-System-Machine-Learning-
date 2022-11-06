@@ -11,7 +11,7 @@
                     style="border-style: solid;" /></div> --}}
             <div class="col-lg-7">
                 <ul>
-                    <li><h3 style="color:black;"><a class="text-decoration-none text-dark" href="">{{ $document_study->title }}</a></h3>
+                    <li><h3 style="color:black;"><a class="text-decoration-none text-dark" href="{{ route('viewpage') }}">{{ $document_study->title }}</a></h3>
                         <div class="info" style="color:black;"><span class="text-dark"><h6>TAGS: </h6>
                             <div class="d-inline bg-success text-white rounded-pill">{{ $document_study->tag1 }}
                             </div>&nbsp;|&nbsp;<div class="d-inline bg-success text-white rounded-pill">

@@ -765,4 +765,10 @@ class SessionViewsController extends Controller
         }
         return [$document_studies, $search];
     }
+
+    public function viewpage(){
+        $document_studies = DB::table("document_studies")->where("title", $title)->first();
+        // $document_studies = DB::table('document_studies')->select('SELECT * FROM document_studies LIMIT 1');
+        return view('SessionViews.viewpage', ['title'=>$document_studies]);
+    }
 }
