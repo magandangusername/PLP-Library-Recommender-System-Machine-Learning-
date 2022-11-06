@@ -19,6 +19,7 @@ return new class extends Migration
             $table->string('library_id_number');
             $table->integer('student_info_id');
             $table->integer('compiled_backtrack_id')->nullable();
+            $table->integer('compiled_views_id')->nullable();
             $table->string('email')->unique();
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');

@@ -13,11 +13,11 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('backtrack', function (Blueprint $table) {
-            $table->id('compiled_backtrack_id');
-            $table->string('backtrack1')->nullable();
-            $table->string('backtrack2')->nullable();
-            $table->string('backtrack3')->nullable();
+        Schema::create('document_views', function (Blueprint $table) {
+            $table->id('compiled_views_id');
+            $table->string('view1')->nullable();
+            $table->string('view2')->nullable();
+            $table->string('view3')->nullable();
             $table->timestamp('date_added')->default(\DB::raw('CURRENT_TIMESTAMP'));
             $table->timestamp('updated_on')->default(\DB::raw('CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP'));
         });
@@ -30,6 +30,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('backtrack');
+        Schema::dropIfExists('document_views');
     }
 };
