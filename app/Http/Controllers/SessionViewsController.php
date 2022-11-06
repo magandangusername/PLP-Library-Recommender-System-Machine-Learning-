@@ -778,12 +778,78 @@ class SessionViewsController extends Controller
         ->where("document_studies.title", $title)->first();
 
         $view_count = $document_studies->views_count;
+        $title_id = $document_studies->document_id;
 
         DB::table("document_studies")
-        ->where("title", $title)
+        ->where("document_id", $title_id)
         ->update([
             'document_studies.views_count' => $view_count + 1
         ]);
+
+        if(auth::check()){
+            $uid = Auth::user()->id;
+            $compiled_views_id = Auth::user()->compiled_views_id;
+            if ($compiled_views_id != null) {
+                $is_existing = false;
+                //gets the views record
+                $view_record = DB::select("SELECT * from document_views
+                    where compiled_views_id = $compiled_views_id
+                ");
+
+                $view1 = $view_record[0]->view1;
+                $view2 = $view_record[0]->view2;
+                $view3 = $view_record[0]->view3;
+                //compares if the search has been done before and update it
+                if ($view2 == $title_id) {
+                    DB::table('document_views')
+                        ->where('compiled_views_id', $compiled_views_id)
+                        ->update([
+                            'view1' => $view2,
+                            'view2' => $view1
+                        ]);
+                    $is_existing = true;
+                }
+                if ($view3 == $title_id) {
+                    DB::table('document_views')
+                        ->where('compiled_views_id', $compiled_views_id)
+                        ->update([
+                            'view1' => $view3,
+                            'view2' => $view1,
+                            'view2' => $view2
+                        ]);
+                    $is_existing = true;
+                }
+                if ($view1 == $title_id) {
+                    $is_existing = true;
+                }
+
+                //creates new record if the view is new
+                if (!$is_existing) {
+                    DB::table('document_views')
+                        ->where('compiled_views_id', $compiled_views_id)
+                        ->update([
+                            'view1' => $title_id,
+                            'view2' => $view1,
+                            'view3' => $view2
+                        ]);
+                }
+            } else { //creates new record of view if user is first time clickingw
+                DB::table('document_views')
+                    ->insert([
+                        'view1' => $title_id,
+                    ]);
+                $compiled_views_id = DB::select("SELECT compiled_views_id
+                from document_views
+                ORDER BY compiled_views_id DESC LIMIT 1
+                ");
+                DB::table('users')
+                    ->where('id', $uid)
+                    ->update([
+                        'compiled_views_id' => $compiled_views_id[0]->compiled_views_id
+                    ]);
+            }
+        }
+
 
         // $document_studies = DB::table('document_studies')->select('SELECT * FROM document_studies LIMIT 1');
         return view('SessionViews.viewpage', ['document_studies'=>$document_studies]);
