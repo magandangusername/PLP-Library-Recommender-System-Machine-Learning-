@@ -1,6 +1,6 @@
 <div class="clean-blog-post" style="padding:20px; margin: 10px; border-style: inset;">
     <div class="row">
-        @if ($document_studies == null)
+        @if (isset($document_studies) or $document_studies == null)
             <div class="alert alert-info" role="alert">
                 Sorry, no documents found.
             </div>
@@ -11,7 +11,7 @@
                     style="border-style: solid;" /></div> --}}
             <div class="col-lg-7">
                 <ul>
-                    <li><h3 style="color:black;"><a class="text-decoration-none text-dark" href="{{ route('viewpage') }}">{{ $document_study->title }}</a></h3>
+                    <li><h3 style="color:black;"><a class="text-decoration-none text-dark" href="{{ route("viewpage",$document_study->title) }}">{{ $document_study->title }}</a></h3>
                         <div class="info" style="color:black;"><span class="text-dark"><h6>TAGS: </h6>
                             <div class="d-inline bg-success text-white rounded-pill">{{ $document_study->tag1 }}
                             </div>&nbsp;|&nbsp;<div class="d-inline bg-success text-white rounded-pill">
@@ -21,7 +21,7 @@
                                 {{ $document_study->tag4 }}</div>
                         </span></div>
                     </li>
-                    
+
                 </ul>
                 {{-- <div class="info" style="color:black;"><span class="text-dark">Submitted on
                         {{ $document_study->date_submitted }} by:</span></div>
@@ -46,7 +46,7 @@
                 ?>">Download PDF
                         here</a></button>&nbsp;&nbsp;<button class="btn btn-outline-primary btn-sm" type="button"><a
                         href="<?php ?>">Add
-                        to Favorites</a></button>&nbsp;<br><br> --}} 
+                        to Favorites</a></button>&nbsp;<br><br> --}}
                 <br><br>
             </div>
         @endforeach

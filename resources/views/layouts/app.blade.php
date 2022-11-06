@@ -141,106 +141,20 @@
                         Management</a></button>
             </div>
         </nav>
-        {{-- <nav class="navbar navbar-expand-lg navbar-light bg-light"
-        style="margin:2px 0px 0px 0px;background-color:rgba(255,255,255,0); background-image: linear-gradient(to left, black,green);"> --}}
-        {{-- <div class="container-fluid"><a class="navbar-brand" href="#"></a><button class="navbar-toggler"
-                data-toggle="collapse" data-target="#navcol-1"><span class="sr-only">Toggle navigation</span><span
-                    class="navbar-toggler-icon"></span></button> --}}
-        {{-- <div class="collapse navbar-collapse" id="navcol-1">
-                <ul class="nav navbar-nav mr-auto">
-                    <li class="nav-item" role="presentation"><a class="nav-link"
-                            style="color: black; margin-right:10px;" href="Home.php">Home</a></li>
-                    <li class="nav-item" role="presentation"><a class="nav-link"
-                            style="color: black; margin-right:140px;" href="accountancy.php">Accountancy</a></li>
-                    <li class="nav-item" role="presentation"><a class="nav-link"
-                            style="color: black; margin-right:140px;" href="accountancy.php">Arts and Science</a></li>
-                    <li class="nav-item" role="presentation"><a class="nav-link"
-                            style="color: black; margin-right:10px;" href="education.php">Education</a></li>
-                    <li class="nav-item" role="presentation"><a class="nav-link"
-                            style="color: black; margin-right:140px;" href="accountancy.php">Engineering</a></li>
-                    <li class="nav-item" role="presentation"><a class="nav-link"
-                            style="color: black; margin-right:10px;" href="computer.php">Computer Studies</a></li>
-                    <li class="nav-item" role="presentation"><a class="nav-link"
-                            style="color: black; margin-right:10px;" href="nursing.php">Nursing</a></li>
-                    <li class="nav-item" role="presentation"><a class="nav-link"
-                            style="color: black; margin-right:10px;" href="hotelmanagement.php">Hotel Management</a>
-                    </li>
 
-
-
-                    <img class="rounded-circle"src="data:image/jpg;charset=utf8;base64,<?php //echo base64_encode($profilepic);
-                    ?>"
-                        style="width:40px;height:40px; border-style: solid; border-color: green; margin-right:10px;">
-                    <div class="dropdown">
-                        <button class="btn btn-success dropdown-toggle" type="button" id="dropdownMenuButton"
-                            data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                            <?php //echo $studentname
-                            ?>
-                        </button>
-                        <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                            <a class="dropdown-item" href="profile.php">Profile</a>
-                            <a class="dropdown-item" href="recommend_test.php">Recomendation</a>
-                            <a class="dropdown-item" href="myfavorites.php">Your Favorites</a>
-                            <a class="dropdown-item" target="_blank" href="ckeditor.php">Your Editor</a>
-                            <div class="dropdown-divider"></div>
-                            <a class="dropdown-item" href="logout.php">Log out</a>
-                        </div>
-                    </div> --}}
-
-
-
-        <!-- <li class="dropdown">
-                        <a class="dropdown-toggle nav-link" data-toggle="dropdown" aria-expanded="false" style="color: black;" href="#"><?php //echo $studentname
-                        ?></a>
-                        <div class="dropdown-menu" role="menu">
-                            <a class="dropdown-item" role="presentation" href="profile.php">Profile</a>
-                            <a class="dropdown-item" role="presentation" href="recommend_test.php">Recommendation</a>
-                            <a class="dropdown-item" role="presentation" href="myfavorites.php">My Favorites</a>
-                            <a class="dropdown-item" target="_blank" role="presentation" href="ckeditor.php">Mini Editor</a>
-                            <div class="dropdown-divider"></div>
-                            <a class="dropdown-item" role="presentation" href="logout.php">Log out</a>
-                        </div>
-                    </li> -->
         </ul><span class="navbar-text actions"> </span>
         </div>
         </div>
 
         <script>
-            // Add active class to the current button (highlight it)
-            // var header = document.getElementById("navcol-1");
-            // var btns = header.getElementsByClassName("nav-link");
-            // for (var i = 0; i < btns.length; i++) {
-            //   btns[i].addEventListener("click", function() {
-            //   var current = document.getElementsByClassName("active");
-            //   current[0].className = current[0].className.replace(" active", "");
-            //   this.className += " active";
-            //   });
-            // }
         </script>
         </nav>
-        {{-- <nav class="navbar navbar-light m-5"> --}}
-        {{-- style="margin:10px 0px 0px 0px;background-color:rgba(255,255,255,0);"> --}}
-        <?php
-        // $curPageName = substr($_SERVER["SCRIPT_NAME"],strrpos($_SERVER["SCRIPT_NAME"],"/")+1);
-
-        // if($curPageName != "recommend_test.php"){
-        ?>
-
         @if (Request::url() != route('home'))
             <form class="" method="GET">
-                {{-- <div class="form-group"><label for="search-field"></label><input class="form-control search-field"
-                        type="search" name="search_bar" value="<?php //if (isset($_POST['search'])) {
-                        //echo $_POST['search_bar'];
-                        //}
-                        ?>" id="search-field"
-                        style="color:rgb(0,0,0);background-color:#e8e8e8;width:900px; margin-left:150px;"></div>
-                <input class="btn btn-dark mr-auto form-group" type="submit" name="search" value="Search"
-                    style="background-color:rgb(255,255,255);color:rgb(0,0,0); margin-left: 10px;">
-                <input type="hidden" name="page" value="<?php //echo $curPageName
-                ?>"> --}}
+
                 <div class="container my-3">
                     <div class="input-group mb-3">
-                        
+
                             @if (isset($search))
                                 <input type="search" class="form-control" placeholder="Search" aria-label="Search" name="search"
                                 aria-describedby="basic-addon2" value="@php
@@ -257,7 +171,7 @@
                                 <input type="search" class="form-control" placeholder="Search" aria-label="Search" name="search"
                                 aria-describedby="basic-addon2">
                             @endif
-                      
+
                         <span class="input-group-text" id="basic-addon2"><button
                                 class="btn btn-primary">Search</button></span>
                     </div>
@@ -265,151 +179,13 @@
             </form>
         @endif
         </div>
-        <?php //}
-        ?>
-        {{-- </nav> --}}
-        <?php
 
-        //     if(isset($_POST['search'])){
 
-        //         $searchoutput = $_POST['search_bar'];
 
-        //         $webpage = $_POST['page'];
-
-        //         if($webpage == "home.php" || $webpage == "guestindex.php"){
-        //             //echo "<script>alert('test')</script>";
-        //             $sql = $conn->query("SELECT * FROM tnr_dataset WHERE (`Title` LIKE '%".$searchoutput."%')" );
-        //             $resultcount = $conn->query("SELECT COUNT(*) FROM tnr_dataset WHERE (`Title` LIKE '%".$searchoutput."%')" );
-        //             $resultcount = $resultcount->fetch_assoc();
-        //             $resultcount = $resultcount['COUNT(*)'];
-        //         }
-        //         elseif($webpage == "accountancy.php"){
-        //             //echo $curPageName;
-        //             $sql = $conn->query("SELECT * FROM tnr_dataset WHERE College = 'Accountancy' AND `Title` LIKE '%".$searchoutput."%'");
-        //             $resultcount = $conn->query("SELECT COUNT(*) FROM tnr_dataset WHERE College = 'Accountancy' AND `Title` LIKE '%".$searchoutput."%'" );
-        //             $resultcount = $resultcount->fetch_assoc();
-        //             $resultcount = $resultcount['COUNT(*)'];
-        //         }elseif($webpage == "computer.php"){
-        //             //echo $curPageName;
-        //             $sql = $conn->query("SELECT * FROM tnr_dataset WHERE College = 'Computer Science' AND `Title` LIKE '%".$searchoutput."%'");
-        //             $sql = $conn->query("SELECT * FROM tnr_dataset WHERE College = 'Computer Science' AND `Title` LIKE '%".$searchoutput."%'");
-        //             $resultcount = $conn->query("SELECT COUNT(*) FROM tnr_dataset WHERE College = 'Computer Science' AND `Title` LIKE '%".$searchoutput."%'" );
-        //             $resultcount = $resultcount->fetch_assoc();
-        //             $resultcount = $resultcount['COUNT(*)'];
-        //         }
-        //         elseif($webpage == "education.php"){
-        //             //echo $curPageName;
-        //             $sql = $conn->query("SELECT * FROM tnr_dataset WHERE College = 'Education' AND `Title` LIKE '%".$searchoutput."%'");
-        //             $sql = $conn->query("SELECT * FROM tnr_dataset WHERE College = 'Education' AND `Title` LIKE '%".$searchoutput."%'");
-        //             $resultcount = $conn->query("SELECT COUNT(*) FROM tnr_dataset WHERE College = 'Education' AND `Title` LIKE '%".$searchoutput."%'" );
-        //             $resultcount = $resultcount->fetch_assoc();
-        //             $resultcount = $resultcount['COUNT(*)'];
-        //         }
-        //         elseif($webpage == "hotelmanagement.php"){
-        //             //echo $curPageName;
-        //             $sql = $conn->query("SELECT * FROM tnr_dataset WHERE College = 'Hotel Management' AND `Title` LIKE '%".$searchoutput."%'");
-        //             $sql = $conn->query("SELECT * FROM tnr_dataset WHERE College = 'Hotel Management' AND `Title` LIKE '%".$searchoutput."%'");
-        //             $resultcount = $conn->query("SELECT COUNT(*) FROM tnr_dataset WHERE College = 'Hotel Management' AND `Title` LIKE '%".$searchoutput."%'" );
-        //             $resultcount = $resultcount->fetch_assoc();
-        //             $resultcount = $resultcount['COUNT(*)'];
-        //         }
-        //         elseif($webpage == "nursing.php"){
-        //             //echo $curPageName;
-        //             $sql = $conn->query("SELECT * FROM tnr_dataset WHERE College = 'Nursing' AND `Title` LIKE '%".$searchoutput."%'");
-        //             $sql = $conn->query("SELECT * FROM tnr_dataset WHERE College = 'Nursing' AND `Title` LIKE '%".$searchoutput."%'");
-        //             $resultcount = $conn->query("SELECT COUNT(*) FROM tnr_dataset WHERE College = 'Nursing' AND `Title` LIKE '%".$searchoutput."%'" );
-        //             $resultcount = $resultcount->fetch_assoc();
-        //             $resultcount = $resultcount['COUNT(*)'];
-        //         }
-        //     }
-        // }else{
-        //     header("Location: guestindex.php");
-        //     exit();
-        // }
-        ?>
     </header>
-    {{-- <br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-
-<br>
-<br>
-<br>
-<br>
-<br> --}}
-
-
-
-
-
 
 
     @yield('content')
-    {{-- <body>
-    <div id="app">
-        <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm">
-            <div class="container">
-                <a class="navbar-brand" href="{{ url('/') }}">
-                    {{ config('app.name', 'Laravel') }}
-                </a>
-                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
-
-                <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                    <!-- Left Side Of Navbar -->
-                    <ul class="navbar-nav me-auto">
-
-                    </ul>
-
-                    <!-- Right Side Of Navbar -->
-                    <ul class="navbar-nav ms-auto">
-                        <!-- Authentication Links -->
-                        @guest
-                            @if (Route::has('login'))
-                                <li class="nav-item">
-                                    <a class="nav-link" href="{{ route('login') }}">{{ __('Login') }}</a>
-                                </li>
-                            @endif
-
-                            @if (Route::has('register'))
-                                <li class="nav-item">
-                                    <a class="nav-link" href="{{ route('register') }}">{{ __('Register') }}</a>
-                                </li>
-                            @endif
-                        @else
-                            <li class="nav-item dropdown">
-                                <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
-                                    {{ Auth::user()->name }}
-                                </a>
-
-                                <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
-                                    <a class="dropdown-item" href="{{ route('logout') }}"
-                                       onclick="event.preventDefault();
-                                                     document.getElementById('logout-form').submit();">
-                                        {{ __('Logout') }}
-                                    </a>
-
-                                    <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
-                                        @csrf
-                                    </form>
-                                </div>
-                            </li>
-                        @endguest
-                    </ul>
-                </div>
-            </div>
-        </nav>
-
-        <main class="py-4">
-            @yield('content')
-        </main>
-    </div>
-</body> --}}
 
     <footer class="my-3">
         <div class="row align-items-center"
