@@ -147,6 +147,7 @@
                                 <thead>
                                     <thead>
                             <tr class="text-light bg-dark">
+                                <th>Student Information Number</th>
                                 <th>Student Number</th>
                                 <th>Firstname</th>
                                 <th>Surname</th>
@@ -156,10 +157,10 @@
                                 <th>Email</th>
                                 <th>Contact Number</th>
                                 <th>Student Status</th>
+                                <th>Added By</th>
                                 <th>Date Added</th>
                                 <th>Updated On</th>
                                 <th>Password</th>
-                                <th>Profile</th>
                             </tr>
                         </thead>
                                 </thead>
@@ -179,32 +180,24 @@
                                            
                                         
                                                 ?>
+                                                @foreach ($student_info as $student_infos)
                                                 <tr>
-                                                    <td><?php //echo $studentnumber;
-                                                        ?></td>
-                                                        <td><?php //echo $studentname;
-                                                        ?></td>
-                                                        <td><?php //echo $course;
-                                                        ?></td>
-                                                        <td><?php //echo $bio;
-                                                        ?></td>
-                                                        <td><?php //echo $contact;
-                                                        ?></td>
-                                                        <td><?php //echo $password;
-                                                        ?></td>
-                                                        <td><?php //echo $studentnumber;
-                                                        ?></td>
-                                                        <td><?php //echo $studentnumber;
-                                                        ?></td>
-                                                        <td><?php //echo $studentnumber;
-                                                        ?></td>
-                                                        <td><?php //echo $studentnumber;
-                                                        ?></td>
-                                                        <td><?php //echo $studentnumber;
-                                                        ?></td>
-                                                        <td><?php //echo $studentnumber;
-                                                        ?></td>
+                                                   <td>{{ $student_infos->student_info_ID }}</td> 
+                                                   <td>{{ $student_infos->student_number }}</td>
+                                                   <td>{{ $student_infos->firstname }}</td>
+                                                   <td>{{ $student_infos->surname }}</td>
+                                                   <td>{{ $student_infos->year_level }}</td>
+                                                   <td>{{ $student_infos->college }}</td>
+                                                   <td>{{ $student_infos->course }}</td>
+                                                   <td>{{ $student_infos->email }}</td>
+                                                   <td>{{ $student_infos->contact_number }}</td>
+                                                   <td>{{ $student_infos->studentstatus }}</td>
+                                                   <td>{{ $student_infos->addedby }}</td>
+                                                   <td>{{ $student_infos->date_added }}</td>
+                                                   <td>{{ $student_infos->updated_on }}</td>
+                                                   <td>{{ $student_infos->password }}</td>
                                                 </tr>
+                                                @endforeach
                                                 <?php  
                                                 //  }
                                                 // }
@@ -236,13 +229,17 @@
                                     <th>Author</th>
                                     <th>Date Submitted</th>
                                     <th>Document Type</th>
+                                    <th>Added By</th>
+                                    <th>Document Status</th>
                                     <th>College</th>
                                     <th>Course</th>
                                     <th>1st Tag</th>
                                     <th>2nd Tag</th>
                                     <th>3rd Tag</th>
                                     <th>4th Tag</th>
-                                    <th>Document Status</th>
+                                    <th>Views</th>
+                                    <th>Created At</th>
+                                    <th>Updated On</th>
                                     </tr>
                                     </thead>
 
@@ -262,22 +259,41 @@
                                            
                                         
                                                 ?>
+                                                @foreach ($document_studies as $document_study)
                                                 <tr>
-                                                    <td><?php //echo $documentID; ?></td>
-                                                    <td><?php //echo $title; ?></td>
-                                                    <td><?php //echo $author; ?></td>
-                                                    <td><?php //echo $year; ?></td>
-                                                    <td><?php //echo $kind; ?></td>
-                                                    <td><?php //echo $college; ?></td>
-                                                    <td><?php //echo $content; ?></td>
-                                                    <td><?php //echo $links; ?></td>
-                                                    <td><?php //echo $links; ?></td>
-                                                    <td><?php //echo $links; ?></td>
-                                                    <td><?php //echo $links; ?></td>
-                                                    <td><?php //echo $links; ?></td>
-                                                    <td><?php //echo $links; ?></td>
-                                                   
+                                                    <td>{{ $document_study->document_id }}</td>
+                                                    <td>{{ $document_study->document_number }}</td>
+                                                    <td>{{ $document_study->title }}</td>
+                                                    <td>{{ $document_study->author }}</td>
+                                                    <td>{{ $document_study->date_submitted }}</td>
+                                                    <td>{{ $document_study->document_type }}</td>
+                                                    <td>{{ $document_study->addedby }}</td>
+                                                    <td>{{ $document_study->document_status }}</td>
+                                                    @foreach ( $college as $colleges )
+                                                        <td>{{ $colleges->college }}</td>
+                                                    @endforeach
+                                                    @foreach ( $course as $courses )
+                                                        <td>{{ $courses->course }}</td>
+                                                    @endforeach
+                                                    @foreach ( $tag1 as $tags1 )
+                                                        <td>{{ $tags1->tag1 }}</td>
+                                                    @endforeach
+                                                    @foreach ( $tag2 as $tags2 )
+                                                        <td>{{ $tags2->tag2 }}</td>
+                                                    @endforeach
+                                                    @foreach ( $tag3 as $tags3 )
+                                                        <td>{{ $tags3->tag3 }}</td>
+                                                    @endforeach
+                                                    @foreach ( $tag4 as $tags4 )
+                                                        <td>{{ $tags4->tag4 }}</td>
+                                                    @endforeach
+                                                    <td>{{ $document_study->views_count }}</td>
+                                                    <td>{{ $document_study->created_at }}</td>
+                                                    <td>{{ $document_study->updated_on }}</td>
+                                                    
+                                                    
                                                 </tr>
+                                                @endforeach
                                                 <?php  
                                                 //  }
                                                 // }

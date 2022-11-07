@@ -11,6 +11,7 @@ use Illuminate\Support\Facades\URL;
 use PhpParser\Node\Expr\AssignOp\ShiftLeft;
 use Symfony\Component\Mime\RawMessage;
 
+
 use function PHPUnit\Framework\isEmpty;
 
 class SessionViewsController extends Controller
@@ -854,4 +855,19 @@ class SessionViewsController extends Controller
         // $document_studies = DB::table('document_studies')->select('SELECT * FROM document_studies LIMIT 1');
         return view('SessionViews.viewpage', ['document_studies'=>$document_studies]);
     }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    
 }
