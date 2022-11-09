@@ -10,17 +10,19 @@
 
                         <div class="col-xl-3 col-md-6">
                             <div class="card bg-info text-dark mb-4">
-                                <div class="card-body"><b>Total Registered student of PLP:</b> <?php //echo $totalstudent ?></div>
+                                <div class="card-body"><b>Total Registered student of PLP:</b>  </div>
+                                {{-- {{ $student_count }} --}}
                             </div>
                         </div>
                         <div class="col-xl-3 col-md-6">
                             <div class="card bg-danger bg-outline-dark text-dark mb-4">
-                                <div class="card-body"><b>Number of Accountancy Student:</b> <?php //echo $totalaccountancy ?></div>
+                                <div class="card-body"><b>Number of Accountancy Student:</b> </div>
+                                {{-- {{ $accountancy_student_count }} --}}
                             </div>
                         </div>
                         <div class="col-xl-3 col-md-6">
                             <div class="card bg-success bg-outline-dark text-dark mb-4">
-                                <div class="card-body"><b>Number of Computer Science Student:</b> <?php //echo $totalcomputerscience ?></div>
+                                <div class="card-body"><b>Number of Computer Science Student:</b></div>
                             </div>
                         </div>
                         <div class="col-xl-3 col-md-6">
@@ -40,95 +42,127 @@
                         </div>
                         <div class="col-xl-3 col-md-6">
                             <div class="card bg-warning text-dark mb-4">
-                                <div class="card-body "><b>Total of documents from all colleges:</b> <?php //echo $totalaccthesis + $totalcomputerthesis + $totaleducthesis + $totalhmthesis + $totalnursingthesis + $totalaccresearch + $totalcomputerresearch + $totaleducresearch + $totalhmresearch + $totalnursingresearch?></div>
+                                <div class="card-body "><b>Total of documents from all colleges:</b> {{ $document_count }}</div>
 
                             </div>
                         </div>
                         <div class="col-xl-3 col-md-6">
                             <div class="card bg-warning text-dark mb-4">
-                                <div class="card-body "><b>Total of Thesis documents from all colleges:</b> <?php //echo $totalaccthesis + $totalcomputerthesis + $totaleducthesis + $totalhmthesis + $totalnursingthesis ?></div>
+                                <div class="card-body "><b>Total of Thesis documents from all colleges:</b> {{ $thesis_count }}</div>
 
                             </div>
                         </div>
                         <div class="col-xl-3 col-md-6">
                             <div class="card bg-success text-dark mb-4">
-                                <div class="card-body"><b>Total of Research documents from all colleges:</b> <?php //echo $totalaccresearch + $totalcomputerresearch + $totaleducresearch + $totalhmresearch + $totalnursingresearch ?></div>
+                                <div class="card-body"><b>Total of Research documents from all colleges:</b> {{ $research_count }}</div>
 
                             </div>
                         </div>
                         <div class="col-xl-3 col-md-6">
                              <div class="card bg-info bg-outline-dark text-dark mb-4">
-                                <div class="card-body"><b>Number of Accountancy Documents:</b> <?php //echo $totalaccdocument ?></div>
+                                <div class="card-body"><b>Number of Accountancy Documents:</b> {{ $accountancy_docu_count }}</div>
                              </div>
                         </div>
                         <div class="col-xl-3 col-md-6">
                              <div class="card bg-info bg-outline-dark text-dark mb-4">
-                                <div class="card-body"><b>Number of Accountancy Thesis:</b> <?php //echo $totalaccthesis ?></div>
+                                <div class="card-body"><b>Number of Accountancy Thesis:</b> {{ $accountancy_th_count }} </div>
                             </div>
                         </div>
                         <div class="col-xl-3 col-md-6">
                             <div class="card bg-info bg-outline-dark text-dark mb-4">
-                                <div class="card-body"><b>Number of Accountancy research:</b> <?php //echo $totalaccresearch ?></div>
+                                <div class="card-body"><b>Number of Accountancy research:</b> {{ $accountancy_rs_count }} </div>
                             </div>
                         </div>
+
+                        <div class="col-xl-3 col-md-6">
+                            <div class="card bg-info bg-outline-dark text-dark mb-4">
+                               <div class="card-body"><b>Number of Arts and Science Documents:</b> {{ $artscie_docu_count }}</div>
+                            </div>
+                       </div>
+                       <div class="col-xl-3 col-md-6">
+                            <div class="card bg-info bg-outline-dark text-dark mb-4">
+                               <div class="card-body"><b>Number of Arts and Science Thesis:</b> {{ $th_artscie }} </div>
+                           </div>
+                       </div>
+                       <div class="col-xl-3 col-md-6">
+                           <div class="card bg-info bg-outline-dark text-dark mb-4">
+                               <div class="card-body"><b>Number of Arts and Science research:</b> {{ $rs_artscie }} </div>
+                           </div>
+                       </div>
+                        
                         <div class="col-xl-3 col-md-6">
                             <div class="card bg-danger bg-outline-dark text-dark mb-4">
-                                <div class="card-body"><b>Number of Computer Science Documents:</b> <?php //echo $totalcomsciedocument ?></div>        
+                                <div class="card-body"><b>Number of Computer Science Documents:</b> {{ $ccs_docu_count }} </div>        
                                 </div>
                         </div>
                         <div class="col-xl-3 col-md-6">
                             <div class="card bg-danger bg-outline-dark text-dark mb-4">
-                                <div class="card-body"><b>Number of Computer Science Thesis:</b> <?php //echo $totalcomputerthesis ?></div>
+                                <div class="card-body"><b>Number of Computer Science Thesis:</b> {{ $ccs_th_count }} </div>
                             </div>
                         </div>
                         <div class="col-xl-3 col-md-6">
                             <div class="card bg-danger bg-outline-dark text-dark mb-4">
-                                <div class="card-body"><b>Number of Computer Science Research:</b> <?php //echo $totalcomputerresearch ?></div>
+                                <div class="card-body"><b>Number of Computer Science Research:</b> {{ $ccs_rs_count }} </div>
                             </div>
                         </div>
                         <div class="col-xl-3 col-md-6">
                             <div class="card bg-success bg-outline-dark text-dark mb-4">
-                                <div class="card-body"><b>Number of Education Documents:</b> <?php //echo $totaleducdocument ?></div>
+                                <div class="card-body"><b>Number of Education Documents:</b> {{ $educ_docu_count }} </div>
                             </div>
                         </div>
                         <div class="col-xl-3 col-md-6">
                             <div class="card bg-success bg-outline-dark text-dark mb-4">
-                                <div class="card-body"><b>Number of Education Thesis:</b> <?php //echo $totaleducthesis ?></div>
+                                <div class="card-body"><b>Number of Education Thesis:</b> {{ $educ_th_count }} </div>
                             </div>
                         </div>
                         <div class="col-xl-3 col-md-6">
                             <div class="card bg-success bg-outline-dark text-dark mb-4">
-                                <div class="card-body"><b>Number of Education Research:</b> <?php //echo $totaleducresearch ?></div>
+                                <div class="card-body"><b>Number of Education Research:</b> {{ $educ_rs_count }} </div>
+                            </div>
+                        </div>
+                        <div class="col-xl-3 col-md-6">
+                            <div class="card bg-success bg-outline-dark text-dark mb-4">
+                                <div class="card-body"><b>Number of Engineering Documents:</b> {{ $eng_docu_count }} </div>
+                            </div>
+                        </div>
+                        <div class="col-xl-3 col-md-6">
+                            <div class="card bg-success bg-outline-dark text-dark mb-4">
+                                <div class="card-body"><b>Number of Engineering Thesis:</b> {{ $th_eng }} </div>
+                            </div>
+                        </div>
+                        <div class="col-xl-3 col-md-6">
+                            <div class="card bg-success bg-outline-dark text-dark mb-4">
+                                <div class="card-body"><b>Number of Engineering Research:</b> {{ $rs_eng }} </div>
                             </div>
                         </div>
                         <div class="col-xl-3 col-md-6">
                             <div class="card bg-info bg-outline-dark text-dark mb-4">
-                                <div class="card-body"><b>Number of Hotel Management Documents:</b> <?php //echo $totalhmdocument ?></div>
+                                <div class="card-body"><b>Number of Hotel Management Documents:</b> {{ $hm_docu_count }} </div>
                             </div>
                         </div>
                         <div class="col-xl-3 col-md-6">
                             <div class="card bg-info bg-outline-dark text-dark mb-4">
-                                <div class="card-body"><b>Number of Hotel Management Thesis:</b> <?php //echo $totalhmthesis ?></div>
+                                <div class="card-body"><b>Number of Hotel Management Thesis:</b> {{ $th_hm }} </div>
                             </div>
                         </div>
                         <div class="col-xl-3 col-md-6">
                             <div class="card bg-info bg-outline-dark text-dark mb-4">
-                                <div class="card-body"><b>Number of Hotel Management Research:</b> <?php //echo $totalhmresearch?></div>
+                                <div class="card-body"><b>Number of Hotel Management Research:</b> {{ $rs_hm }} </div>
                             </div>
                         </div>
                         <div class="col-xl-3 col-md-6">
                             <div class="card bg-warning bg-outline-dark text-dark mb-4">
-                                <div class="card-body"><b>Number of Nursing Documents:</b> <?php //echo $totalnursdocument ?></div>
+                                <div class="card-body"><b>Number of Nursing Documents:</b>  {{ $nurs_docu_count }} </div>
                             </div>
                         </div>
                         <div class="col-xl-3 col-md-6">
                             <div class="card bg-warning bg-outline-dark text-dark mb-4">
-                                <div class="card-body"><b>Number of Nursing Thesis:</b> <?php //echo $totalnursingthesis ?></div>
+                                <div class="card-body"><b>Number of Nursing Thesis:</b> {{ $th_nurs }} </div>
                             </div>
                         </div>
                         <div class="col-xl-3 col-md-6">
                             <div class="card bg-warning bg-outline-dark text-dark mb-4">
-                                <div class="card-body"><b>Number of Nursing Research:</b> <?php //echo $totalnursingresearch ?></div>
+                                <div class="card-body"><b>Number of Nursing Research:</b> {{ $rs_nurs }} </div>
                             </div>
                         </div>
                     </div>
@@ -166,20 +200,6 @@
                                 </thead>
 
                                 <tbody>
-                                        <?php 
-                                        // $sql = $conn->query("SELECT user.studentnumber, user.password, profile.student_name, profile.course, profile.addbio, profile.contact_number, profile.profile_image FROM user LEFT JOIN profile on user.profile_id = profile.profile_id "); 
-                                        // if($sql){   
-                                        //     while($row = $sql->fetch_assoc()){
-                                        //         $studentnumber = $row['studentnumber'];
-                                        //         $studentname = $row['student_name'];
-                                        //         $course = $row['course'];
-                                        //         $bio = $row['addbio'];
-                                        //         $contact = $row['contact_number'];
-                                        //         $password = $row['password'];
-                                        //         $profilepic = $row['profile_image']; 
-                                           
-                                        
-                                                ?>
                                                 @foreach ($student_info as $student_infos)
                                                 <tr>
                                                    <td>{{ $student_infos->student_info_ID }}</td> 
@@ -191,7 +211,7 @@
                                                    <td>{{ $student_infos->course }}</td>
                                                    <td>{{ $student_infos->email }}</td>
                                                    <td>{{ $student_infos->contact_number }}</td>
-                                                   <td>{{ $student_infos->studentstatus }}</td>
+                                                   <td>{{ $student_infos->student_status }}</td>
                                                    <td>{{ $student_infos->addedby }}</td>
                                                    <td>{{ $student_infos->date_added }}</td>
                                                    <td>{{ $student_infos->updated_on }}</td>
@@ -268,30 +288,16 @@
                                                     <td>{{ $document_study->date_submitted }}</td>
                                                     <td>{{ $document_study->document_type }}</td>
                                                     <td>{{ $document_study->addedby }}</td>
-                                                    <td>{{ $document_study->document_status }}</td>
-                                                    @foreach ( $college as $colleges )
-                                                        <td>{{ $colleges->college }}</td>
-                                                    @endforeach
-                                                    @foreach ( $course as $courses )
-                                                        <td>{{ $courses->course }}</td>
-                                                    @endforeach
-                                                    @foreach ( $tag1 as $tags1 )
-                                                        <td>{{ $tags1->tag1 }}</td>
-                                                    @endforeach
-                                                    @foreach ( $tag2 as $tags2 )
-                                                        <td>{{ $tags2->tag2 }}</td>
-                                                    @endforeach
-                                                    @foreach ( $tag3 as $tags3 )
-                                                        <td>{{ $tags3->tag3 }}</td>
-                                                    @endforeach
-                                                    @foreach ( $tag4 as $tags4 )
-                                                        <td>{{ $tags4->tag4 }}</td>
-                                                    @endforeach
+                                                    <td>{{ $document_study->document_status }}</td>                                                   
+                                                    <td>{{ $document_study->college }}</td>                                                                                                  
+                                                    <td>{{ $document_study->course }}</td>                                                                                               
+                                                    <td>{{ $document_study->tag1 }}</td>                                                                                              
+                                                    <td>{{ $document_study->tag2 }}</td>                                                   
+                                                    <td>{{ $document_study->tag3 }}</td>                                                   
+                                                    <td>{{ $document_study->tag4 }}</td>
                                                     <td>{{ $document_study->views_count }}</td>
                                                     <td>{{ $document_study->created_at }}</td>
                                                     <td>{{ $document_study->updated_on }}</td>
-                                                    
-                                                    
                                                 </tr>
                                                 @endforeach
                                                 <?php  

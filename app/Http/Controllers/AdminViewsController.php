@@ -18,24 +18,136 @@ use App\Models\Tag4;
 class AdminViewsController extends Controller
 {
     public function overview(){
+        $document_studies = DB::table('document_studies')
+            ->leftJoin('course', 'document_studies.course_ID', '=', 'course.course_ID')
+            ->leftJoin('college', 'course.college_ID', '=', 'college.college_ID')
+            ->leftjoin('tag', 'document_studies.compiled_tag_ID', '=', 'tag.compiled_tag_ID')
+            ->leftjoin('tag1', 'tag.tag1_ID', '=', 'tag1.tag1_ID')
+            ->leftjoin('tag2', 'tag.tag2_ID', '=', 'tag2.tag2_ID')
+            ->leftjoin('tag3', 'tag.tag3_ID', '=', 'tag3.tag3_ID')
+            ->leftjoin('tag4', 'tag.tag4_ID', '=', 'tag4.tag4_ID')
+            ->select('document_studies.*', 'course.course', 'college.college_ID', 'college.college', 'tag.tag1_ID', 'tag.tag2_ID', 'tag.tag3_ID', 'tag.tag4_ID', 'tag1.tag1_ID', 'tag1.tag1', 'tag2.tag2_ID', 'tag2.tag2', 'tag3.tag3_ID', 'tag3.tag3', 'tag4.tag4_ID', 'tag4.tag4' )
+            ->get();
+        $student_info = DB::table('users')
+            ->leftJoin('student_info', 'users.student_info_ID', '=', 'student_info.student_info_ID')
+            ->leftJoin('course', 'student_info.course_ID', '=', 'course.course_ID')
+            ->leftJoin('college', 'course.college_ID', '=', 'college.college_ID')
+            ->select('users.*', 'student_info.*', 'course.course', 'college.college_ID', 'college.college' )
+            ->get();
+        // $student_count = $student_info->count();
+        // // accountancy_college_count
+        // $bsa = DB::table('student_info')->where('student_info.course_ID', 2)->count();
+        // $bsba = DB::table('student_info')->where('student_info.course_ID', 3)->count();
+        // $bse = DB::table('student_info')->where('student_info.course_ID', 4)->count();
+        // $accountancy_student_count = $bsa + $bsba + $bse;
+        $document_count = $document_studies->count();
+        $thesis_count = DB::table('document_studies')->where('document_type', 'Thesis')->count();
+        $research_count = DB::table('document_studies')->where('document_type', 'Research')->count();
+        //document overview for college of accountancy
+        $docubsa = DB::table('document_studies')->where('document_studies.course_ID', 2)->count();
+        $docubsba = DB::table('document_studies')->where('document_studies.course_ID', 3)->count();
+        $docubse = DB::table('document_studies')->where('document_studies.course_ID', 4)->count();
+        $accountancy_docu_count = $docubsa + $docubsba + $docubse;
+        $thbsa = DB::table('document_studies')->where('document_studies.course_ID', 2)->where('document_type', 'Thesis')->count();
+        $thbsba = DB::table('document_studies')->where('document_studies.course_ID', 3)->where('document_type', 'Thesis')->count();
+        $thbse = DB::table('document_studies')->where('document_studies.course_ID', 4)->where('document_type', 'Thesis')->count();
+        $accountancy_th_count = $thbsa + $thbsba + $thbse;
+        $rsbsa = DB::table('document_studies')->where('document_studies.course_ID', 2)->where('document_type', 'Research')->count();
+        $rsbsba = DB::table('document_studies')->where('document_studies.course_ID', 3)->where('document_type', 'Research')->count();
+        $rsbse = DB::table('document_studies')->where('document_studies.course_ID', 4)->where('document_type', 'Research')->count();
+        $accountancy_rs_count = $rsbsa + $rsbsba + $rsbse;
 
-        $document_studies = Document_Studies::paginate(10);
-        $student_info = Student_Info::paginate(10);
-        $college = College::paginate(10);
-        $course = Course::paginate(10);
-        $tag1 = Tag1::paginate(10);
-        $tag2 = Tag2::paginate(10);
-        $tag3 = Tag3::paginate(10);
-        $tag4 = Tag4::paginate(10);
+        //document overview for college of arts and sciences
+        $artscie_docu_count = DB::table('document_studies')->where('document_studies.course_ID', 1)->count();
+        $th_artscie = DB::table('document_studies')->where('document_studies.course_ID', 1)->where('document_type', 'Thesis')->count();
+        $rs_artscie = DB::table('document_studies')->where('document_studies.course_ID', 1)->where('document_type', 'Research')->count();
 
-      
-        return view('AdminViews.overview',compact('document_studies'),compact('student_info'),compact('college'),compact('course'),compact('tag1'),compact('tag2'),compact('tag3'),compact('tag4'))
-            ->with('i', (request()->input('page', 1) - 1) * 10);
+        //document overview for college of computer studies
+        $docu_cs = DB::table('document_studies')->where('document_studies.course_ID', 9)->count();
+        $docu_it = DB::table('document_studies')->where('document_studies.course_ID', 10)->count();
+        $ccs_docu_count = $docu_cs + $docu_it;
+        $th_cs = DB::table('document_studies')->where('document_studies.course_ID', 9)->where('document_type', 'Thesis')->count();
+        $th_it = DB::table('document_studies')->where('document_studies.course_ID', 10)->where('document_type', 'Thesis')->count();
+        $ccs_th_count = $th_cs + $th_it;
+        $rs_cs = DB::table('document_studies')->where('document_studies.course_ID', 9)->where('document_type', 'Research')->count();
+        $rs_it = DB::table('document_studies')->where('document_studies.course_ID', 10)->where('document_type', 'Research')->count();
+        $ccs_rs_count = $rs_cs + $rs_it;
+
+        //document overview for college of education
+        $docu_pe = DB::table('document_studies')->where('document_studies.course_ID', 6)->count();
+        $docu_se = DB::table('document_studies')->where('document_studies.course_ID', 7)->count();
+        $educ_docu_count = $docu_pe + $docu_se;
+        $th_pe = DB::table('document_studies')->where('document_studies.course_ID', 6)->where('document_type', 'Thesis')->count();
+        $th_se = DB::table('document_studies')->where('document_studies.course_ID', 7)->where('document_type', 'Thesis')->count();
+        $educ_th_count = $th_pe + $th_se;
+        $rs_pe = DB::table('document_studies')->where('document_studies.course_ID', 6)->where('document_type', 'Research')->count();
+        $rs_se = DB::table('document_studies')->where('document_studies.course_ID', 7)->where('document_type', 'Research')->count();
+        $educ_rs_count = $rs_pe + $rs_se;
+
+        //document overview for college of engineering
+        $eng_docu_count = DB::table('document_studies')->where('document_studies.course_ID', 8)->count();
+        $th_eng = DB::table('document_studies')->where('document_studies.course_ID', 8)->where('document_type', 'Thesis')->count();
+        $rs_eng = DB::table('document_studies')->where('document_studies.course_ID', 8)->where('document_type', 'Research')->count();
+
+        //document overview for college of hotel management
+        $hm_docu_count = DB::table('document_studies')->where('document_studies.course_ID', 5)->count();
+        $th_hm = DB::table('document_studies')->where('document_studies.course_ID', 5)->where('document_type', 'Thesis')->count();
+        $rs_hm = DB::table('document_studies')->where('document_studies.course_ID', 5)->where('document_type', 'Research')->count();
+
+        //document overview for college of nursing
+        $nurs_docu_count = DB::table('document_studies')->where('document_studies.course_ID', 11)->count();
+        $th_nurs = DB::table('document_studies')->where('document_studies.course_ID', 11)->where('document_type', 'Thesis')->count();
+        $rs_nurs = DB::table('document_studies')->where('document_studies.course_ID', 11)->where('document_type', 'Research')->count();
+
+        return view('AdminViews.overview',
+        ['document_studies'=>$document_studies,
+        'student_info'=>$student_info,
+        'document_count'=>$document_count,
+        'thesis_count'=>$thesis_count,
+        'research_count'=>$research_count,
+        'accountancy_docu_count'=>$accountancy_docu_count,
+        'accountancy_th_count'=>$accountancy_th_count,
+        'accountancy_rs_count'=>$accountancy_rs_count,
+        'artscie_docu_count' => $artscie_docu_count,
+        'th_artscie' => $th_artscie,
+        'rs_artscie' => $rs_artscie,
+        'ccs_docu_count' =>$ccs_docu_count,
+        'ccs_th_count' =>$ccs_th_count,
+        'ccs_rs_count'=>$ccs_rs_count,
+        'educ_docu_count'=>$educ_docu_count,
+        'educ_th_count'=>$educ_th_count,
+        'educ_rs_count'=>$educ_rs_count,
+        'eng_docu_count'=>$eng_docu_count,
+        'th_eng'=>$th_eng,
+        'rs_eng'=>$rs_eng,
+        'hm_docu_count'=>$hm_docu_count,
+        'th_hm'=>$th_hm,
+        'rs_hm'=>$rs_hm,
+        'nurs_docu_count'=>$nurs_docu_count,
+        'th_nurs'=>$th_nurs,
+        'rs_nurs'=>$rs_nurs,
+
+
+        // 'student_count'=>$student_count,
+        // 'accountancy_student_count'=>$accountancy_student_count,
+        ]
+    );
     }
     public function manageaccount(){
         return view('AdminViews.manageaccount');
     }
     public function managedocument(){
+        $document_studies = DB::table('document_studies')
+            ->leftJoin('course', 'document_studies.course_ID', '=', 'course.course_ID')
+            ->leftJoin('college', 'course.college_ID', '=', 'college.college_ID')
+            ->leftjoin('tag', 'document_studies.compiled_tag_ID', '=', 'tag.compiled_tag_ID')
+            ->leftjoin('tag1', 'tag.tag1_ID', '=', 'tag1.tag1_ID')
+            ->leftjoin('tag2', 'tag.tag2_ID', '=', 'tag2.tag2_ID')
+            ->leftjoin('tag3', 'tag.tag3_ID', '=', 'tag3.tag3_ID')
+            ->leftjoin('tag4', 'tag.tag4_ID', '=', 'tag4.tag4_ID')
+            ->select('document_studies.*', 'course.course', 'college.college_ID', 'college.college', 'tag.tag1_ID', 'tag.tag2_ID', 'tag.tag3_ID', 'tag.tag4_ID', 'tag1.tag1_ID', 'tag1.tag1', 'tag2.tag2_ID', 'tag2.tag2', 'tag3.tag3_ID', 'tag3.tag3', 'tag4.tag4_ID', 'tag4.tag4' )
+            ->get();
+        
         return view('AdminViews.managedocument');
     }
     public function addnewaccount(){
