@@ -9,6 +9,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\URL;
 use PhpParser\Node\Expr\AssignOp\ShiftLeft;
+use Ramsey\Uuid\Type\Integer;
 use Symfony\Component\Mime\RawMessage;
 
 
@@ -654,7 +655,147 @@ class SessionViewsController extends Controller
     }
     public function homepage()
     {
-        if(isset(Auth::user()->compiled_backtrack_id) and Auth::user()->compiled_backtrack_id != null) {
+        $document_studies = [];
+
+        if(isset(Auth::user()->compiled_views_id) and Auth::user()->compiled_views_id != null) {
+            //checks if user has views record
+            $view1 = null;
+            $view2 = null;
+            $view3 = null;
+            $compiled_views_id = Auth::user()->compiled_views_id;
+            $view_record = DB::select("SELECT * from document_views
+                    where compiled_views_ID = $compiled_views_id
+                ");
+            $view1 = $view_record[0]->view1;
+            $view2 = $view_record[0]->view2;
+            $view3 = $view_record[0]->view3;
+
+
+            //all of these are temporary query
+            if($view1 != null){
+                // gets the tags of the view
+                $document_studies = DB::select("SELECT document_studies.document_id, document_studies.compiled_tag_ID, document_studies.course_ID, document_studies.document_number, document_studies.title, document_studies.date_submitted, document_studies.author, document_studies.document_type, document_studies.addedby, document_studies.document_status, document_studies.created_at, document_studies.updated_on, course.course, college.college_ID, college.college, tag.tag1_ID, tag.tag2_ID, tag.tag3_ID, tag.tag4_ID, tag1.tag1_ID, tag1.tag1, tag2.tag2_ID, tag2.tag2, tag3.tag3_ID, tag3.tag3, tag4.tag4_ID, tag4.tag4
+                FROM document_studies
+                LEFT JOIN course ON document_studies.course_ID = course.course_ID
+                LEFT JOIN college ON course.college_ID = college.college_ID
+                LEFT JOIN tag ON document_studies.compiled_tag_ID = tag.compiled_tag_ID
+                LEFT JOIN tag1 ON tag.tag1_ID = tag1.tag1_ID
+                LEFT JOIN tag2 ON tag.tag2_ID = tag2.tag2_ID
+                LEFT JOIN tag3 ON tag.tag3_ID = tag3.tag3_ID
+                LEFT JOIN tag4 ON tag.tag4_ID = tag4.tag4_ID
+                where document_studies.document_id = $view1
+                limit 1
+                ");
+                $tag1 = $document_studies[0]->tag1;
+                $tag2 = $document_studies[0]->tag2;
+                $tag3 = $document_studies[0]->tag3;
+                $tag4 = $document_studies[0]->tag4;
+
+                // find results
+                $document_studies = DB::select("SELECT document_studies.document_id, document_studies.compiled_tag_ID, document_studies.course_ID, document_studies.document_number, document_studies.title, document_studies.date_submitted, document_studies.author, document_studies.document_type, document_studies.addedby, document_studies.document_status, document_studies.created_at, document_studies.updated_on, course.course, college.college_ID, college.college, tag.tag1_ID, tag.tag2_ID, tag.tag3_ID, tag.tag4_ID, tag1.tag1_ID, tag1.tag1, tag2.tag2_ID, tag2.tag2, tag3.tag3_ID, tag3.tag3, tag4.tag4_ID, tag4.tag4
+                FROM document_studies
+                LEFT JOIN course ON document_studies.course_ID = course.course_ID
+                LEFT JOIN college ON course.college_ID = college.college_ID
+                LEFT JOIN tag ON document_studies.compiled_tag_ID = tag.compiled_tag_ID
+                LEFT JOIN tag1 ON tag.tag1_ID = tag1.tag1_ID
+                LEFT JOIN tag2 ON tag.tag2_ID = tag2.tag2_ID
+                LEFT JOIN tag3 ON tag.tag3_ID = tag3.tag3_ID
+                LEFT JOIN tag4 ON tag.tag4_ID = tag4.tag4_ID
+                where document_studies.title LIKE '%$tag1%' OR document_studies.title LIKE '%$tag2%' OR document_studies.title LIKE '%$tag3%' OR document_studies.title LIKE '%$tag4%'
+                OR tag1.tag1 LIKE '%$tag1%' OR tag1.tag1 LIKE '%$tag2%' OR tag1.tag1 LIKE '%$tag3%' OR tag1.tag1 LIKE '%$tag4%'
+                OR tag2.tag2 LIKE '%$tag1%' OR tag2.tag2 LIKE '%$tag2%' OR tag2.tag2 LIKE '%$tag3%' OR tag2.tag2 LIKE '%$tag4%'
+                OR tag3.tag3 LIKE '%$tag1%' OR tag3.tag3 LIKE '%$tag2%' OR tag3.tag3 LIKE '%$tag3%' OR tag3.tag3 LIKE '%$tag4%'
+                OR tag4.tag4 LIKE '%$tag1%' OR tag4.tag4 LIKE '%$tag2%' OR tag4.tag4 LIKE '%$tag3%' OR tag4.tag4 LIKE '%$tag4%'
+                ORDER BY document_studies.views_count DESC
+                limit 5
+                ");
+            } else $document_studies = [];
+            if($view2 != null){
+                // gets the tags of the view
+                $document_studies2 = DB::select("SELECT document_studies.document_id, document_studies.compiled_tag_ID, document_studies.course_ID, document_studies.document_number, document_studies.title, document_studies.date_submitted, document_studies.author, document_studies.document_type, document_studies.addedby, document_studies.document_status, document_studies.created_at, document_studies.updated_on, course.course, college.college_ID, college.college, tag.tag1_ID, tag.tag2_ID, tag.tag3_ID, tag.tag4_ID, tag1.tag1_ID, tag1.tag1, tag2.tag2_ID, tag2.tag2, tag3.tag3_ID, tag3.tag3, tag4.tag4_ID, tag4.tag4
+                FROM document_studies
+                LEFT JOIN course ON document_studies.course_ID = course.course_ID
+                LEFT JOIN college ON course.college_ID = college.college_ID
+                LEFT JOIN tag ON document_studies.compiled_tag_ID = tag.compiled_tag_ID
+                LEFT JOIN tag1 ON tag.tag1_ID = tag1.tag1_ID
+                LEFT JOIN tag2 ON tag.tag2_ID = tag2.tag2_ID
+                LEFT JOIN tag3 ON tag.tag3_ID = tag3.tag3_ID
+                LEFT JOIN tag4 ON tag.tag4_ID = tag4.tag4_ID
+                where document_studies.document_id = $view2
+                limit 1
+                ");
+                $tag1 = $document_studies[0]->tag1;
+                $tag2 = $document_studies[0]->tag2;
+                $tag3 = $document_studies[0]->tag3;
+                $tag4 = $document_studies[0]->tag4;
+
+                // find results
+                $document_studies2 = DB::select("SELECT document_studies.document_id, document_studies.compiled_tag_ID, document_studies.course_ID, document_studies.document_number, document_studies.title, document_studies.date_submitted, document_studies.author, document_studies.document_type, document_studies.addedby, document_studies.document_status, document_studies.created_at, document_studies.updated_on, course.course, college.college_ID, college.college, tag.tag1_ID, tag.tag2_ID, tag.tag3_ID, tag.tag4_ID, tag1.tag1_ID, tag1.tag1, tag2.tag2_ID, tag2.tag2, tag3.tag3_ID, tag3.tag3, tag4.tag4_ID, tag4.tag4
+                FROM document_studies
+                LEFT JOIN course ON document_studies.course_ID = course.course_ID
+                LEFT JOIN college ON course.college_ID = college.college_ID
+                LEFT JOIN tag ON document_studies.compiled_tag_ID = tag.compiled_tag_ID
+                LEFT JOIN tag1 ON tag.tag1_ID = tag1.tag1_ID
+                LEFT JOIN tag2 ON tag.tag2_ID = tag2.tag2_ID
+                LEFT JOIN tag3 ON tag.tag3_ID = tag3.tag3_ID
+                LEFT JOIN tag4 ON tag.tag4_ID = tag4.tag4_ID
+                where document_studies.title LIKE '%$tag1%' OR document_studies.title LIKE '%$tag2%' OR document_studies.title LIKE '%$tag3%' OR document_studies.title LIKE '%$tag4%'
+                OR tag1.tag1 LIKE '%$tag1%' OR tag1.tag1 LIKE '%$tag2%' OR tag1.tag1 LIKE '%$tag3%' OR tag1.tag1 LIKE '%$tag4%'
+                OR tag2.tag2 LIKE '%$tag1%' OR tag2.tag2 LIKE '%$tag2%' OR tag2.tag2 LIKE '%$tag3%' OR tag2.tag2 LIKE '%$tag4%'
+                OR tag3.tag3 LIKE '%$tag1%' OR tag3.tag3 LIKE '%$tag2%' OR tag3.tag3 LIKE '%$tag3%' OR tag3.tag3 LIKE '%$tag4%'
+                OR tag4.tag4 LIKE '%$tag1%' OR tag4.tag4 LIKE '%$tag2%' OR tag4.tag4 LIKE '%$tag3%' OR tag4.tag4 LIKE '%$tag4%'
+                ORDER BY document_studies.views_count DESC
+                limit 5
+                ");
+            } else $document_studies2 = [];
+            if($view3 != null){
+                // gets the tags of the view
+                $document_studies3 = DB::select("SELECT document_studies.document_id, document_studies.compiled_tag_ID, document_studies.course_ID, document_studies.document_number, document_studies.title, document_studies.date_submitted, document_studies.author, document_studies.document_type, document_studies.addedby, document_studies.document_status, document_studies.created_at, document_studies.updated_on, course.course, college.college_ID, college.college, tag.tag1_ID, tag.tag2_ID, tag.tag3_ID, tag.tag4_ID, tag1.tag1_ID, tag1.tag1, tag2.tag2_ID, tag2.tag2, tag3.tag3_ID, tag3.tag3, tag4.tag4_ID, tag4.tag4
+                FROM document_studies
+                LEFT JOIN course ON document_studies.course_ID = course.course_ID
+                LEFT JOIN college ON course.college_ID = college.college_ID
+                LEFT JOIN tag ON document_studies.compiled_tag_ID = tag.compiled_tag_ID
+                LEFT JOIN tag1 ON tag.tag1_ID = tag1.tag1_ID
+                LEFT JOIN tag2 ON tag.tag2_ID = tag2.tag2_ID
+                LEFT JOIN tag3 ON tag.tag3_ID = tag3.tag3_ID
+                LEFT JOIN tag4 ON tag.tag4_ID = tag4.tag4_ID
+                where document_studies.document_id = $view2
+                limit 1
+                ");
+                $tag1 = $document_studies[0]->tag1;
+                $tag2 = $document_studies[0]->tag2;
+                $tag3 = $document_studies[0]->tag3;
+                $tag4 = $document_studies[0]->tag4;
+
+                // find results
+                $document_studies3 = DB::select("SELECT document_studies.document_id, document_studies.compiled_tag_ID, document_studies.course_ID, document_studies.document_number, document_studies.title, document_studies.date_submitted, document_studies.author, document_studies.document_type, document_studies.addedby, document_studies.document_status, document_studies.created_at, document_studies.updated_on, course.course, college.college_ID, college.college, tag.tag1_ID, tag.tag2_ID, tag.tag3_ID, tag.tag4_ID, tag1.tag1_ID, tag1.tag1, tag2.tag2_ID, tag2.tag2, tag3.tag3_ID, tag3.tag3, tag4.tag4_ID, tag4.tag4
+                FROM document_studies
+                LEFT JOIN course ON document_studies.course_ID = course.course_ID
+                LEFT JOIN college ON course.college_ID = college.college_ID
+                LEFT JOIN tag ON document_studies.compiled_tag_ID = tag.compiled_tag_ID
+                LEFT JOIN tag1 ON tag.tag1_ID = tag1.tag1_ID
+                LEFT JOIN tag2 ON tag.tag2_ID = tag2.tag2_ID
+                LEFT JOIN tag3 ON tag.tag3_ID = tag3.tag3_ID
+                LEFT JOIN tag4 ON tag.tag4_ID = tag4.tag4_ID
+                where document_studies.title LIKE '%$tag1%' OR document_studies.title LIKE '%$tag2%' OR document_studies.title LIKE '%$tag3%' OR document_studies.title LIKE '%$tag4%'
+                OR tag1.tag1 LIKE '%$tag1%' OR tag1.tag1 LIKE '%$tag2%' OR tag1.tag1 LIKE '%$tag3%' OR tag1.tag1 LIKE '%$tag4%'
+                OR tag2.tag2 LIKE '%$tag1%' OR tag2.tag2 LIKE '%$tag2%' OR tag2.tag2 LIKE '%$tag3%' OR tag2.tag2 LIKE '%$tag4%'
+                OR tag3.tag3 LIKE '%$tag1%' OR tag3.tag3 LIKE '%$tag2%' OR tag3.tag3 LIKE '%$tag3%' OR tag3.tag3 LIKE '%$tag4%'
+                OR tag4.tag4 LIKE '%$tag1%' OR tag4.tag4 LIKE '%$tag2%' OR tag4.tag4 LIKE '%$tag3%' OR tag4.tag4 LIKE '%$tag4%'
+                ORDER BY document_studies.views_count DESC
+                limit 5
+                ");
+            } else $document_studies3 = [];
+            $document_studies = array_merge($document_studies, $document_studies2);
+            $document_studies = array_merge($document_studies, $document_studies3);
+            $document_studies = array_unique($document_studies, SORT_REGULAR);
+
+        }
+
+        if(isset(Auth::user()->compiled_backtrack_id) and Auth::user()->compiled_backtrack_id != null and $document_studies == []) {
+            $backtrack1 = null;
+            $backtrack2 = null;
+            $backtrack3 = null;
             $compiled_backtrack_id = Auth::user()->compiled_backtrack_id;
             $backtrack_record = DB::select("SELECT * from backtrack
                     where compiled_backtrack_ID = $compiled_backtrack_id
@@ -662,76 +803,90 @@ class SessionViewsController extends Controller
             $backtrack1 = $backtrack_record[0]->backtrack1;
             $backtrack2 = $backtrack_record[0]->backtrack2;
             $backtrack3 = $backtrack_record[0]->backtrack3;
-        }else {
-            $backtrack1 = null;
-            $backtrack2 = null;
-            $backtrack3 = null;
+
+            //all of these are temporary query
+            if($backtrack1 != null){
+                $document_studies = DB::select("SELECT document_studies.document_id, document_studies.compiled_tag_ID, document_studies.course_ID, document_studies.document_number, document_studies.title, document_studies.date_submitted, document_studies.author, document_studies.document_type, document_studies.addedby, document_studies.document_status, document_studies.created_at, document_studies.updated_on, course.course, college.college_ID, college.college, tag.tag1_ID, tag.tag2_ID, tag.tag3_ID, tag.tag4_ID, tag1.tag1_ID, tag1.tag1, tag2.tag2_ID, tag2.tag2, tag3.tag3_ID, tag3.tag3, tag4.tag4_ID, tag4.tag4
+                FROM document_studies
+                LEFT JOIN course ON document_studies.course_ID = course.course_ID
+                LEFT JOIN college ON course.college_ID = college.college_ID
+                LEFT JOIN tag ON document_studies.compiled_tag_ID = tag.compiled_tag_ID
+                LEFT JOIN tag1 ON tag.tag1_ID = tag1.tag1_ID
+                LEFT JOIN tag2 ON tag.tag2_ID = tag2.tag2_ID
+                LEFT JOIN tag3 ON tag.tag3_ID = tag3.tag3_ID
+                LEFT JOIN tag4 ON tag.tag4_ID = tag4.tag4_ID
+                where document_studies.title LIKE '%$backtrack1%'
+                OR tag1.tag1 LIKE '%$backtrack1%'
+                OR tag2.tag2 LIKE '%$backtrack1%'
+                OR tag3.tag3 LIKE '%$backtrack1%'
+                OR tag4.tag4 LIKE '%$backtrack1%'
+                ORDER BY RAND()
+                limit 5
+                ");
+            } else $document_studies = [];
+            if($backtrack2 != null){
+                $document_studies2 = DB::select("SELECT document_studies.document_id, document_studies.compiled_tag_ID, document_studies.course_ID, document_studies.document_number, document_studies.title, document_studies.date_submitted, document_studies.author, document_studies.document_type, document_studies.addedby, document_studies.document_status, document_studies.created_at, document_studies.updated_on, course.course, college.college_ID, college.college, tag.tag1_ID, tag.tag2_ID, tag.tag3_ID, tag.tag4_ID, tag1.tag1_ID, tag1.tag1, tag2.tag2_ID, tag2.tag2, tag3.tag3_ID, tag3.tag3, tag4.tag4_ID, tag4.tag4
+                FROM document_studies
+                LEFT JOIN course ON document_studies.course_ID = course.course_ID
+                LEFT JOIN college ON course.college_ID = college.college_ID
+                LEFT JOIN tag ON document_studies.compiled_tag_ID = tag.compiled_tag_ID
+                LEFT JOIN tag1 ON tag.tag1_ID = tag1.tag1_ID
+                LEFT JOIN tag2 ON tag.tag2_ID = tag2.tag2_ID
+                LEFT JOIN tag3 ON tag.tag3_ID = tag3.tag3_ID
+                LEFT JOIN tag4 ON tag.tag4_ID = tag4.tag4_ID
+                where document_studies.title LIKE '%$backtrack2%'
+                OR tag1.tag1 LIKE '%$backtrack2%'
+                OR tag2.tag2 LIKE '%$backtrack2%'
+                OR tag3.tag3 LIKE '%$backtrack2%'
+                OR tag4.tag4 LIKE '%$backtrack2%'
+                ORDER BY RAND()
+                limit 5
+                ");
+            } else $document_studies2 = [];
+            if($backtrack3 != null){
+                $document_studies3 = DB::select("SELECT document_studies.document_id, document_studies.compiled_tag_ID, document_studies.course_ID, document_studies.document_number, document_studies.title, document_studies.date_submitted, document_studies.author, document_studies.document_type, document_studies.addedby, document_studies.document_status, document_studies.created_at, document_studies.updated_on, course.course, college.college_ID, college.college, tag.tag1_ID, tag.tag2_ID, tag.tag3_ID, tag.tag4_ID, tag1.tag1_ID, tag1.tag1, tag2.tag2_ID, tag2.tag2, tag3.tag3_ID, tag3.tag3, tag4.tag4_ID, tag4.tag4
+                FROM document_studies
+                LEFT JOIN course ON document_studies.course_ID = course.course_ID
+                LEFT JOIN college ON course.college_ID = college.college_ID
+                LEFT JOIN tag ON document_studies.compiled_tag_ID = tag.compiled_tag_ID
+                LEFT JOIN tag1 ON tag.tag1_ID = tag1.tag1_ID
+                LEFT JOIN tag2 ON tag.tag2_ID = tag2.tag2_ID
+                LEFT JOIN tag3 ON tag.tag3_ID = tag3.tag3_ID
+                LEFT JOIN tag4 ON tag.tag4_ID = tag4.tag4_ID
+                where document_studies.title LIKE '%$backtrack3%'
+                OR tag1.tag1 LIKE '%$backtrack3%'
+                OR tag2.tag2 LIKE '%$backtrack3%'
+                OR tag3.tag3 LIKE '%$backtrack3%'
+                OR tag4.tag4 LIKE '%$backtrack3%'
+                ORDER BY RAND()
+                limit 5
+                ");
+            } else $document_studies3 = [];
+            $document_studies = array_merge($document_studies, $document_studies2);
+            $document_studies = array_merge($document_studies, $document_studies3);
+            $document_studies = array_unique($document_studies, SORT_REGULAR);
         }
 
-        //all of these are temporary query
-        if($backtrack1 != null){
-            $document_studies = DB::select("SELECT document_studies.document_id, document_studies.compiled_tag_ID, document_studies.course_ID, document_studies.document_number, document_studies.title, document_studies.date_submitted, document_studies.author, document_studies.document_type, document_studies.addedby, document_studies.document_status, document_studies.created_at, document_studies.updated_on, course.course, college.college_ID, college.college, tag.tag1_ID, tag.tag2_ID, tag.tag3_ID, tag.tag4_ID, tag1.tag1_ID, tag1.tag1, tag2.tag2_ID, tag2.tag2, tag3.tag3_ID, tag3.tag3, tag4.tag4_ID, tag4.tag4
-            FROM document_studies
-            LEFT JOIN course ON document_studies.course_ID = course.course_ID
-            LEFT JOIN college ON course.college_ID = college.college_ID
-            LEFT JOIN tag ON document_studies.compiled_tag_ID = tag.compiled_tag_ID
-            LEFT JOIN tag1 ON tag.tag1_ID = tag1.tag1_ID
-            LEFT JOIN tag2 ON tag.tag2_ID = tag2.tag2_ID
-            LEFT JOIN tag3 ON tag.tag3_ID = tag3.tag3_ID
-            LEFT JOIN tag4 ON tag.tag4_ID = tag4.tag4_ID
-            where document_studies.title LIKE '%$backtrack1%'
-            OR tag1.tag1 LIKE '%$backtrack1%'
-            OR tag2.tag2 LIKE '%$backtrack1%'
-            OR tag3.tag3 LIKE '%$backtrack1%'
-            OR tag4.tag4 LIKE '%$backtrack1%'
-            ORDER BY RAND()
-            limit 5
-            ");
-        } else $document_studies = [];
-        if($backtrack2 != null){
-            $document_studies2 = DB::select("SELECT document_studies.document_id, document_studies.compiled_tag_ID, document_studies.course_ID, document_studies.document_number, document_studies.title, document_studies.date_submitted, document_studies.author, document_studies.document_type, document_studies.addedby, document_studies.document_status, document_studies.created_at, document_studies.updated_on, course.course, college.college_ID, college.college, tag.tag1_ID, tag.tag2_ID, tag.tag3_ID, tag.tag4_ID, tag1.tag1_ID, tag1.tag1, tag2.tag2_ID, tag2.tag2, tag3.tag3_ID, tag3.tag3, tag4.tag4_ID, tag4.tag4
-            FROM document_studies
-            LEFT JOIN course ON document_studies.course_ID = course.course_ID
-            LEFT JOIN college ON course.college_ID = college.college_ID
-            LEFT JOIN tag ON document_studies.compiled_tag_ID = tag.compiled_tag_ID
-            LEFT JOIN tag1 ON tag.tag1_ID = tag1.tag1_ID
-            LEFT JOIN tag2 ON tag.tag2_ID = tag2.tag2_ID
-            LEFT JOIN tag3 ON tag.tag3_ID = tag3.tag3_ID
-            LEFT JOIN tag4 ON tag.tag4_ID = tag4.tag4_ID
-            where document_studies.title LIKE '%$backtrack2%'
-            OR tag1.tag1 LIKE '%$backtrack2%'
-            OR tag2.tag2 LIKE '%$backtrack2%'
-            OR tag3.tag3 LIKE '%$backtrack2%'
-            OR tag4.tag4 LIKE '%$backtrack2%'
-            ORDER BY RAND()
-            limit 5
-            ");
-        } else $document_studies2 = [];
+        $results_count = sizeof($document_studies);
 
-        if($backtrack3 != null){
-            $document_studies3 = DB::select("SELECT document_studies.document_id, document_studies.compiled_tag_ID, document_studies.course_ID, document_studies.document_number, document_studies.title, document_studies.date_submitted, document_studies.author, document_studies.document_type, document_studies.addedby, document_studies.document_status, document_studies.created_at, document_studies.updated_on, course.course, college.college_ID, college.college, tag.tag1_ID, tag.tag2_ID, tag.tag3_ID, tag.tag4_ID, tag1.tag1_ID, tag1.tag1, tag2.tag2_ID, tag2.tag2, tag3.tag3_ID, tag3.tag3, tag4.tag4_ID, tag4.tag4
-            FROM document_studies
-            LEFT JOIN course ON document_studies.course_ID = course.course_ID
-            LEFT JOIN college ON course.college_ID = college.college_ID
-            LEFT JOIN tag ON document_studies.compiled_tag_ID = tag.compiled_tag_ID
-            LEFT JOIN tag1 ON tag.tag1_ID = tag1.tag1_ID
-            LEFT JOIN tag2 ON tag.tag2_ID = tag2.tag2_ID
-            LEFT JOIN tag3 ON tag.tag3_ID = tag3.tag3_ID
-            LEFT JOIN tag4 ON tag.tag4_ID = tag4.tag4_ID
-            where document_studies.title LIKE '%$backtrack3%'
-            OR tag1.tag1 LIKE '%$backtrack3%'
-            OR tag2.tag2 LIKE '%$backtrack3%'
-            OR tag3.tag3 LIKE '%$backtrack3%'
-            OR tag4.tag4 LIKE '%$backtrack3%'
-            ORDER BY RAND()
-            limit 5
-            ");
-        } else $document_studies3 = [];
-        $document_studies = array_merge($document_studies, $document_studies2);
-        $document_studies = array_merge($document_studies, $document_studies3);
-        $document_studies = array_unique($document_studies, SORT_REGULAR);
+        if($document_studies == [] or $results_count < 15) {
 
+            $popular_document_studies = DB::select("SELECT document_studies.document_id, document_studies.compiled_tag_ID, document_studies.course_ID, document_studies.document_number, document_studies.title, document_studies.date_submitted, document_studies.author, document_studies.document_type, document_studies.addedby, document_studies.document_status, document_studies.created_at, document_studies.updated_on, course.course, college.college_ID, college.college, tag.tag1_ID, tag.tag2_ID, tag.tag3_ID, tag.tag4_ID, tag1.tag1_ID, tag1.tag1, tag2.tag2_ID, tag2.tag2, tag3.tag3_ID, tag3.tag3, tag4.tag4_ID, tag4.tag4
+                FROM document_studies
+                LEFT JOIN course ON document_studies.course_ID = course.course_ID
+                LEFT JOIN college ON course.college_ID = college.college_ID
+                LEFT JOIN tag ON document_studies.compiled_tag_ID = tag.compiled_tag_ID
+                LEFT JOIN tag1 ON tag.tag1_ID = tag1.tag1_ID
+                LEFT JOIN tag2 ON tag.tag2_ID = tag2.tag2_ID
+                LEFT JOIN tag3 ON tag.tag3_ID = tag3.tag3_ID
+                LEFT JOIN tag4 ON tag.tag4_ID = tag4.tag4_ID
+                ORDER BY document_studies.views_count DESC
+                ");
 
+            $document_studies = array_merge($document_studies, $popular_document_studies);
+            $document_studies = array_unique($document_studies, SORT_REGULAR);
+            $document_studies = array_slice($document_studies, 0, 15, true);
+        }
 
         return view('SessionViews.homepage', ['document_studies' => $document_studies]);
     }
@@ -857,17 +1012,4 @@ class SessionViewsController extends Controller
     }
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-    
 }
