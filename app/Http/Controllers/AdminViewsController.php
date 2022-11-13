@@ -17,7 +17,8 @@ use App\Models\Tag4;
 
 class AdminViewsController extends Controller
 {
-    public function overview(){
+    public function overview()
+    {
         $document_studies = DB::table('document_studies')
             ->leftJoin('course', 'document_studies.course_ID', '=', 'course.course_ID')
             ->leftJoin('college', 'course.college_ID', '=', 'college.college_ID')
@@ -26,13 +27,13 @@ class AdminViewsController extends Controller
             ->leftjoin('tag2', 'tag.tag2_ID', '=', 'tag2.tag2_ID')
             ->leftjoin('tag3', 'tag.tag3_ID', '=', 'tag3.tag3_ID')
             ->leftjoin('tag4', 'tag.tag4_ID', '=', 'tag4.tag4_ID')
-            ->select('document_studies.*', 'course.course', 'college.college_ID', 'college.college', 'tag.tag1_ID', 'tag.tag2_ID', 'tag.tag3_ID', 'tag.tag4_ID', 'tag1.tag1_ID', 'tag1.tag1', 'tag2.tag2_ID', 'tag2.tag2', 'tag3.tag3_ID', 'tag3.tag3', 'tag4.tag4_ID', 'tag4.tag4' )
+            ->select('document_studies.*', 'course.course', 'college.college_ID', 'college.college', 'tag.tag1_ID', 'tag.tag2_ID', 'tag.tag3_ID', 'tag.tag4_ID', 'tag1.tag1_ID', 'tag1.tag1', 'tag2.tag2_ID', 'tag2.tag2', 'tag3.tag3_ID', 'tag3.tag3', 'tag4.tag4_ID', 'tag4.tag4')
             ->get();
         $student_info = DB::table('users')
             ->leftJoin('student_info', 'users.student_info_ID', '=', 'student_info.student_info_ID')
             ->leftJoin('course', 'student_info.course_ID', '=', 'course.course_ID')
             ->leftJoin('college', 'course.college_ID', '=', 'college.college_ID')
-            ->select('users.*', 'student_info.*', 'course.course', 'college.college_ID', 'college.college' )
+            ->select('users.*', 'student_info.*', 'course.course', 'college.college_ID', 'college.college')
             ->get();
         // $student_count = $student_info->count();
         // // accountancy_college_count
@@ -99,44 +100,49 @@ class AdminViewsController extends Controller
         $th_nurs = DB::table('document_studies')->where('document_studies.course_ID', 11)->where('document_type', 'Thesis')->count();
         $rs_nurs = DB::table('document_studies')->where('document_studies.course_ID', 11)->where('document_type', 'Research')->count();
 
-        return view('AdminViews.overview',
-        ['document_studies'=>$document_studies,
-        'student_info'=>$student_info,
-        'document_count'=>$document_count,
-        'thesis_count'=>$thesis_count,
-        'research_count'=>$research_count,
-        'accountancy_docu_count'=>$accountancy_docu_count,
-        'accountancy_th_count'=>$accountancy_th_count,
-        'accountancy_rs_count'=>$accountancy_rs_count,
-        'artscie_docu_count' => $artscie_docu_count,
-        'th_artscie' => $th_artscie,
-        'rs_artscie' => $rs_artscie,
-        'ccs_docu_count' =>$ccs_docu_count,
-        'ccs_th_count' =>$ccs_th_count,
-        'ccs_rs_count'=>$ccs_rs_count,
-        'educ_docu_count'=>$educ_docu_count,
-        'educ_th_count'=>$educ_th_count,
-        'educ_rs_count'=>$educ_rs_count,
-        'eng_docu_count'=>$eng_docu_count,
-        'th_eng'=>$th_eng,
-        'rs_eng'=>$rs_eng,
-        'hm_docu_count'=>$hm_docu_count,
-        'th_hm'=>$th_hm,
-        'rs_hm'=>$rs_hm,
-        'nurs_docu_count'=>$nurs_docu_count,
-        'th_nurs'=>$th_nurs,
-        'rs_nurs'=>$rs_nurs,
+        return view(
+            'AdminViews.overview',
+            [
+                'document_studies' => $document_studies,
+                'student_info' => $student_info,
+                'document_count' => $document_count,
+                'thesis_count' => $thesis_count,
+                'research_count' => $research_count,
+                'accountancy_docu_count' => $accountancy_docu_count,
+                'accountancy_th_count' => $accountancy_th_count,
+                'accountancy_rs_count' => $accountancy_rs_count,
+                'artscie_docu_count' => $artscie_docu_count,
+                'th_artscie' => $th_artscie,
+                'rs_artscie' => $rs_artscie,
+                'ccs_docu_count' => $ccs_docu_count,
+                'ccs_th_count' => $ccs_th_count,
+                'ccs_rs_count' => $ccs_rs_count,
+                'educ_docu_count' => $educ_docu_count,
+                'educ_th_count' => $educ_th_count,
+                'educ_rs_count' => $educ_rs_count,
+                'eng_docu_count' => $eng_docu_count,
+                'th_eng' => $th_eng,
+                'rs_eng' => $rs_eng,
+                'hm_docu_count' => $hm_docu_count,
+                'th_hm' => $th_hm,
+                'rs_hm' => $rs_hm,
+                'nurs_docu_count' => $nurs_docu_count,
+                'th_nurs' => $th_nurs,
+                'rs_nurs' => $rs_nurs,
 
 
-        // 'student_count'=>$student_count,
-        // 'accountancy_student_count'=>$accountancy_student_count,
-        ]
-    );
+                // 'student_count'=>$student_count,
+                // 'accountancy_student_count'=>$accountancy_student_count,
+            ]
+        );
     }
-    public function manageaccount(){
+    public function manageaccount()
+    {
+
         return view('AdminViews.manageaccount');
     }
-    public function managedocument(){
+    public function managedocument()
+    {
         $document_studies = DB::table('document_studies')
             ->leftJoin('course', 'document_studies.course_ID', '=', 'course.course_ID')
             ->leftJoin('college', 'course.college_ID', '=', 'college.college_ID')
@@ -145,24 +151,69 @@ class AdminViewsController extends Controller
             ->leftjoin('tag2', 'tag.tag2_ID', '=', 'tag2.tag2_ID')
             ->leftjoin('tag3', 'tag.tag3_ID', '=', 'tag3.tag3_ID')
             ->leftjoin('tag4', 'tag.tag4_ID', '=', 'tag4.tag4_ID')
-            ->select('document_studies.*', 'course.course', 'college.college_ID', 'college.college', 'tag.tag1_ID', 'tag.tag2_ID', 'tag.tag3_ID', 'tag.tag4_ID', 'tag1.tag1_ID', 'tag1.tag1', 'tag2.tag2_ID', 'tag2.tag2', 'tag3.tag3_ID', 'tag3.tag3', 'tag4.tag4_ID', 'tag4.tag4' )
+            ->select('document_studies.*', 'course.course', 'college.college_ID', 'college.college', 'tag.tag1_ID', 'tag.tag2_ID', 'tag.tag3_ID', 'tag.tag4_ID', 'tag1.tag1_ID', 'tag1.tag1', 'tag2.tag2_ID', 'tag2.tag2', 'tag3.tag3_ID', 'tag3.tag3', 'tag4.tag4_ID', 'tag4.tag4')
             ->get();
+
         
-        return view('AdminViews.managedocument');
+
+        if (isset($_POST['delete'])) {
+            // $deleted = DB::table('document_studies')->delete();
+ 
+            $deleted = DB::table('document_studies')->where('document_studies.document_id', '=', $_POST['delete'])->delete();
+            // $documentID = $_POST['documentID'];
+
+            // $delete_user = $conn->query("DELETE FROM tnr_dataset
+            //     WHERE ID = '$documentID'");
+
+            echo "<script> alert('Document information deleted');</script>";
+            return view('AdminViews.managedocument', ['delete' => $deleted]);
+        }
+        // if (isset($_POST['submitedit'])) {  
+        //     $documentID = $_POST['documentID'];
+        //     $title = $_POST['title'];
+        //     $author = $_POST['author'];
+        //     $year = $_POST['year'];
+        //     $kind = $_POST['kind'];
+        //     $college = $_POST['college'];
+        //     $content = $_POST['content'];
+        //     $links = $_POST['links'];
+
+        //     $update = $conn->query("UPDATE tnr_dataset SET  
+        // Title = '$title',
+        // Author = '$author',
+        // Year = '$year',
+        // Kind_of_Paper = '$kind',
+        // College = '$college',
+        // Content = '$content',
+        // Links = '$links'
+        // WHERE ID = '$documentID'");
+        // }
+        else{
+         return view('AdminViews.managedocument', ['document_studies' => $document_studies]); 
+        }
     }
-    public function addnewaccount(){
+    public function addnewaccount()
+    {
         $total_accounts = DB::select("SELECT COUNT('library_id_number') as total_accounts
             FROM student_info");
 
 
-        $student_number = Str(Carbon::now()->format('y')).sprintf('%05d', $total_accounts[0]->total_accounts+1);
+        $student_number = Str(Carbon::now()->format('y')) . sprintf('%05d', $total_accounts[0]->total_accounts + 1);
 
 
         return view('AdminViews.addnewaccount')->with(compact('student_number'));
     }
-    public function addnewdocument(){
+    public function addnewdocument()
+    {
         return view('AdminViews.addnewdocument');
     }
+    // public function destroy(Document_Studies $document_Studies)
+    // {
+    //     $document_studies->delete();
+       
+    //     return redirect()->route('AdminViews.managedocument')
+    //                     ->with('success','A row of document has been deleted successfully');
+    // }
 
 
 
@@ -175,9 +226,9 @@ class AdminViewsController extends Controller
 
     // public function index()
     // {
-        
+
     // }
-  
+
     // /**
     //  * Show the form for creating a new resource.
     //  *
@@ -187,7 +238,7 @@ class AdminViewsController extends Controller
     // {
     //     return view('products.create');
     // }
-  
+
     // /**
     //  * Store a newly created resource in storage.
     //  *
@@ -200,13 +251,13 @@ class AdminViewsController extends Controller
     //         'name' => 'required',
     //         'detail' => 'required',
     //     ]);
-      
+
     //     Product::create($request->all());
-       
+
     //     return redirect()->route('products.index')
     //                     ->with('success','Product created successfully.');
     // }
-  
+
     // /**
     //  * Display the specified resource.
     //  *
@@ -217,7 +268,7 @@ class AdminViewsController extends Controller
     // {
     //     return view('products.show',compact('product'));
     // }
-  
+
     // /**
     //  * Show the form for editing the specified resource.
     //  *
@@ -228,7 +279,7 @@ class AdminViewsController extends Controller
     // {
     //     return view('products.edit',compact('product'));
     // }
-  
+
     // /**
     //  * Update the specified resource in storage.
     //  *
@@ -242,9 +293,9 @@ class AdminViewsController extends Controller
     //         'name' => 'required',
     //         'detail' => 'required',
     //     ]);
-      
+
     //     $product->update($request->all());
-      
+
     //     return redirect()->route('products.index')
     //                     ->with('success','Product updated successfully');
     // }
@@ -257,7 +308,7 @@ class AdminViewsController extends Controller
     // public function destroy(Product $product)
     // {
     //     $product->delete();
-       
+
     //     return redirect()->route('products.index')
     //                     ->with('success','Product deleted successfully');
     // }
