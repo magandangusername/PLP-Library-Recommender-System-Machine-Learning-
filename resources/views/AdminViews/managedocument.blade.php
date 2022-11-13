@@ -2,6 +2,25 @@
 
 @section('admincontent')
     <main>
+        @if (isset($_GET['success']))
+            <div class="alert alert-success" role="alert">
+                {{ $_GET['success'] }}
+            </div>
+        @endif
+        @if (isset($_GET['error']))
+            <div class="alert alert-danger" role="alert">
+                {{ $_GET['error'] }}
+            </div>
+        @endif
+        @if ($errors->any())
+            <div class="alert alert-danger">
+                @foreach ($errors->all() as $error)
+                    <li>
+                        {{ $error }}
+                    </li>
+                @endforeach
+            </div>
+        @endif
         <div class="container-fluid px-4">
 
             <div class="card my-5">
@@ -51,12 +70,18 @@
                             @foreach ($document_studies as $document_study)
                                 <tr>
                                     <td>
-                                        <form action="#editdocument" method="post">
-                                            <input type="hidden" name="documentID" value="<?php //echo $row['ID'];
-                                            ?>">
-                                            <button class="btn btn-outline-dark" name="delete" type="submit"><i
+                                        <form action="{{ route('modifydocument') }}" method="post">
+                                            @csrf
+                                            <input type="text" name="deletedocument"
+                                                value="{{ $document_study->document_id }}" hidden>
+                                            <button class="btn btn-outline-dark" type="submit"><i
                                                     class="fas fa-trash"></i></button>
-                                            <button class="btn btn-outline-dark" name="edit" type="submit"><i
+                                        </form>
+                                        <form action="{{ route('modifydocument') . '#update' }}" method="post">
+                                            @csrf
+                                            <input type="text" name="editdocument"
+                                                value="{{ $document_study->document_id }}" hidden>
+                                            <button class="btn btn-outline-dark" type="submit"><i
                                                     class="fas fa-pen"></i></button>
                                         </form>
                                     </td>
@@ -97,216 +122,137 @@
             // $edit = $conn->query("SELECT * FROM tnr_dataset WHERE ID = '$documentID'");
             // $edit = $edit->fetch_assoc();
             ?>
-            <div class="card my-5">
-                <div class="card-header">
-                    <h2 id="editdocument">Update Document Information Record </h2>
+            @if (isset($edit))
+                <div class="card my-5" id="update">
+                    <div class="card-header">
+                        <h2 id="editdocument">Update Document Information Record </h2>
+                    </div>
+                    <form class="p-5" action="{{ route('modifydocument') }}" method="post">
+                        @csrf
+                        <fieldset>
+                            <div class="row my-2">
+                                <div class="col-4">
+                                    <b>Document Number</b>
+                                    <input type="text" class="form-control" id="documentID" name="document_ID"
+                                        value="{{ $editdocument->document_id }}" readonly>
+                                </div>
+                            </div>
+
+                            <div class="row my-2">
+                                <div class="col-4">
+                                    <b>Title</b>
+                                    <input type="text" class="form-control" id="title" name="title"
+                                        value="{{ $editdocument->title }}">
+                                </div>
+                            </div>
+                            <div class="row my-2">
+                                <div class="col-4">
+                                    <b>Author</b>
+                                    <input type="text" class="form-control" id="author" name="author"
+                                        value="{{ $editdocument->author }}">
+                                </div>
+                            </div>
+                            <div class="row my-2">
+                                <div class="col-4">
+                                    <b>Date Submitted</b>
+                                    <input type="date" class="form-control" id="year" name="date_submitted"
+                                        value="{{ $editdocument->date_submitted }}">
+                                </div>
+                            </div>
+
+                            <div class="row my-3">
+                                <div class="col-4">
+                                    <?php
+                                    //$courses = $conn->query("SELECT DISTINCT(College) FROM tnr_dataset");
+                                    ?>
+                                    <b>Document Type</b>
+                                    <select id="document_type" name="document_type" required>
+                                        @foreach ($document_types as $document_type)
+                                            <option selected="true" value="{{ $document_type->document_type }}">
+                                                {{ $document_type->document_type }}</option>
+                                        @endforeach
+                                    </select>
+                                </div>
+
+                            </div>
+
+                            <div class="row my-3">
+                                <div class="col-4">
+                                    {{-- <b>College</b>
+                                    <select id="documenty_college" name="document_college" required>
+                                        <option selected="true" disabled="disabled" value="">College Selection
+                                        </option>
+                                    </select> --}}
+                                </div>
+
+                            </div>
+
+                            <div class="row my-3">
+                                <div class="col-4">
+                                    <?php
+                                    //$courses = $conn->query("SELECT DISTINCT(College) FROM tnr_dataset");
+                                    ?>
+                                    <b>Course</b>
+                                    <select id="document_course" name="course_id" required>
+                                        @foreach ($courses as $course)
+                                            <option selected="true" value="{{ $course->course_ID }}">{{ $course->course }}
+                                            </option>
+                                        @endforeach
+                                    </select>
+                                </div>
+
+                            </div>
+                            <input type="text" name="submitedit" value="{{ $editdocument->compiled_tag_ID }}" hidden>
+
+                            <div class="row my-2">
+                                <div class="col-4">
+                                    <b>Tag 1</b>
+                                    <input type="text" class="form-control" id="tag1" name="tag1"
+                                        value="{{ $editdocument->tag1 }}">
+                                </div>
+                                <div class="col-4">
+                                    <b>Tag 2</b>
+                                    <input type="text" class="form-control" id="tag2" name="tag2"
+                                        value="{{ $editdocument->tag2 }}">
+                                </div>
+                                <div class="col-4">
+                                    <b>Tag 3</b>
+                                    <input type="text" class="form-control" id="tag3" name="tag3"
+                                        value="{{ $editdocument->tag3 }}">
+                                </div>
+                                <div class="col-4">
+                                    <b>Tag 4</b>
+                                    <input type="text" class="form-control" id="tag4" name="tag4"
+                                        value="{{ $editdocument->tag4 }}">
+                                </div>
+                            </div>
+
+                            <div class="row my-3">
+                                <div class="col-4">
+                                    <?php
+                                    //$courses = $conn->query("SELECT DISTINCT(College) FROM tnr_dataset");
+                                    ?>
+                                    <b>Document Status</b>
+                                    <select id="document_course" name="document_status" required>
+                                        <option @if ($editdocument->document_status == 'Unpublished Document') selected="true" @endif
+                                            value="Unpublished Document">Unpublished Document</option>
+                                        <option @if ($editdocument->document_status == 'Published Document') selected="true" @endif
+                                            value="Published Document">Published Document</option>
+                                    </select>
+                                </div>
+
+                            </div>
+
+
+                            <!-- <input type="hidden" name="ID" value="<?php //echo $edit['profile_id']
+                            ?>"> -->
+                            <button type="submit" name="submit" class="btn btn-dark mt-2">Update
+                                Record</button>
+                        </fieldset>
+                    </form>
+
                 </div>
-                <form class="p-5" method="post" enctype="multipart/form-data">
-                    <fieldset>
-                        <div class="row my-2">
-                            <div class="col-4">
-                                <b>Document Number</b>
-                                <input type="text" class="form-control" id="documentID" name="documentID"
-                                    value="<?php //echo $edit['ID']
-                                    ?>" disabled>
-                            </div>
-                        </div>
-
-                        <div class="row my-2">
-                            <div class="col-4">
-                                <b>Title</b>
-                                <input type="text" class="form-control" id="title" name="title"
-                                    value="<?php //echo $edit['Title']
-                                    ?>">
-                            </div>
-                        </div>
-                        <div class="row my-2">
-                            <div class="col-4">
-                                <b>Author</b>
-                                <input type="text" class="form-control" id="author" name="author"
-                                    value="<?php //echo $edit['Author']
-                                    ?>">
-                            </div>
-                        </div>
-                        <div class="row my-2">
-                            <div class="col-4">
-                                <b>Date Submitted</b>
-                                <input type="date" class="form-control" id="year" name="year"
-                                    value="<?php //echo $edit['Year']
-                                    ?>">
-                            </div>
-                        </div>
-
-                        <div class="row my-3">
-                            <div class="col-4">
-                                <?php
-                                //$courses = $conn->query("SELECT DISTINCT(College) FROM tnr_dataset");
-                                ?>
-                                <b>Document Type</b>
-                                <select id="document_type" name="document_type" required>
-                                    <option selected="true" disabled="disabled" value="">Document Type</option>
-                                    <?php
-                                    //while($course = $courses->fetch_assoc()){
-                                    ?>
-                                    <option value="<?php //echo $course['College']
-                                    ?>" {{-- <?php
-                                    // if($edit['course'] == $course['College']){
-                                    // echo "selected";
-                                    // }
-                                    ?> --}} <?php //echo $course['College']
-                                    ?>>
-                                    </option>
-                                    <?php
-                                    //}
-                                    ?>
-                                </select>
-                            </div>
-
-                        </div>
-
-                        <div class="row my-3">
-                            <div class="col-4">
-                                <?php
-                                //$courses = $conn->query("SELECT DISTINCT(College) FROM tnr_dataset");
-                                ?>
-                                <b>College</b>
-                                <select id="documenty_college" name="document_college" required>
-                                    <option selected="true" disabled="disabled" value="">College Selection</option>
-                                    <?php
-                                    //while($course = $courses->fetch_assoc()){
-                                    ?>
-                                    <option value="<?php //echo $course['College']
-                                    ?>" {{-- <?php
-                                    // if($edit['course'] == $course['College']){
-                                    // echo "selected";
-                                    // }
-                                    ?> --}} <?php //echo $course['College']
-                                    ?>>
-                                    </option>
-                                    <?php
-                                    //}
-                                    ?>
-                                </select>
-                            </div>
-
-                        </div>
-
-                        <div class="row my-3">
-                            <div class="col-4">
-                                <?php
-                                //$courses = $conn->query("SELECT DISTINCT(College) FROM tnr_dataset");
-                                ?>
-                                <b>Course</b>
-                                <select id="document_course" name="document_course" required>
-                                    <option selected="true" disabled="disabled" value="">Course Selection</option>
-                                    <?php
-                                    //while($course = $courses->fetch_assoc()){
-                                    ?>
-                                    <option value="<?php //echo $course['College']
-                                    ?>" {{-- <?php
-                                    // if($edit['course'] == $course['College']){
-                                    // echo "selected";
-                                    // }
-                                    ?> --}} <?php //echo $course['College']
-                                    ?>>
-                                    </option>
-                                    <?php
-                                    //}
-                                    ?>
-                                </select>
-                            </div>
-
-                        </div>
-
-                        {{-- <div class="row my-3">
-        <div class="col-4">
-        <?php
-        //$kinds = $conn->query("SELECT DISTINCT(Kind_of_Paper) FROM tnr_dataset");
-        ?>
-        <b>Kind of Paper</b>
-            <select id="kind" name="kind" required>
-            <option selected="true" disabled="disabled" value="">Kind of paper</option>
-            <?php
-            //while($kind = $kinds->fetch_assoc()){
-            ?>
-            <option value="<?php //echo $kind['Kind_of_Paper']
-            ?>" 
-            <?php
-            //if($edit['Kind_of_Paper'] == $kind['Kind_of_Paper']){
-            //echo "selected";
-            //}
-            ?>
-            ><?php //echo $kind['Kind_of_Paper']
-            ?></option>
-            <?php
-            //}
-            ?>
-            </select>
-        </div>
-    </div> --}}
-
-                        <div class="row my-2">
-                            <div class="col-4">
-                                <b>Tag 1</b>
-                                <input type="text" class="form-control" id="tag1" name="tag1"
-                                    value="<?php //echo $edit['student_name']
-                                    ?>">
-                            </div>
-                            <div class="col-4">
-                                <b>Tag 2</b>
-                                <input type="text" class="form-control" id="tag2" name="tag2"
-                                    value="<?php //echo $edit['student_name']
-                                    ?>">
-                            </div>
-                            <div class="col-4">
-                                <b>Tag 3</b>
-                                <input type="text" class="form-control" id="tag3" name="tag3"
-                                    value="<?php //echo $edit['student_name']
-                                    ?>">
-                            </div>
-                            <div class="col-4">
-                                <b>Tag 4</b>
-                                <input type="text" class="form-control" id="tag4" name="tag4"
-                                    value="<?php //echo $edit['student_name']
-                                    ?>">
-                            </div>
-                        </div>
-
-                        <div class="row my-3">
-                            <div class="col-4">
-                                <?php
-                                //$courses = $conn->query("SELECT DISTINCT(College) FROM tnr_dataset");
-                                ?>
-                                <b>Document Status</b>
-                                <select id="document_course" name="document_course" required>
-                                    <option selected="true" disabled="disabled" value="">Document Status</option>
-                                    <?php
-                                    //while($course = $courses->fetch_assoc()){
-                                    ?>
-                                    <option value="<?php //echo $course['College']
-                                    ?>" {{-- <?php
-                                    // if($edit['course'] == $course['College']){
-                                    // echo "selected";
-                                    // }
-                                    ?> --}} <?php //echo $course['College']
-                                    ?>>
-                                    </option>
-                                    <?php
-                                    //}
-                                    ?>
-                                </select>
-                            </div>
-
-                        </div>
-
-
-                        <!-- <input type="hidden" name="ID" value="<?php //echo $edit['profile_id']
-                        ?>"> -->
-                        <button type="submit" name="submitedit" class="btn btn-dark mt-2">Update Record</button>
-                    </fieldset>
-                </form>
-
-            </div>
+            @endif
             <?php
             //}
             ?>

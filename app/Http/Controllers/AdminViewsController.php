@@ -154,11 +154,11 @@ class AdminViewsController extends Controller
             ->select('document_studies.*', 'course.course', 'college.college_ID', 'college.college', 'tag.tag1_ID', 'tag.tag2_ID', 'tag.tag3_ID', 'tag.tag4_ID', 'tag1.tag1_ID', 'tag1.tag1', 'tag2.tag2_ID', 'tag2.tag2', 'tag3.tag3_ID', 'tag3.tag3', 'tag4.tag4_ID', 'tag4.tag4')
             ->get();
 
-        
+
 
         if (isset($_POST['delete'])) {
             // $deleted = DB::table('document_studies')->delete();
- 
+
             $deleted = DB::table('document_studies')->where('document_studies.document_id', '=', $_POST['delete'])->delete();
             // $documentID = $_POST['documentID'];
 
@@ -168,7 +168,7 @@ class AdminViewsController extends Controller
             echo "<script> alert('Document information deleted');</script>";
             return view('AdminViews.managedocument', ['delete' => $deleted]);
         }
-        // if (isset($_POST['submitedit'])) {  
+        // if (isset($_POST['submitedit'])) {
         //     $documentID = $_POST['documentID'];
         //     $title = $_POST['title'];
         //     $author = $_POST['author'];
@@ -178,7 +178,7 @@ class AdminViewsController extends Controller
         //     $content = $_POST['content'];
         //     $links = $_POST['links'];
 
-        //     $update = $conn->query("UPDATE tnr_dataset SET  
+        //     $update = $conn->query("UPDATE tnr_dataset SET
         // Title = '$title',
         // Author = '$author',
         // Year = '$year',
@@ -188,10 +188,112 @@ class AdminViewsController extends Controller
         // Links = '$links'
         // WHERE ID = '$documentID'");
         // }
-        else{
-         return view('AdminViews.managedocument', ['document_studies' => $document_studies]); 
+        else {
+            return view('AdminViews.managedocument', ['document_studies' => $document_studies]);
         }
     }
+    public function modifydocument(Request $request)
+    {
+        $document_studies = DB::table('document_studies')
+            ->leftJoin('course', 'document_studies.course_ID', '=', 'course.course_ID')
+            ->leftJoin('college', 'course.college_ID', '=', 'college.college_ID')
+            ->leftjoin('tag', 'document_studies.compiled_tag_ID', '=', 'tag.compiled_tag_ID')
+            ->leftjoin('tag1', 'tag.tag1_ID', '=', 'tag1.tag1_ID')
+            ->leftjoin('tag2', 'tag.tag2_ID', '=', 'tag2.tag2_ID')
+            ->leftjoin('tag3', 'tag.tag3_ID', '=', 'tag3.tag3_ID')
+            ->leftjoin('tag4', 'tag.tag4_ID', '=', 'tag4.tag4_ID')
+            ->select('document_studies.*', 'course.course', 'college.college_ID', 'college.college', 'tag.tag1_ID', 'tag.tag2_ID', 'tag.tag3_ID', 'tag.tag4_ID', 'tag1.tag1_ID', 'tag1.tag1', 'tag2.tag2_ID', 'tag2.tag2', 'tag3.tag3_ID', 'tag3.tag3', 'tag4.tag4_ID', 'tag4.tag4')
+            ->get();
+        if ($request->input('deletedocument') !== null) {
+            $docucheck = DB::table('document_studies')
+                ->where('document_id', $request->input('deletedocument'))
+                ->count();
+
+
+            if ($docucheck != 0) {
+                DB::table('document_studies')
+                    ->where('document_id', $request->input('deletedocument'))
+                    ->delete();
+            } else {
+                return redirect(route('managedocument') . '?error=Problem deleting document');
+            }
+
+
+            return redirect(route('managedocument') . '?success=Document has been deleted.');
+        }
+
+        if ($request->input('editdocument') !== null) {
+            $editdocument = DB::table('document_studies')
+                ->leftjoin('tag', 'document_studies.compiled_tag_ID', '=', 'tag.compiled_tag_ID')
+                ->leftjoin('tag1', 'tag.tag1_ID', '=', 'tag1.tag1_ID')
+                ->leftjoin('tag2', 'tag.tag2_ID', '=', 'tag2.tag2_ID')
+                ->leftjoin('tag3', 'tag.tag3_ID', '=', 'tag3.tag3_ID')
+                ->leftjoin('tag4', 'tag.tag4_ID', '=', 'tag4.tag4_ID')
+                ->where('document_id', $request->input('editdocument'))
+                ->first();
+
+            // this is not right, just a temporary fix
+            $document_types = DB::table('document_studies')->select('document_type')->distinct('document_type')->get();
+            $courses = DB::table('course')->distinct('course')->get();
+
+
+
+            $edit = true;
+
+            return view('AdminViews.managedocument')->with(compact('document_studies', 'editdocument', 'edit', 'document_types', 'courses'));
+        }
+
+        if ($request->input('submitedit') !== null) {
+
+            $request->validate([
+                'document_ID' => 'required',
+                'title' => 'required',
+                'author' => 'required',
+                'date_submitted' => 'required',
+                'document_type' => 'required',
+                'course_id' => 'required',
+                'tag1' => 'required',
+                'tag2' => 'required',
+                'tag3' => 'required',
+                'tag4' => 'required',
+                'submitedit' => 'required',
+                'document_status' => 'required'
+            ]);
+            DB::table('document_studies')
+            ->where('document_id', $request->input('document_ID'))
+            ->update([
+                'title' => $request->input('title'),
+                'author' => $request->input('author'),
+                'date_submitted' => $request->input('date_submitted'),
+                'document_type' => $request->input('document_type'),
+                'course_id' => $request->input('course_id'),
+                // 'tag1' => $request->input('promotion_end'),
+                // 'tag2' => $request->input('terms_conditions1'),
+                // 'tag3' => $request->input('terms_conditions2'),
+                // 'tag4' => $request->input('terms_conditions3'),
+                'document_status' => $request->input('document_status')
+            ]);
+            DB::table('tag')
+            ->leftjoin('tag1', 'tag.tag1_ID', '=', 'tag1.tag1_ID')
+            ->leftjoin('tag2', 'tag.tag2_ID', '=', 'tag2.tag2_ID')
+            ->leftjoin('tag3', 'tag.tag3_ID', '=', 'tag3.tag3_ID')
+            ->leftjoin('tag4', 'tag.tag4_ID', '=', 'tag4.tag4_ID')
+            ->where('compiled_tag_ID', $request->input('submitedit'))
+            ->update([
+                'tag1.tag1' => $request->input('tag1'),
+                'tag2.tag2' => $request->input('tag2'),
+                'tag3.tag3' => $request->input('tag3'),
+                'tag4.tag4' => $request->input('tag4')
+            ]);
+
+
+
+
+            return redirect(route('managedocument').'?success=Book "'.$request->input('title').'" has been edited.');
+        }
+    }
+
+
     public function addnewaccount()
     {
         $total_accounts = DB::select("SELECT COUNT('library_id_number') as total_accounts
@@ -210,7 +312,7 @@ class AdminViewsController extends Controller
     // public function destroy(Document_Studies $document_Studies)
     // {
     //     $document_studies->delete();
-       
+
     //     return redirect()->route('AdminViews.managedocument')
     //                     ->with('success','A row of document has been deleted successfully');
     // }

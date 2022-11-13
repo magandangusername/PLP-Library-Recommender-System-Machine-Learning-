@@ -6,7 +6,7 @@ use App\Http\Controllers\AdminViewsController;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Auth;
 
-
+    Route::get('/overview', [AdminViewsController::class, 'overview'])->name('overview');
 
 Route::get('/accountancy', [SessionViewsController::class, 'accountancy'])->name('accountancy');
 Route::get('/{college}/search', [SessionViewsController::class, 'search'])->name('search');
@@ -21,9 +21,10 @@ Route::get('/SessionViews/recommendationpage', [SessionViewsController::class, '
 Route::get('/SessionViews/savedpage', [SessionViewsController::class, 'savedpage']);
 Route::get('/SessionViews/profilepage', [SessionViewsController::class, 'profilepage']);
 Route::get('/viewpage/{title}', [SessionViewsController::class, 'viewpage'])->name('viewpage');
-Route::get('/overview', [AdminViewsController::class, 'overview'])->name('overview');
+
 Route::get('/manageaccount', [AdminViewsController::class, 'manageaccount'])->name('manageaccount');
 Route::get('/managedocument', [AdminViewsController::class, 'managedocument'])->name('managedocument');
+Route::post('/managedocument', [AdminViewsController::class, 'modifydocument'])->name('modifydocument');
 Route::get('/addnewaccount', [AdminViewsController::class, 'addnewaccount'])->name('addnewaccount');
 Route::get('/addnewdocument', [AdminViewsController::class, 'addnewdocument'])->name('addnewdocument');
 
