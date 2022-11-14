@@ -42,4 +42,10 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+    public function is_librarian($is_librarian) {
+        $is_librarian = (array)$is_librarian;
+
+        return in_array($this->is_librarian, $is_librarian);
+     }
 }

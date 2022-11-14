@@ -6,7 +6,9 @@ use App\Http\Controllers\AdminViewsController;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Auth;
 
+Route::middleware('can:is_librarian')->group(function () {
     Route::get('/overview', [AdminViewsController::class, 'overview'])->name('overview');
+});
 
 Route::get('/accountancy', [SessionViewsController::class, 'accountancy'])->name('accountancy');
 Route::get('/{college}/search', [SessionViewsController::class, 'search'])->name('search');
