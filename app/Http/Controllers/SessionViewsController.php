@@ -737,7 +737,7 @@ class SessionViewsController extends Controller
         $results_count = sizeof($document_studies);
 
         // recommendation for views
-        if((isset(Auth::user()->compiled_views_id) and Auth::user()->compiled_views_id != null) or $results_count < 15) {
+        if((isset(Auth::user()->compiled_views_id) and Auth::user()->compiled_views_id != null) and $results_count < 15) {
             //checks if user has views record
             $view1 = null;
             $view2 = null;
