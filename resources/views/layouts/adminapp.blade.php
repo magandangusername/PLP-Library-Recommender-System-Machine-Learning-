@@ -76,7 +76,7 @@
                             data-bs-target="#roomcollapse" aria-expanded="false" aria-controls="collapseLayouts">
 
                             <div class="sb-nav-link-icon">
-                                <i class="fas fa-bed"></i>
+                                <i class="far fa-edit"></i>
                             </div>
 
                             Create new data
@@ -86,7 +86,7 @@
                         <div class="collapse" id="roomcollapse" aria-labelledby="headingOne"
                             data-bs-parent="#sidenavAccordion">
                             <nav class="sb-sidenav-menu-nested nav">
-                                <a class="nav-link" href="{{ route('addnewaccount') }}">Create new Student Account</a>
+                                {{-- <a class="nav-link" href="{{ route('addnewaccount') }}">Create new Student Account</a> --}}
                                 <a class="nav-link" href="{{ route('addnewdocument') }}">Add new Document</a>
                             </nav>
                         </div>

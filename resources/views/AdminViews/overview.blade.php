@@ -9,108 +9,73 @@
 
                 <div class="col-xl-3 col-md-6">
                     <div class="card bg-info text-dark mb-4">
-                        <div class="card-body"><b>Total Registered student of PLP:</b> </div>
-                        {{-- {{ $student_count }} --}}
-                    </div>
-                </div>
-                <div class="col-xl-3 col-md-6">
-                    <div class="card bg-danger bg-outline-dark text-dark mb-4">
-                        <div class="card-body"><b>Number of Accountancy Student:</b> </div>
-                        {{-- {{ $accountancy_student_count }} --}}
-                    </div>
-                </div>
-                <div class="col-xl-3 col-md-6">
-                    <div class="card bg-success bg-outline-dark text-dark mb-4">
-                        <div class="card-body"><b>Number of Computer Science Student:</b></div>
-                    </div>
-                </div>
-                <div class="col-xl-3 col-md-6">
-                    <div class="card bg-warning bg-outline-dark text-dark mb-4">
-                        <div class="card-body"><b>Number of Education Student:</b> <?php //echo $totaleducation
-                        ?></div>
-                    </div>
-                </div>
-                <div class="col-xl-3 col-md-6">
-                    <div class="card bg-info bg-outline-dark text-dark mb-4">
-                        <div class="card-body"><b>Number of Hotel Management Student:</b> <?php //echo $totalhotelmanagement
-                        ?></div>
-                    </div>
-                </div>
-                <div class="col-xl-3 col-md-6">
-                    <div class="card bg-warning bg-outline-dark text-dark mb-4">
-                        <div class="card-body"><b>Number of Nursing Student:</b> <?php //echo $totalnursing
-                        ?></div>
-                    </div>
-                </div>
-                <div class="col-xl-3 col-md-6">
-                    <div class="card bg-warning text-dark mb-4">
                         <div class="card-body "><b>Total of documents from all colleges:</b> {{ $document_count }}</div>
 
                     </div>
                 </div>
                 <div class="col-xl-3 col-md-6">
-                    <div class="card bg-warning text-dark mb-4">
+                    <div class="card bg-info text-dark mb-4">
                         <div class="card-body "><b>Total of Thesis documents from all colleges:</b> {{ $thesis_count }}
                         </div>
 
                     </div>
                 </div>
                 <div class="col-xl-3 col-md-6">
-                    <div class="card bg-success text-dark mb-4">
+                    <div class="card bg-danger text-dark mb-4">
                         <div class="card-body"><b>Total of Research documents from all colleges:</b> {{ $research_count }}
                         </div>
 
                     </div>
                 </div>
                 <div class="col-xl-3 col-md-6">
-                    <div class="card bg-info bg-outline-dark text-dark mb-4">
+                    <div class="card bg-success bg-outline-dark text-dark mb-4">
                         <div class="card-body"><b>Number of Accountancy Documents:</b> {{ $accountancy_docu_count }}</div>
                     </div>
                 </div>
                 <div class="col-xl-3 col-md-6">
-                    <div class="card bg-info bg-outline-dark text-dark mb-4">
+                    <div class="card bg-success bg-outline-dark text-dark mb-4">
                         <div class="card-body"><b>Number of Accountancy Thesis:</b> {{ $accountancy_th_count }} </div>
                     </div>
                 </div>
                 <div class="col-xl-3 col-md-6">
-                    <div class="card bg-info bg-outline-dark text-dark mb-4">
+                    <div class="card bg-warning bg-outline-dark text-dark mb-4">
                         <div class="card-body"><b>Number of Accountancy research:</b> {{ $accountancy_rs_count }} </div>
                     </div>
                 </div>
 
                 <div class="col-xl-3 col-md-6">
-                    <div class="card bg-info bg-outline-dark text-dark mb-4">
+                    <div class="card bg-warning bg-outline-dark text-dark mb-4">
                         <div class="card-body"><b>Number of Arts and Science Documents:</b> {{ $artscie_docu_count }}</div>
                     </div>
                 </div>
                 <div class="col-xl-3 col-md-6">
-                    <div class="card bg-info bg-outline-dark text-dark mb-4">
+                    <div class="card bg-warning bg-outline-dark text-dark mb-4">
                         <div class="card-body"><b>Number of Arts and Science Thesis:</b> {{ $th_artscie }} </div>
                     </div>
                 </div>
                 <div class="col-xl-3 col-md-6">
-                    <div class="card bg-info bg-outline-dark text-dark mb-4">
+                    <div class="card bg-warning bg-outline-dark text-dark mb-4">
                         <div class="card-body"><b>Number of Arts and Science research:</b> {{ $rs_artscie }} </div>
                     </div>
                 </div>
 
                 <div class="col-xl-3 col-md-6">
-                    <div class="card bg-danger bg-outline-dark text-dark mb-4">
+                    <div class="card bg-info bg-outline-dark text-dark mb-4">
                         <div class="card-body"><b>Number of Computer Science Documents:</b> {{ $ccs_docu_count }} </div>
                     </div>
                 </div>
                 <div class="col-xl-3 col-md-6">
-                    <div class="card bg-danger bg-outline-dark text-dark mb-4">
+                    <div class="card bg-success bg-outline-dark text-dark mb-4">
                         <div class="card-body"><b>Number of Computer Science Thesis:</b> {{ $ccs_th_count }} </div>
                     </div>
                 </div>
                 <div class="col-xl-3 col-md-6">
-                    <div class="card bg-danger bg-outline-dark text-dark mb-4">
+                    <div class="card bg-warning bg-outline-dark text-dark mb-4">
                         <div class="card-body"><b>Number of Computer Science Research:</b> {{ $ccs_rs_count }} </div>
                     </div>
                 </div>
                 <div class="col-xl-3 col-md-6">
-                    <div class="card bg-success bg-outline-dark text-dark mb-4">
+                    <div class="card bg-info bg-outline-dark text-dark mb-4">
                         <div class="card-body"><b>Number of Education Documents:</b> {{ $educ_docu_count }} </div>
                     </div>
                 </div>
@@ -120,47 +85,47 @@
                     </div>
                 </div>
                 <div class="col-xl-3 col-md-6">
-                    <div class="card bg-success bg-outline-dark text-dark mb-4">
+                    <div class="card bg-warning bg-outline-dark text-dark mb-4">
                         <div class="card-body"><b>Number of Education Research:</b> {{ $educ_rs_count }} </div>
                     </div>
                 </div>
                 <div class="col-xl-3 col-md-6">
-                    <div class="card bg-success bg-outline-dark text-dark mb-4">
+                    <div class="card bg-danger bg-outline-dark text-dark mb-4">
                         <div class="card-body"><b>Number of Engineering Documents:</b> {{ $eng_docu_count }} </div>
                     </div>
                 </div>
                 <div class="col-xl-3 col-md-6">
-                    <div class="card bg-success bg-outline-dark text-dark mb-4">
+                    <div class="card bg-warning bg-outline-dark text-dark mb-4">
                         <div class="card-body"><b>Number of Engineering Thesis:</b> {{ $th_eng }} </div>
                     </div>
                 </div>
                 <div class="col-xl-3 col-md-6">
-                    <div class="card bg-success bg-outline-dark text-dark mb-4">
+                    <div class="card bg-warning bg-outline-dark text-dark mb-4">
                         <div class="card-body"><b>Number of Engineering Research:</b> {{ $rs_eng }} </div>
                     </div>
                 </div>
                 <div class="col-xl-3 col-md-6">
-                    <div class="card bg-info bg-outline-dark text-dark mb-4">
+                    <div class="card bg-danger bg-outline-dark text-dark mb-4">
                         <div class="card-body"><b>Number of Hotel Management Documents:</b> {{ $hm_docu_count }} </div>
                     </div>
                 </div>
                 <div class="col-xl-3 col-md-6">
-                    <div class="card bg-info bg-outline-dark text-dark mb-4">
+                    <div class="card bg-warning bg-outline-dark text-dark mb-4">
                         <div class="card-body"><b>Number of Hotel Management Thesis:</b> {{ $th_hm }} </div>
                     </div>
                 </div>
                 <div class="col-xl-3 col-md-6">
-                    <div class="card bg-info bg-outline-dark text-dark mb-4">
+                    <div class="card bg-warning bg-outline-dark text-dark mb-4">
                         <div class="card-body"><b>Number of Hotel Management Research:</b> {{ $rs_hm }} </div>
                     </div>
                 </div>
                 <div class="col-xl-3 col-md-6">
-                    <div class="card bg-warning bg-outline-dark text-dark mb-4">
+                    <div class="card bg-info bg-outline-dark text-dark mb-4">
                         <div class="card-body"><b>Number of Nursing Documents:</b> {{ $nurs_docu_count }} </div>
                     </div>
                 </div>
                 <div class="col-xl-3 col-md-6">
-                    <div class="card bg-warning bg-outline-dark text-dark mb-4">
+                    <div class="card bg-success bg-outline-dark text-dark mb-4">
                         <div class="card-body"><b>Number of Nursing Thesis:</b> {{ $th_nurs }} </div>
                     </div>
                 </div>

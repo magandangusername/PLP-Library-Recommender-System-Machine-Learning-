@@ -160,13 +160,6 @@
                                 aria-describedby="basic-addon2" value="@php
                                     echo $search
                                 @endphp">
-                                <ul id="history">
-                                    @foreach ($document_studies as $document_study)
-                                    <li>{{ $document_studies[0]->backtrack1 }}</li>
-                                    <li>{{ $document_studies[0]->backtrack2 }}</li>
-                                    <li>{{ $document_studies[0]->backtrack3}}</li>
-                                    @endforeach
-                                </ul>
                             @else
                                 <input type="search" class="form-control" placeholder="Search" aria-label="Search" name="search"
                                 aria-describedby="basic-addon2">
