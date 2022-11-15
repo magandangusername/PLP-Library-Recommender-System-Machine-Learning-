@@ -64,7 +64,13 @@
                             id="navbarDropdown" href="#" role="button" data-bs-toggle="dropdown"
                             aria-expanded="false"><i class="fas fa-user fa-fw"></i></a>
                         <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
-                            <li><a class="dropdown-item" href="{{ url('/SessionViews/profilepage') }}">Profile</a></li>
+                            {{-- @foreach ( as  ) --}}
+
+                            <li><p class="dropdown-item">
+                                {{ $names }}
+                            </p></li>
+                            
+                            {{-- @endforeach --}}
                             {{-- <li><a class="dropdown-item"
                                     href="{{ url('/SessionViews/recommendationpage') }}">Recommendations</a></li>
                             <li><a class="dropdown-item" href="{{ url('/SessionViews/savedpage') }}">Saved</a></li> --}}

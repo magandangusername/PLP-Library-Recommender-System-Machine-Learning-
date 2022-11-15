@@ -1019,6 +1019,21 @@ class SessionViewsController extends Controller
         // $document_studies = DB::table('document_studies')->select('SELECT * FROM document_studies LIMIT 1');
         return view('SessionViews.viewpage', ['document_studies'=>$document_studies]);
     }
+    
+    public function fetchuser(){
+        $userid = Auth::user()->id;
+        // $names = $users;
+        $names = DB::table('users')
+        ->leftJoin("student_info", "users.student_info_id", "=", "student_info.student_info_ID")
+        ->select('student_info.firstname')
+        ->where('id', $userid )
+        ->get();
+        
 
+        // $firstnames = $name->firstname;
+        // $surnames = $name->surname;
 
+        return view('layouts.app', ['names'=>$names]);
+    }
+    
 }

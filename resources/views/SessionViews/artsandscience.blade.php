@@ -15,7 +15,7 @@
         </div>
         <section class="clean-block clean-blog-list dark" style="background-image: linear-gradient(to left, green,#fde8ec);">
             <div class="container">
-                <img class="imghover" src="{{ asset('img/course/accountancy_banner1.jpg') }}" alt="Arts and Science Cover"
+                <img class="imghover" src="{{ asset('img/course/cas_banner.jpg') }}" alt="Arts and Science Cover"
                     style="height:300px; width:100%; border-style: inset;">
             </div>
         </section>

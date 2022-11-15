@@ -22,6 +22,7 @@ Route::get('/', [SessionViewsController::class, 'homepage'])->name('home')->midd
 Route::get('/SessionViews/recommendationpage', [SessionViewsController::class, 'recommendationpage']);
 Route::get('/SessionViews/savedpage', [SessionViewsController::class, 'savedpage']);
 Route::get('/SessionViews/profilepage', [SessionViewsController::class, 'profilepage']);
+Route::get('/layouts/app', [SessionViewsController::class, 'fetchuser']);
 Route::get('/viewpage/{title}', [SessionViewsController::class, 'viewpage'])->name('viewpage');
 
 Route::get('/manageaccount', [AdminViewsController::class, 'manageaccount'])->name('manageaccount');
