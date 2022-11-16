@@ -118,6 +118,13 @@ class SessionViewsController extends Controller
 
     public function artsandscience(Request $request)
     {
+        $userid = Auth::user()->id;
+        $names = DB::table('users')
+        ->leftJoin("student_info", "users.student_info_id", "=", "student_info.student_info_ID")
+        ->select('student_info.firstname', 'student_info.surname')
+        ->where('id', $userid )
+        ->get();
+        $name = $names[0]->firstname . " " . $names[0]->surname;
         $document_studies = DB::select("SELECT document_studies.document_id, document_studies.compiled_tag_ID, document_studies.course_ID, document_studies.document_number, document_studies.title, document_studies.date_submitted, document_studies.author, document_studies.document_type, document_studies.addedby, document_studies.document_status, document_studies.created_at, document_studies.updated_on, course.course, college.college_ID, college.college, tag.tag1_ID, tag.tag2_ID, tag.tag3_ID, tag.tag4_ID, tag1.tag1_ID, tag1.tag1, tag2.tag2_ID, tag2.tag2, tag3.tag3_ID, tag3.tag3, tag4.tag4_ID, tag4.tag4
             FROM document_studies
             LEFT JOIN course ON document_studies.course_ID = course.course_ID
@@ -201,14 +208,21 @@ class SessionViewsController extends Controller
             $document_studies = $this->Search('artsandscience', $search)[0];
             $search = $this->Search('artsandscience', $search)[1];
 
-            return view('SessionViews.artsandscience')->with(compact('document_studies', 'search'));
+            return view('SessionViews.artsandscience')->with(compact('document_studies', 'search', 'name'));
         } else {
-            return view('SessionViews.artsandscience', ['document_studies' => $document_studies]);
+            return view('SessionViews.artsandscience', ['document_studies' => $document_studies, 'name' => $name]);
         }
     }
 
     public function computerstudies(Request $request)
     {
+        $userid = Auth::user()->id;
+        $names = DB::table('users')
+        ->leftJoin("student_info", "users.student_info_id", "=", "student_info.student_info_ID")
+        ->select('student_info.firstname', 'student_info.surname')
+        ->where('id', $userid )
+        ->get();
+        $name = $names[0]->firstname . " " . $names[0]->surname;
         $document_studies = DB::select("SELECT document_studies.document_id, document_studies.compiled_tag_ID, document_studies.course_ID, document_studies.document_number, document_studies.title, document_studies.date_submitted, document_studies.author, document_studies.document_type, document_studies.addedby, document_studies.document_status, document_studies.created_at, document_studies.updated_on, course.course, college.college_ID, college.college, tag.tag1_ID, tag.tag2_ID, tag.tag3_ID, tag.tag4_ID, tag1.tag1_ID, tag1.tag1, tag2.tag2_ID, tag2.tag2, tag3.tag3_ID, tag3.tag3, tag4.tag4_ID, tag4.tag4
             FROM document_studies
             LEFT JOIN course ON document_studies.course_ID = course.course_ID
@@ -292,14 +306,21 @@ class SessionViewsController extends Controller
             $document_studies = $this->Search('computerstudies', $search)[0];
             $search = $this->Search('computerstudies', $search)[1];
 
-            return view('SessionViews.computerstudies')->with(compact('document_studies', 'search'));
+            return view('SessionViews.computerstudies')->with(compact('document_studies', 'search', 'name'));
         } else {
-            return view('SessionViews.computerstudies', ['document_studies' => $document_studies]);
+            return view('SessionViews.computerstudies', ['document_studies' => $document_studies, 'name' => $name]);
         }
     }
 
     public function education(Request $request)
     {
+        $userid = Auth::user()->id;
+        $names = DB::table('users')
+        ->leftJoin("student_info", "users.student_info_id", "=", "student_info.student_info_ID")
+        ->select('student_info.firstname', 'student_info.surname')
+        ->where('id', $userid )
+        ->get();
+        $name = $names[0]->firstname . " " . $names[0]->surname;
         $document_studies = DB::select("SELECT document_studies.document_id, document_studies.compiled_tag_ID, document_studies.course_ID, document_studies.document_number, document_studies.title, document_studies.date_submitted, document_studies.author, document_studies.document_type, document_studies.addedby, document_studies.document_status, document_studies.created_at, document_studies.updated_on, course.course, college.college_ID, college.college, tag.tag1_ID, tag.tag2_ID, tag.tag3_ID, tag.tag4_ID, tag1.tag1_ID, tag1.tag1, tag2.tag2_ID, tag2.tag2, tag3.tag3_ID, tag3.tag3, tag4.tag4_ID, tag4.tag4
             FROM document_studies
             LEFT JOIN course ON document_studies.course_ID = course.course_ID
@@ -383,14 +404,21 @@ class SessionViewsController extends Controller
             $document_studies = $this->Search('education', $search)[0];
             $search = $this->Search('education', $search)[1];
 
-            return view('SessionViews.education')->with(compact('document_studies', 'search'));
+            return view('SessionViews.education')->with(compact('document_studies', 'search', 'name'));
         } else {
-            return view('SessionViews.education', ['document_studies' => $document_studies]);
+            return view('SessionViews.education', ['document_studies' => $document_studies, 'name' => $name]);
         }
     }
 
     public function engineering(Request $request)
     {
+        $userid = Auth::user()->id;
+        $names = DB::table('users')
+        ->leftJoin("student_info", "users.student_info_id", "=", "student_info.student_info_ID")
+        ->select('student_info.firstname', 'student_info.surname')
+        ->where('id', $userid )
+        ->get();
+        $name = $names[0]->firstname . " " . $names[0]->surname;
         $document_studies = DB::select("SELECT document_studies.document_id, document_studies.compiled_tag_ID, document_studies.course_ID, document_studies.document_number, document_studies.title, document_studies.date_submitted, document_studies.author, document_studies.document_type, document_studies.addedby, document_studies.document_status, document_studies.created_at, document_studies.updated_on, course.course, college.college_ID, college.college, tag.tag1_ID, tag.tag2_ID, tag.tag3_ID, tag.tag4_ID, tag1.tag1_ID, tag1.tag1, tag2.tag2_ID, tag2.tag2, tag3.tag3_ID, tag3.tag3, tag4.tag4_ID, tag4.tag4
             FROM document_studies
             LEFT JOIN course ON document_studies.course_ID = course.course_ID
@@ -474,14 +502,21 @@ class SessionViewsController extends Controller
             $document_studies = $this->Search('engineering', $search)[0];
             $search = $this->Search('engineering', $search)[1];
 
-            return view('SessionViews.engineering')->with(compact('document_studies', 'search'));
+            return view('SessionViews.engineering')->with(compact('document_studies', 'search', 'name'));
         } else {
-            return view('SessionViews.engineering', ['document_studies' => $document_studies]);
+            return view('SessionViews.engineering', ['document_studies' => $document_studies, 'name' => $name]);
         }
     }
 
     public function hotelmanagement(Request $request)
     {
+        $userid = Auth::user()->id;
+        $names = DB::table('users')
+        ->leftJoin("student_info", "users.student_info_id", "=", "student_info.student_info_ID")
+        ->select('student_info.firstname', 'student_info.surname')
+        ->where('id', $userid )
+        ->get();
+        $name = $names[0]->firstname . " " . $names[0]->surname;
         $document_studies = DB::select("SELECT document_studies.document_id, document_studies.compiled_tag_ID, document_studies.course_ID, document_studies.document_number, document_studies.title, document_studies.date_submitted, document_studies.author, document_studies.document_type, document_studies.addedby, document_studies.document_status, document_studies.created_at, document_studies.updated_on, course.course, college.college_ID, college.college, tag.tag1_ID, tag.tag2_ID, tag.tag3_ID, tag.tag4_ID, tag1.tag1_ID, tag1.tag1, tag2.tag2_ID, tag2.tag2, tag3.tag3_ID, tag3.tag3, tag4.tag4_ID, tag4.tag4
             FROM document_studies
             LEFT JOIN course ON document_studies.course_ID = course.course_ID
@@ -565,14 +600,21 @@ class SessionViewsController extends Controller
             $document_studies = $this->Search('hotelmanagement', $search)[0];
             $search = $this->Search('hotelmanagement', $search)[1];
 
-            return view('SessionViews.hotelmanagement')->with(compact('document_studies', 'search'));
+            return view('SessionViews.hotelmanagement')->with(compact('document_studies', 'search', 'name'));
         } else {
-            return view('SessionViews.hotelmanagement', ['document_studies' => $document_studies]);
+            return view('SessionViews.hotelmanagement', ['document_studies' => $document_studies, 'name' => $name]);
         }
     }
 
     public function nursing(Request $request)
     {
+        $userid = Auth::user()->id;
+        $names = DB::table('users')
+        ->leftJoin("student_info", "users.student_info_id", "=", "student_info.student_info_ID")
+        ->select('student_info.firstname', 'student_info.surname')
+        ->where('id', $userid )
+        ->get();
+        $name = $names[0]->firstname . " " . $names[0]->surname;
         $document_studies = DB::select("SELECT document_studies.document_id, document_studies.compiled_tag_ID, document_studies.course_ID, document_studies.document_number, document_studies.title, document_studies.date_submitted, document_studies.author, document_studies.document_type, document_studies.addedby, document_studies.document_status, document_studies.created_at, document_studies.updated_on, course.course, college.college_ID, college.college, tag.tag1_ID, tag.tag2_ID, tag.tag3_ID, tag.tag4_ID, tag1.tag1_ID, tag1.tag1, tag2.tag2_ID, tag2.tag2, tag3.tag3_ID, tag3.tag3, tag4.tag4_ID, tag4.tag4
             FROM document_studies
             LEFT JOIN course ON document_studies.course_ID = course.course_ID
@@ -656,13 +698,20 @@ class SessionViewsController extends Controller
             $document_studies = $this->Search('nursing', $search)[0];
             $search = $this->Search('nursing', $search)[1];
 
-            return view('SessionViews.nursing')->with(compact('document_studies', 'search'));
+            return view('SessionViews.nursing')->with(compact('document_studies', 'search', 'name'));
         } else {
-            return view('SessionViews.nursing', ['document_studies' => $document_studies]);
+            return view('SessionViews.nursing', ['document_studies' => $document_studies, 'name' => $name]);
         }
     }
     public function homepage()
     {
+        $userid = Auth::user()->id;
+        $names = DB::table('users')
+        ->leftJoin("student_info", "users.student_info_id", "=", "student_info.student_info_ID")
+        ->select('student_info.firstname', 'student_info.surname')
+        ->where('id', $userid )
+        ->get();
+        $name = $names[0]->firstname . " " . $names[0]->surname;
         $document_studies = [];
 
 
@@ -905,17 +954,17 @@ class SessionViewsController extends Controller
             $document_studies = array_slice($document_studies, 0, 15, true);
         }
 
-        return view('SessionViews.homepage', ['document_studies' => $document_studies]);
+        return view('SessionViews.homepage', ['document_studies' => $document_studies, 'name' => $name]);
     }
-    public function profilepage()
-    {
-        return view('SessionViews.profilepage');
-    }
+    // public function profilepage()
+    // {
+    //     return view('SessionViews.profilepage');
+    // }
 
     public function Search($college, $search)
     {
         if ($college != null) {
-
+            
             $document_studies = DB::select("SELECT document_studies.document_id, document_studies.compiled_tag_ID, document_studies.course_ID, document_studies.document_number, document_studies.title, document_studies.date_submitted, document_studies.author, document_studies.document_type, document_studies.addedby, document_studies.document_status, document_studies.created_at, document_studies.updated_on, course.course, college.college_ID, college.college, tag.tag1_ID, tag.tag2_ID, tag.tag3_ID, tag.tag4_ID, tag1.tag1_ID, tag1.tag1, tag2.tag2_ID, tag2.tag2, tag3.tag3_ID, tag3.tag3, tag4.tag4_ID, tag4.tag4
                 FROM document_studies
                 LEFT JOIN course ON document_studies.course_ID = course.course_ID
@@ -940,6 +989,13 @@ class SessionViewsController extends Controller
     }
 
     public function viewpage($title){
+        $userid = Auth::user()->id;
+        $names = DB::table('users')
+        ->leftJoin("student_info", "users.student_info_id", "=", "student_info.student_info_ID")
+        ->select('student_info.firstname', 'student_info.surname')
+        ->where('id', $userid )
+        ->get();
+        $name = $names[0]->firstname . " " . $names[0]->surname;
         $document_studies = DB::table("document_studies")
         ->leftJoin("course", "document_studies.course_ID", "=", "course.course_ID")
         ->leftJoin("college", "course.college_ID", "=", "college.college_ID")
@@ -1025,23 +1081,31 @@ class SessionViewsController extends Controller
 
 
         // $document_studies = DB::table('document_studies')->select('SELECT * FROM document_studies LIMIT 1');
-        return view('SessionViews.viewpage', ['document_studies'=>$document_studies]);
+        return view('SessionViews.viewpage', ['document_studies'=>$document_studies, 'name' => $name]);
     }
 
     public function fetchuser(){
+        // $userid = Auth::user()->id;
+        // // $names = $users;
+        // $names = DB::table('users')
+        // ->leftJoin("student_info", "users.student_info_id", "=", "student_info.student_info_ID")
+        // ->select('student_info.firstname')
+        // ->where('id', $userid )
+        // ->get();
+
         $userid = Auth::user()->id;
-        // $names = $users;
         $names = DB::table('users')
         ->leftJoin("student_info", "users.student_info_id", "=", "student_info.student_info_ID")
-        ->select('student_info.firstname')
+        ->select('student_info.firstname', 'student_info.surname')
         ->where('id', $userid )
         ->get();
+        $name = $names[0]->firstname . " " . $names[0]->surname;
 
 
         // $firstnames = $name->firstname;
         // $surnames = $name->surname;
 
-        return view('layouts.app', ['names'=>$names]);
+        return view('layouts.app', ['name'=>$name]);
     }
 
 }
