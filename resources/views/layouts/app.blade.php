@@ -67,9 +67,9 @@
                             {{-- @foreach ( as  ) --}}
 
                             <li><p class="dropdown-item">
-                                {{ $name }}
+                                <b>{{ $name }}</b>
                             </p></li>
-
+                            
                             {{-- @endforeach --}}
                             {{-- <li><a class="dropdown-item"
                                     href="{{ url('/SessionViews/recommendationpage') }}">Recommendations</a></li>
