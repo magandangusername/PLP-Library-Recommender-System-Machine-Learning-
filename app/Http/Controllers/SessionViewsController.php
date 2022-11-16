@@ -17,8 +17,16 @@ use function PHPUnit\Framework\isEmpty;
 
 class SessionViewsController extends Controller
 {
+
     public function accountancy(Request $request)
     {
+        $userid = Auth::user()->id;
+        $names = DB::table('users')
+        ->leftJoin("student_info", "users.student_info_id", "=", "student_info.student_info_ID")
+        ->select('student_info.firstname', 'student_info.surname')
+        ->where('id', $userid )
+        ->get();
+        $name = $names[0]->firstname . " " . $names[0]->surname;
         $document_studies = DB::select("SELECT document_studies.document_id, document_studies.compiled_tag_ID, document_studies.course_ID, document_studies.document_number, document_studies.title, document_studies.date_submitted, document_studies.author, document_studies.document_type, document_studies.addedby, document_studies.document_status, document_studies.created_at, document_studies.updated_on, course.course, college.college_ID, college.college, tag.tag1_ID, tag.tag2_ID, tag.tag3_ID, tag.tag4_ID, tag1.tag1_ID, tag1.tag1, tag2.tag2_ID, tag2.tag2, tag3.tag3_ID, tag3.tag3, tag4.tag4_ID, tag4.tag4
             FROM document_studies
             LEFT JOIN course ON document_studies.course_ID = course.course_ID
@@ -102,9 +110,9 @@ class SessionViewsController extends Controller
             $document_studies = $this->Search('accountancy', $search)[0];
             $search = $this->Search('accountancy', $search)[1];
 
-            return view('SessionViews.accountancy')->with(compact('document_studies', 'search'));
+            return view('SessionViews.accountancy')->with(compact('document_studies', 'search', 'name'));
         } else {
-            return view('SessionViews.accountancy', ['document_studies' => $document_studies]);
+            return view('SessionViews.accountancy', ['document_studies' => $document_studies, 'name' => $name]);
         }
     }
 
@@ -1019,7 +1027,7 @@ class SessionViewsController extends Controller
         // $document_studies = DB::table('document_studies')->select('SELECT * FROM document_studies LIMIT 1');
         return view('SessionViews.viewpage', ['document_studies'=>$document_studies]);
     }
-    
+
     public function fetchuser(){
         $userid = Auth::user()->id;
         // $names = $users;
@@ -1028,12 +1036,12 @@ class SessionViewsController extends Controller
         ->select('student_info.firstname')
         ->where('id', $userid )
         ->get();
-        
+
 
         // $firstnames = $name->firstname;
         // $surnames = $name->surname;
 
         return view('layouts.app', ['names'=>$names]);
     }
-    
+
 }
