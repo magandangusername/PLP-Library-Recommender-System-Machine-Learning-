@@ -8,13 +8,13 @@
             <div class="card-header">
                 <h2>Create New Document Record </h2>
             </div>
-            <form class="p-5" method="post" action="addnewdocument.php" enctype="multipart/form-data">
+            {{-- <form class="p-5" method="post" action="addnewdocument.php" enctype="multipart/form-data"> --}}
                 <fieldset>
                     <div class="row my-2">
                         <div class="col-4">
                             <b>Document Number</b>
-                            <input type="hidden" class="form-control" id="documentnumber" name="documentnumber" value="DOC-<?php //echo $totaldocument + 1; ?>">
-                            <input type="text" class="form-control" disabled value="DOC-<?php //echo $totaldocument + 1; ?>">
+                            <input type="hidden" class="form-control" id="documentnumber" name="documentnumber" value='{{ $document_count }}'>
+                            <input type="text" class="form-control" disabled value='DOC-{{ $document_count + 1}}'>
                         </div>
 
                     </div>
@@ -96,7 +96,7 @@
                     </div>
                     <button type="submit" class="btn btn-dark mt-2" id="submit" name="submit">Create New Document Record</button>
                 </fieldset>
-            </form>
+            {{-- </form> --}}
 
         </div>
         <?php
@@ -105,67 +105,83 @@
         
         ?>
 
-        <div class="card my-5">
-            <div class="card-header">
+<div class="card my-5">
+    <div class="card-header">
+        <h3>Document Information</h3>
 
-                <h2>Document Information Table</h2>
-            </div>
-            <div class="card-body">
-                <table id="datatablerr">
-                    <thead>
-                        <tr class="text-light bg-dark">
-                            <th>Document ID</th>
-                            <th>Title</th>
-                            <th>Author</th>
-                            <th>Year</th>
-                            <th>Kind of Paper</th>
-                            <th>College</th>
-                            <th>Content</th>
-                            <th>Links</th>
-                        </tr>
-                    </thead>
+    </div>
+    <div class="card-body">
+        <table id="datatableru">
+            <thead>
+                <tr class="text-light bg-dark">
+                    <th>Document ID</th>
+                    <th>Document Number</th>
+                    <th>Title</th>
+                    <th>Author</th>
+                    <th>Date Submitted</th>
+                    <th>Document Type</th>
+                    <th>Added By</th>
+                    <th>Document Status</th>
+                    <th>College</th>
+                    <th>Course</th>
+                    <th>1st Tag</th>
+                    <th>2nd Tag</th>
+                    <th>3rd Tag</th>
+                    <th>4th Tag</th>
+                    <th>Views</th>
+                    <th>Created At</th>
+                    <th>Updated On</th>
+                </tr>
+            </thead>
 
-                    <tbody>
-                        <?php
-                        // $sql = $conn->query("SELECT * FROM tnr_dataset");
-                        // if ($sql) {
-                        //     while ($row = $sql->fetch_assoc()) {
-                        //         $documentnumber = $row['ID'];
-                        //         $Title = $row['Title'];
-                        //         $author = $row['Author'];
-                        //         $year = $row['Year'];
-                        //         $kind = $row['Kind_of_Paper'];
-                        //         $college = $row['College'];
-                        //         $content = $row['Content'];
-                        //         $links = $row['Links'];
+            <tbody>
+                <?php
+                // $sql = $conn->query("SELECT * FROM tnr_dataset;");
+                // if($sql){
+                //     while($row = $sql->fetch_assoc()){
+                //         $documentID = $row['documentID'];
+                //         $title = $row['Title'];
+                //         $author = $row['Author'];
+                //         $year = $row['Year'];
+                //         $kind = $row['Kind_of_Paper'];
+                //         $college = $row['College'];
+                //         $content = $row['Content'];
+                //         $links = $row['Links'];
+                ?>
+                @foreach ($document_studies as $document_study)
+                    <tr>
+                        <td>{{ $document_study->document_id }}</td>
+                        <td>{{ $document_study->document_number }}</td>
+                        <td>{{ $document_study->title }}</td>
+                        <td>{{ $document_study->author }}</td>
+                        <td>{{ $document_study->date_submitted }}</td>
+                        <td>{{ $document_study->document_type }}</td>
+                        <td>{{ $document_study->addedby }}</td>
+                        <td>{{ $document_study->document_status }}</td>
+                        <td>{{ $document_study->college }}</td>
+                        <td>{{ $document_study->course }}</td>
+                        <td>{{ $document_study->tag1 }}</td>
+                        <td>{{ $document_study->tag2 }}</td>
+                        <td>{{ $document_study->tag3 }}</td>
+                        <td>{{ $document_study->tag4 }}</td>
+                        <td>{{ $document_study->views_count }}</td>
+                        <td>{{ $document_study->created_at }}</td>
+                        <td>{{ $document_study->updated_on }}</td>
+                    </tr>
+                @endforeach
+                <?php
+                //  }
+                // }
+                ?>
 
 
-                        ?>
-                                <tr>
-                                    <td><?php //echo $documentnumber; ?></td>
-                                    <td><?php //echo $Title; ?></td>
-                                    <td><?php //echo $author; ?></td>
-                                    <td><?php //echo $year; ?></td>
-                                    <td><?php //echo $kind; ?></td>
-                                    <td><?php //echo $college; ?></td>
-                                    <td><?php //echo $content; ?></td>
-                                    <td><?php //echo $links; ?></td>
+            </tbody>
 
+        </table>
 
-                                </tr>
-                        <?php
-                        //     }
-                        // }
-                        ?>
-                    </tbody>
+    </div>
 
-                </table>
-
-            </div>
-
-
-        </div>
-
+</div>
 
 
     </div>

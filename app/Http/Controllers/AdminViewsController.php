@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Auth;
 use App\Models\Document_Studies;
 use App\Models\Student_Info;
 use App\Models\College;
@@ -192,6 +193,7 @@ class AdminViewsController extends Controller
             return view('AdminViews.managedocument', ['document_studies' => $document_studies]);
         }
     }
+  
     public function modifydocument(Request $request)
     {
         $document_studies = DB::table('document_studies')
@@ -307,7 +309,22 @@ class AdminViewsController extends Controller
     }
     public function addnewdocument()
     {
-        return view('AdminViews.addnewdocument');
+        $document_studies = DB::table('document_studies')
+        ->leftJoin('course', 'document_studies.course_ID', '=', 'course.course_ID')
+        ->leftJoin('college', 'course.college_ID', '=', 'college.college_ID')
+        ->leftjoin('tag', 'document_studies.compiled_tag_ID', '=', 'tag.compiled_tag_ID')
+        ->leftjoin('tag1', 'tag.tag1_ID', '=', 'tag1.tag1_ID')
+        ->leftjoin('tag2', 'tag.tag2_ID', '=', 'tag2.tag2_ID')
+        ->leftjoin('tag3', 'tag.tag3_ID', '=', 'tag3.tag3_ID')
+        ->leftjoin('tag4', 'tag.tag4_ID', '=', 'tag4.tag4_ID')
+        ->select('document_studies.*', 'course.course', 'college.college_ID', 'college.college', 'tag.tag1_ID', 'tag.tag2_ID', 'tag.tag3_ID', 'tag.tag4_ID', 'tag1.tag1_ID', 'tag1.tag1', 'tag2.tag2_ID', 'tag2.tag2', 'tag3.tag3_ID', 'tag3.tag3', 'tag4.tag4_ID', 'tag4.tag4')
+        ->get();
+        $document_count = $document_studies->count();
+         // $document_count = DB::table('document_studies')
+        // ->select('*')
+        // ->get();
+
+        return view('AdminViews.addnewdocument', ['document_count'=>$document_count, 'document_studies'=>$document_studies]);
     }
     // public function destroy(Document_Studies $document_Studies)
     // {
