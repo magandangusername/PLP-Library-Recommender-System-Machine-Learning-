@@ -323,114 +323,84 @@ class AdminViewsController extends Controller
          // $document_count = DB::table('document_studies')
         // ->select('*')
         // ->get();
+        $college =  DB::table('college')
+        ->select('college')
+        ->get();
 
-        return view('AdminViews.addnewdocument', ['document_count'=>$document_count, 'document_studies'=>$document_studies]);
+        return view('AdminViews.addnewdocument', ['document_count'=>$document_count, 'document_studies'=>$document_studies, 'college'=>$college]);
     }
-    // public function destroy(Document_Studies $document_Studies)
-    // {
-    //     $document_studies->delete();
 
-    //     return redirect()->route('AdminViews.managedocument')
-    //                     ->with('success','A row of document has been deleted successfully');
-    // }
+    public function adddocument(Request $request){
+        if ($request->input('adddocument') !== null) {
+            $adddocument = DB::table('document_studies')
+                ->leftjoin('tag', 'document_studies.compiled_tag_ID', '=', 'tag.compiled_tag_ID')
+                ->leftjoin('tag1', 'tag.tag1_ID', '=', 'tag1.tag1_ID')
+                ->leftjoin('tag2', 'tag.tag2_ID', '=', 'tag2.tag2_ID')
+                ->leftjoin('tag3', 'tag.tag3_ID', '=', 'tag3.tag3_ID')
+                ->leftjoin('tag4', 'tag.tag4_ID', '=', 'tag4.tag4_ID')
+                ->where('document_id', $request->input('adddocument'))
+                ->first();
 
-
-
-
-
-
-
-
-
-
-    // public function index()
-    // {
-
-    // }
-
-    // /**
-    //  * Show the form for creating a new resource.
-    //  *
-    //  * @return \Illuminate\Http\Response
-    //  */
-    // public function create()
-    // {
-    //     return view('products.create');
-    // }
-
-    // /**
-    //  * Store a newly created resource in storage.
-    //  *
-    //  * @param  \Illuminate\Http\Request  $request
-    //  * @return \Illuminate\Http\Response
-    //  */
-    // public function store(Request $request)
-    // {
-    //     $request->validate([
-    //         'name' => 'required',
-    //         'detail' => 'required',
-    //     ]);
-
-    //     Product::create($request->all());
-
-    //     return redirect()->route('products.index')
-    //                     ->with('success','Product created successfully.');
-    // }
-
-    // /**
-    //  * Display the specified resource.
-    //  *
-    //  * @param  \App\Models\Product  $product
-    //  * @return \Illuminate\Http\Response
-    //  */
-    // public function show(Product $product)
-    // {
-    //     return view('products.show',compact('product'));
-    // }
-
-    // /**
-    //  * Show the form for editing the specified resource.
-    //  *
-    //  * @param  \App\Models\Product  $product
-    //  * @return \Illuminate\Http\Response
-    //  */
-    // public function edit(Product $product)
-    // {
-    //     return view('products.edit',compact('product'));
-    // }
-
-    // /**
-    //  * Update the specified resource in storage.
-    //  *
-    //  * @param  \Illuminate\Http\Request  $request
-    //  * @param  \App\Models\Product  $product
-    //  * @return \Illuminate\Http\Response
-    //  */
-    // public function update(Request $request, Product $product)
-    // {
-    //     $request->validate([
-    //         'name' => 'required',
-    //         'detail' => 'required',
-    //     ]);
-
-    //     $product->update($request->all());
-
-    //     return redirect()->route('products.index')
-    //                     ->with('success','Product updated successfully');
-    // }
-    // /**
-    //  * Remove the specified resource from storage.
-    //  *
-    //  * @param  \App\Models\Product  $product
-    //  * @return \Illuminate\Http\Response
-    //  */
-    // public function destroy(Product $product)
-    // {
-    //     $product->delete();
-
-    //     return redirect()->route('products.index')
-    //                     ->with('success','Product deleted successfully');
-    // }
+            // this is not right, just a temporary fix
+            $document_types = DB::table('document_studies')->select('document_type')->distinct('document_type')->get();
+            $courses = DB::table('course')->distinct('course')->get();
 
 
+
+            $add = true;
+
+            return view('AdminViews.addnewdocument')->with(compact('document_studies', 'adddocument', 'add', 'document_type', 'courses'));
+        }
+
+        if ($request->input('adddocument') !== null) {
+
+            $request->validate([
+                'document_ID' => 'required',
+                'title' => 'required',
+                'author' => 'required',
+                'date_submitted' => 'required',
+                'document_type' => 'required',
+                'course_id' => 'required',
+                'tag1' => 'required',
+                'tag2' => 'required',
+                'tag3' => 'required',
+                'tag4' => 'required',
+                'addnew' => 'required',
+                'document_status' => 'required'
+            ]);
+            DB::table('document_studies')
+            ->where('document_id', $request->input('document_ID'))
+            ->insert([
+                'document_number' => $request->input('documentnumber'),
+                'title' => $request->input('title'),
+                'author' => $request->input('author'),
+                'date_submitted' => $request->input('date_submitted'),
+                'document_type' => $request->input('document_type'),
+                'course_id' => $request->input('course_id'),
+                // 'tag1' => $request->input('promotion_end'),
+                // 'tag2' => $request->input('terms_conditions1'),
+                // 'tag3' => $request->input('terms_conditions2'),
+                // 'tag4' => $request->input('terms_conditions3'),
+                'document_status' => $request->input('document_status')
+            ]);
+            DB::table('tag')
+            ->leftjoin('tag1', 'tag.tag1_ID', '=', 'tag1.tag1_ID')
+            ->leftjoin('tag2', 'tag.tag2_ID', '=', 'tag2.tag2_ID')
+            ->leftjoin('tag3', 'tag.tag3_ID', '=', 'tag3.tag3_ID')
+            ->leftjoin('tag4', 'tag.tag4_ID', '=', 'tag4.tag4_ID')
+            ->where('compiled_tag_ID', $request->input('addnew'))
+            ->insert([
+                'tag1.tag1' => $request->input('tag1'),
+                'tag2.tag2' => $request->input('tag2'),
+                'tag3.tag3' => $request->input('tag3'),
+                'tag4.tag4' => $request->input('tag4')
+            ]);
+
+
+
+
+            return redirect(route('adddocument').'?success=Book "'.$request->input('title').'" has been added successfully.');
+    }
 }
+}
+

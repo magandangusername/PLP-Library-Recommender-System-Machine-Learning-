@@ -9,54 +9,111 @@
                 <h2>Create New Document Record </h2>
             </div>
             {{-- <form class="p-5" method="post" action="addnewdocument.php" enctype="multipart/form-data"> --}}
+                <form action="{{ route('adddocument') }}" method="post" enctype="multipart/form-data">
+                    @csrf
+                    {{-- <input type="text" name="deletedocument"
+                        value="{{ $document_study->document_id }}" hidden>
+                    <button class="btn btn-outline-dark" type="submit"><i
+                            class="fas fa-trash"></i></button> --}}
+                
                 <fieldset>
                     <div class="row my-2">
                         <div class="col-4">
+                            <b>Document ID</b>
+                            <input type="hidden" class="form-control" id="document_ID" name="document_ID" value='{{ $document_count }}'>
+                            <input type="text" class="form-control" readonly value='{{ $document_count + 1}}'>
+                        </div>
+
+                    </div>
+                    <div class="row my-2">
+                        <div class="col-4">
                             <b>Document Number</b>
-                            <input type="hidden" class="form-control" id="documentnumber" name="documentnumber" value='{{ $document_count }}'>
-                            <input type="text" class="form-control" disabled value='DOC-{{ $document_count + 1}}'>
+                            <input type="text" class="form-control" value='{{ $document_studies[0]->document_number}}'>
                         </div>
 
                     </div>
                     <div class="row my-2">
                         <div class="col-4">
                             <b>Title</b>
-                            <input type="text" class="form-control" id="title" name="title" title="Title" required value=<?php ?>>
+                            <input type="text" class="form-control" id="title" name="title" title="Title" required value="">
                         </div>
 
                     </div>
                     <div class="row my-2">
                         <div class="col-4">
                             <b>Author</b>
-                            <input type="text" class="form-control" id="author" name="author" title="Author" required value=<?php ?>>
+                            <input type="text" class="form-control" id="author" name="author" title="Author" required value="">
                         </div>
 
                     </div>
                     <div class="row my-2">
                         <div class="col-4">
-                            <b>Year</b>
-                            <input type="text" class="form-control" id="year" name="year" title="Year" required value=<?php ?>>
+                            <b>Month-Year</b>
+                            <input type="text" class="form-control" id="year" name="year" title="Year" required value="">
                         </div>
 
                     </div>
                     <div class="row my-3">
                         <div class="col-4">
-                            <?php
-                            //$kinds = $conn->query("SELECT DISTINCT(Kind_of_Paper) FROM tnr_dataset");
-
-                            ?>
-                            <b>Kind of Paper</b>
-                            <select id="kind" name="kind" required>
-                                <option selected="true" disabled="disabled" value="">Kind of Paper Selection</option>
-                                <?php
-                                //while ($kind = $kinds->fetch_assoc()) {
-
-                                ?>
-                                    <option value="<?php //echo $kind['Kind_of_Paper'] ?>"><?php //echo $kind['Kind_of_Paper'] ?></option>
-                                <?php
-                                //}
-                                ?>
+                            <b>College</b>
+                            <select id="college" name="college" required>
+                                <option selected="true" value="" disabled>College Selection</option>
+                                @foreach ($college as $colleges)
+                                            <option value="{{ $colleges->college }}">{{ $colleges->college }}
+                                            </option>
+                                @endforeach
                             </select>
+                        </div>
+
+                    </div>
+                    <div class="row my-3">
+                        <div class="col-4">
+                            <b>Document Type</b>
+                            <select id="document_type" name="document_type" required>
+                                <option selected="true" value="" disabled>Document Type Selection</option>
+                                <option value="Thesis" >Thesis</option>
+                                <option value="Research" >Research</option>
+                            </select>
+                        </div>
+
+                    </div>
+                    <div class="row my-3">
+                        <div class="col-4">
+                            <b>Document Status</b>
+                            <select id="document_status" name="document_status" required>
+                                <option selected="true" value="" disabled>Document Status Selection</option>
+                                <option value="Unpublished Document">Unpublished Document</option>
+                                <option value="Published Document">Published Document</option>
+                            </select>
+                        </div>
+
+                    </div>
+                     <input type="text" name="addnew" value="{{ $adddocument->compiled_tag_ID }}" hidden> 
+                    <div class="row my-2">
+                        <div class="col-4">
+                            <b>Tag 1</b>
+                            <input type="text" class="form-control" id="tag" name="tag" title="tag1" required value="">
+                        </div>
+
+                    </div>
+                    <div class="row my-2">
+                        <div class="col-4">
+                            <b>Tag 2</b>
+                            <input type="text" class="form-control" id="tag2" name="tag2" title="tag2" required value="">
+                        </div>
+
+                    </div>
+                    <div class="row my-2">
+                        <div class="col-4">
+                            <b>Tag 3</b>
+                            <input type="text" class="form-control" id="tag3" name="tag3" title="tag3" required value="">
+                        </div>
+
+                    </div>
+                    <div class="row my-2">
+                        <div class="col-4">
+                            <b>Tag 4</b>
+                            <input type="text" class="form-control" id="tag4" name="tag4" title="tag4" required value="">
                         </div>
 
                     </div>
@@ -66,37 +123,38 @@
                             //$colleges = $conn->query("SELECT DISTINCT(College) FROM tnr_dataset");
 
                             ?>
-                            <b>College</b>
-                            <select id="college" name="college" required>
-                                <option selected="true" disabled="disabled" value="">College Selection</option>
-                                <?php
-                                //while ($college = $colleges->fetch_assoc()) {
-
-                                ?>
-                                    <option value="<?php //echo $college['College'] ?>"><?php //echo $college['College'] ?></option>
-                                <?php
-                                //}
-                                ?>
+                            <b>Added by</b>
+                            <select id="addedby" name="addedby" required>
+                                <option selected="true" value="" disabled>Added By Selection</option>
+                                <option value="Librarian">Librarian</option>
+                                <option value="Others">Others</option>
                             </select>
                         </div>
 
                     </div>
-
                     <div class="row my-2">
+                        <div class="col-4">
+                            <b>Date Submitted</b>
+                            <input type="date" class="form-control" id="date_submitted" name="date_submitted" title="Date Submitted" required>
+                        </div>
+
+                    </div>
+
+                    {{-- <div class="row my-2">
                         <b>Content</b>
                         <div class="col">
                             <textarea rows="4" cols="60" name="content" id="content"></textarea>
                         </div>
-                    </div>
-                    <div class="row my-2">
+                    </div> --}}
+                    {{-- <div class="row my-2">
                         <b>Upload File (PDF Format Only)</b>
                         <div class="col">
                             <input type="file" name="pdffile" id="pdffile" accept=".pdf">
                         </div>
-                    </div>
-                    <button type="submit" class="btn btn-dark mt-2" id="submit" name="submit">Create New Document Record</button>
+                    </div> --}}
+                    <button type="submit" class="btn btn-dark mt-2" id="adddocument" name="adddocument">Create New Document Record</button>
                 </fieldset>
-            {{-- </form> --}}
+            </form>
 
         </div>
         <?php

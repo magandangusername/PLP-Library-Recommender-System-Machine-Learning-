@@ -133,7 +133,7 @@
                             <div class="row my-2">
                                 <div class="col-4">
                                     <b>Document Number</b>
-                                    <input type="text" class="form-control" id="documentID" name="document_ID"
+                                    <input type="text" class="form-control" id="document_ID" name="document_ID"
                                         value="{{ $editdocument->document_id }}" readonly>
                                 </div>
                             </div>
@@ -229,9 +229,6 @@
 
                             <div class="row my-3">
                                 <div class="col-4">
-                                    <?php
-                                    //$courses = $conn->query("SELECT DISTINCT(College) FROM tnr_dataset");
-                                    ?>
                                     <b>Document Status</b>
                                     <select id="document_course" name="document_status" required>
                                         <option @if ($editdocument->document_status == 'Unpublished Document') selected="true" @endif

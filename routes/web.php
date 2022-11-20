@@ -28,6 +28,7 @@ Route::get('/viewpage/{title}', [SessionViewsController::class, 'viewpage'])->na
 Route::get('/manageaccount', [AdminViewsController::class, 'manageaccount'])->name('manageaccount');
 Route::get('/managedocument', [AdminViewsController::class, 'managedocument'])->name('managedocument');
 Route::post('/managedocument', [AdminViewsController::class, 'modifydocument'])->name('modifydocument');
+Route::post('/addnewdocument', [AdminViewsController::class, 'adddocument'])->name('adddocument');
 Route::get('/addnewaccount', [AdminViewsController::class, 'addnewaccount'])->name('addnewaccount');
 Route::get('/addnewdocument', [AdminViewsController::class, 'addnewdocument'])->name('addnewdocument');
 
