@@ -163,7 +163,6 @@
                                         <th>Added By</th>
                                         <th>Date Added</th>
                                         <th>Updated On</th>
-                                        <th>Password</th>
                                     </tr>
                                 </thead>
                             </thead>
@@ -184,13 +183,10 @@
                                         <td>{{ $student_infos->addedby }}</td>
                                         <td>{{ $student_infos->date_added }}</td>
                                         <td>{{ $student_infos->updated_on }}</td>
-                                        <td>{{ $student_infos->password }}</td>
+
                                     </tr>
                                 @endforeach
-                                <?php
-                                //  }
-                                // }
-                                ?>
+
 
 
                             </tbody>
@@ -233,19 +229,7 @@
                             </thead>
 
                             <tbody>
-                                <?php
-                                // $sql = $conn->query("SELECT * FROM tnr_dataset;");
-                                // if($sql){
-                                //     while($row = $sql->fetch_assoc()){
-                                //         $documentID = $row['documentID'];
-                                //         $title = $row['Title'];
-                                //         $author = $row['Author'];
-                                //         $year = $row['Year'];
-                                //         $kind = $row['Kind_of_Paper'];
-                                //         $college = $row['College'];
-                                //         $content = $row['Content'];
-                                //         $links = $row['Links'];
-                                ?>
+
                                 @foreach ($document_studies as $document_study)
                                     <tr>
                                         <td>{{ $document_study->document_id }}</td>
@@ -267,10 +251,6 @@
                                         <td>{{ $document_study->updated_on }}</td>
                                     </tr>
                                 @endforeach
-                                <?php
-                                //  }
-                                // }
-                                ?>
 
 
                             </tbody>

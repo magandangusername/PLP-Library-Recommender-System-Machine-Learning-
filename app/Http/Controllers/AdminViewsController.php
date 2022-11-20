@@ -193,7 +193,7 @@ class AdminViewsController extends Controller
             return view('AdminViews.managedocument', ['document_studies' => $document_studies]);
         }
     }
-  
+
     public function modifydocument(Request $request)
     {
         $document_studies = DB::table('document_studies')
@@ -319,81 +319,105 @@ class AdminViewsController extends Controller
         ->leftjoin('tag4', 'tag.tag4_ID', '=', 'tag4.tag4_ID')
         ->select('document_studies.*', 'course.course', 'college.college_ID', 'college.college', 'tag.tag1_ID', 'tag.tag2_ID', 'tag.tag3_ID', 'tag.tag4_ID', 'tag1.tag1_ID', 'tag1.tag1', 'tag2.tag2_ID', 'tag2.tag2', 'tag3.tag3_ID', 'tag3.tag3', 'tag4.tag4_ID', 'tag4.tag4')
         ->get();
-        $document_count = $document_studies->count();
-         // $document_count = DB::table('document_studies')
-        // ->select('*')
-        // ->get();
-        $college =  DB::table('college')
-        ->select('college')
+
+        $document_count = DB::table('document_studies')
+        ->orderBy('document_id', 'DESC')
+        ->first()
+        ->document_id;
+
+        $courses =  DB::table('course')
         ->get();
 
-        return view('AdminViews.addnewdocument', ['document_count'=>$document_count, 'document_studies'=>$document_studies, 'college'=>$college]);
+        return view('AdminViews.addnewdocument', ['document_count'=>$document_count, 'document_studies'=>$document_studies, 'courses'=>$courses]);
     }
 
     public function adddocument(Request $request){
-        if ($request->input('adddocument') !== null) {
-            $adddocument = DB::table('document_studies')
-                ->leftjoin('tag', 'document_studies.compiled_tag_ID', '=', 'tag.compiled_tag_ID')
-                ->leftjoin('tag1', 'tag.tag1_ID', '=', 'tag1.tag1_ID')
-                ->leftjoin('tag2', 'tag.tag2_ID', '=', 'tag2.tag2_ID')
-                ->leftjoin('tag3', 'tag.tag3_ID', '=', 'tag3.tag3_ID')
-                ->leftjoin('tag4', 'tag.tag4_ID', '=', 'tag4.tag4_ID')
-                ->where('document_id', $request->input('adddocument'))
-                ->first();
+        $document_types = DB::table('document_studies')->select('document_type')->distinct('document_type')->get();
+        $courses = DB::table('course')->distinct('course')->get();
 
-            // this is not right, just a temporary fix
-            $document_types = DB::table('document_studies')->select('document_type')->distinct('document_type')->get();
-            $courses = DB::table('course')->distinct('course')->get();
-
-
-
-            $add = true;
-
-            return view('AdminViews.addnewdocument')->with(compact('document_studies', 'adddocument', 'add', 'document_type', 'courses'));
-        }
-
-        if ($request->input('adddocument') !== null) {
-
+        if ($request->input('adddocument') != null) {
             $request->validate([
-                'document_ID' => 'required',
+                'document_id' => 'required',
+                'document_number' => 'required',
                 'title' => 'required',
                 'author' => 'required',
                 'date_submitted' => 'required',
+                'course_ID' => 'required',
                 'document_type' => 'required',
-                'course_id' => 'required',
+                'document_status' => 'required',
                 'tag1' => 'required',
                 'tag2' => 'required',
                 'tag3' => 'required',
                 'tag4' => 'required',
-                'addnew' => 'required',
-                'document_status' => 'required'
+                'addedby' => 'required'
+
             ]);
-            DB::table('document_studies')
-            ->where('document_id', $request->input('document_ID'))
+
+            // $document_count = DB::table('document_studies')
+            //     ->orderBy('document_id', 'DESC')
+            //     ->first()
+            //     ->document_id + 1;
+
+            DB::table('tag1')
             ->insert([
-                'document_number' => $request->input('documentnumber'),
+                'tag1' => $request->input('tag1')
+            ]);
+            DB::table('tag2')
+            ->insert([
+                'tag2' => $request->input('tag2')
+            ]);
+            DB::table('tag3')
+            ->insert([
+                'tag3' => $request->input('tag3')
+            ]);
+            DB::table('tag4')
+            ->insert([
+                'tag4' => $request->input('tag4')
+            ]);
+
+            $tag1_ID = DB::table('tag1')
+            ->orderBy('tag1_ID', 'DESC')
+            ->first()
+            ->tag1_ID;
+            $tag2_ID = DB::table('tag2')
+            ->orderBy('tag2_ID', 'DESC')
+            ->first()
+            ->tag2_ID;
+            $tag3_ID = DB::table('tag3')
+            ->orderBy('tag3_ID', 'DESC')
+            ->first()
+            ->tag3_ID;
+            $tag4_ID = DB::table('tag4')
+            ->orderBy('tag4_ID', 'DESC')
+            ->first()
+            ->tag4_ID;
+
+            DB::table('tag')
+            ->insert([
+                'tag1_ID' => $tag1_ID,
+                'tag2_ID' => $tag2_ID,
+                'tag3_ID' => $tag3_ID,
+                'tag4_ID' => $tag4_ID,
+            ]);
+
+            $compiled_tag_ID = DB::table('tag')
+            ->orderBy('compiled_tag_ID', 'DESC')
+            ->first()
+            ->compiled_tag_ID;
+
+
+
+            DB::table('document_studies')
+            ->insert([
+                'document_number' => $request->input('document_number'),
                 'title' => $request->input('title'),
                 'author' => $request->input('author'),
                 'date_submitted' => $request->input('date_submitted'),
                 'document_type' => $request->input('document_type'),
-                'course_id' => $request->input('course_id'),
-                // 'tag1' => $request->input('promotion_end'),
-                // 'tag2' => $request->input('terms_conditions1'),
-                // 'tag3' => $request->input('terms_conditions2'),
-                // 'tag4' => $request->input('terms_conditions3'),
-                'document_status' => $request->input('document_status')
-            ]);
-            DB::table('tag')
-            ->leftjoin('tag1', 'tag.tag1_ID', '=', 'tag1.tag1_ID')
-            ->leftjoin('tag2', 'tag.tag2_ID', '=', 'tag2.tag2_ID')
-            ->leftjoin('tag3', 'tag.tag3_ID', '=', 'tag3.tag3_ID')
-            ->leftjoin('tag4', 'tag.tag4_ID', '=', 'tag4.tag4_ID')
-            ->where('compiled_tag_ID', $request->input('addnew'))
-            ->insert([
-                'tag1.tag1' => $request->input('tag1'),
-                'tag2.tag2' => $request->input('tag2'),
-                'tag3.tag3' => $request->input('tag3'),
-                'tag4.tag4' => $request->input('tag4')
+                'course_ID' => $request->input('course_ID'),
+                'document_status' => $request->input('document_status'),
+                'addedby' => $request->input('addedby'),
+                'compiled_tag_ID' => $compiled_tag_ID
             ]);
 
 

@@ -19,12 +19,12 @@ return new class extends Migration
             $table->integer('course_ID');
             $table->string('document_number');
             $table->string('title');
-            $table->date('date_submitted');
+            $table->string('date_submitted');
             $table->string('author');
             $table->string('document_type');
             $table->string('addedby');
             $table->string('document_status');
-            $table->integer('views_count');
+            $table->integer('views_count')->default(0);
             $table->timestamp('created_at')->default(\DB::raw('CURRENT_TIMESTAMP'));
             $table->timestamp('updated_on')->default(\DB::raw('CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP'));
         });
