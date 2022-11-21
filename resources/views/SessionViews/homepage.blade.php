@@ -10,7 +10,7 @@
                             <h4 class = "d-inline">Recommendation</h4> 
                         </b>
                     </div>
-                    <button class="btn btn-primary d-inline marg" onClick="window.print()">Print this page</button>
+                    <button class="btn btn-primary d-inline marg" onClick="window.print()">Print Result</button>
                 </div>
             </nav>
         </div>

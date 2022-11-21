@@ -54,19 +54,7 @@
                         </thead>
 
                         <tbody>
-                            <?php
-                            // $sql = $conn->query("SELECT * from tnr_dataset");
-                            // if($sql){
-                            // while($row = $sql->fetch_assoc()){
-                            //     $documentID = $row['ID'];
-                            //     $title = $row['Title'];
-                            //     $author = $row['Author'];
-                            //     $year = $row['Year'];
-                            //     $kind = $row['Kind_of_Paper'];
-                            //     $college = $row['College'];
-                            //     $content = $row['Content'];
-                            //     $links = $row['Links'];
-                            ?>
+                           
                             @foreach ($document_studies as $document_study)
                                 <tr>
                                     <td>
@@ -104,10 +92,6 @@
                                     <td>{{ $document_study->updated_on }}</td>
                                 </tr>
                             @endforeach
-                            <?php
-                            //}
-                            //}
-                            ?>
 
                         </tbody>
 
@@ -154,23 +138,20 @@
                             </div>
                             <div class="row my-2">
                                 <div class="col-4">
-                                    <b>Date Submitted</b>
-                                    <input type="date" class="form-control" id="year" name="date_submitted"
-                                        value="{{ $editdocument->date_submitted }}">
+                                    <b>Month-Year</b>
+                                    <input type="text" class="form-control" id="year" name="date_submitted"
+                                        title="Year" value="{{ $editdocument->date_submitted }}" required>
                                 </div>
                             </div>
+                            
 
                             <div class="row my-3">
                                 <div class="col-4">
-                                    <?php
-                                    //$courses = $conn->query("SELECT DISTINCT(College) FROM tnr_dataset");
-                                    ?>
                                     <b>Document Type</b>
                                     <select id="document_type" name="document_type" required>
-                                        @foreach ($document_types as $document_type)
-                                            <option selected="true" value="{{ $document_type->document_type }}">
-                                                {{ $document_type->document_type }}</option>
-                                        @endforeach
+                                        <option selected="true" value="" disabled>Document Type Selection</option>
+                                        <option value="Thesis">Thesis</option>
+                                        <option value="Research">Research</option>
                                     </select>
                                 </div>
 

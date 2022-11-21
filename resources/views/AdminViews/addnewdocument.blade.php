@@ -10,7 +10,7 @@
                     <h2>Create New Document Record </h2>
                 </div>
                 {{-- <form class="p-5" method="post" action="addnewdocument.php" enctype="multipart/form-data"> --}}
-                <form action="{{ route('adddocument') }}" method="post" enctype="multipart/form-data">
+                <form class="p-5" action="{{ route('adddocument') }}" method="post" enctype="multipart/form-data">
                     @csrf
                     {{-- <input type="text" name="deletedocument"
                         value="{{ $document_study->document_id }}" hidden>
@@ -165,14 +165,14 @@
             </div>
 
 
-            <div class="card my-5">
+            
                 <div class="card my-5">
                     <div class="card-header">
                         <h3>Document Information</h3>
 
                     </div>
                     <div class="card-body">
-                        <table id="datatableru">
+                        <table id="datatablerr">
                             <thead>
                                 <tr class="text-light bg-dark">
                                     <th>Document ID</th>
@@ -229,7 +229,7 @@
                 </div>
 
 
-            </div>
+            
 
     </main>
 

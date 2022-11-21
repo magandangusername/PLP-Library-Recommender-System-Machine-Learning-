@@ -48,8 +48,13 @@
             href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false"><i
                 class="fas fa-user fa-fw"></i></a>
         <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
-            <li><a class="dropdown-item" href="#!">Profile</a></li>
-            <li><a class="dropdown-item" href="#adminlogout">Logout</a></li>
+            {{-- <li><a class="dropdown-item" href="#!"><b>{{ $name }}</b></a></li> --}}
+            <li><a class="dropdown-item" href="{{ route('logout') }}"
+                onclick="event.preventDefault(); document.getElementById('logout-form').submit();">Logout</a>
+            <form id="logout-form" action="{{ route('logout') }}" method="POST"
+                style="display: none;">
+                {{ csrf_field() }}
+            </form></li>
         </ul>
         </li>
         </ul>
@@ -64,15 +69,15 @@
                             Overview
                         </a>
                         <div class="sb-sidenav-menu-heading">Manage Section</div>
-                        <a class="nav-link" href="{{ route('manageaccount') }}">
+                        <a class="nav-link" href="{{ route('addnewdocument') }}">
                             <div class="sb-nav-link-icon"><i class="fas fa-book"></i></div>
-                            Manage Accounts
+                            Add new Document
                         </a>
                         <a class="nav-link" href="{{ route('managedocument') }}">
                             <div class="sb-nav-link-icon"><i class="fas fa-minus-circle"></i></div>
                             Manage Documents
                         </a>
-                        <a class="nav-link collapsed" href="#" data-bs-toggle="collapse"
+                        {{-- <a class="nav-link collapsed" href="#" data-bs-toggle="collapse"
                             data-bs-target="#roomcollapse" aria-expanded="false" aria-controls="collapseLayouts">
 
                             <div class="sb-nav-link-icon">
@@ -86,58 +91,18 @@
                         <div class="collapse" id="roomcollapse" aria-labelledby="headingOne"
                             data-bs-parent="#sidenavAccordion">
                             <nav class="sb-sidenav-menu-nested nav">
-                                {{-- <a class="nav-link" href="{{ route('addnewaccount') }}">Create new Student Account</a> --}}
+                                 <a class="nav-link" href="{{ route('addnewaccount') }}">Create new Student Account</a> 
                                 <a class="nav-link" href="{{ route('addnewdocument') }}">Add new Document</a>
                             </nav>
-                        </div>
+                        </div> --}}
 
                         <div class="sb-sidenav-footer" style=" position: fixed; bottom: 0; width: 100%;">
                             <div class="small" style=" position: fixed; bottom: 0; width: 100%;">Logged in as: Admin
-                                Name </div>
+                             </div>
                         </div>
             </nav>
         </div>
         <div id="layoutSidenav_content">
-
-            {{-- <nav class="navbar navbar-dark bg-dark">
-            <div class="container-fluid bg-dark">
-                <a class="navbar-brand" href="#" style="color: white; "><img src="assets/img/tech/plplogo.png"
-                        alt="PLP Logo" style="width: 50px; height: 50px; color: white">Thesis and Research</a>
-                        <div class="d-flex">
-                            <img class="rounded-circle"src="data:image/jpg;charset=utf8;base64,<?php //echo base64_encode($profilepic);
-                            ?>"
-                                style="width:40px;height:40px; border-style: solid; border-color: green; margin-right:10px;">
-                            <div class="dropdown">
-                                <button class="btn btn-success dropdown-toggle" type="button" id="dropdownMenuButton"
-                                    data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                    <?php //echo $studentname
-                                    ?>
-                                </button>
-                                <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                                    <a class="dropdown-item" href="profile.php">Profile</a>
-                                    <a class="dropdown-item" href="recommend_test.php">Recomendation</a>
-                                    <a class="dropdown-item" href="myfavorites.php">Your Favorites</a>
-                                    <a class="dropdown-item" target="_blank" href="ckeditor.php">Your Editor</a>
-                                    <div class="dropdown-divider"></div>
-                                    <a class="dropdown-item" href="logout.php">Log out</a>
-                                </div>
-                            </div>
-                        </div>
-            </div>
-            
-        </nav>
-        <nav class="navbar navbar-dark bg-dark position-sticky" style="margin:2px 0px 0px 0px;background-color:rgba(255,255,255,0);">
-            <div class="container-fluid">
-                <button type="button" class="btn btn-info rounded-pill"><a class="navbar-brand nav-link">Overview</a></button>
-                <button type="button" class="btn btn-info rounded-pill"><a class="navbar-brand nav-link">Manage Accounts</a></button>
-                <button type="button" class="btn btn-info rounded-pill"><a class="navbar-brand nav-link">Manage Documents</a></button>
-                <button type="button" class="btn btn-info rounded-pill"><a class="navbar-brand nav-link">Add New Student Account</a></button>
-                <button type="button" class="btn btn-info rounded-pill"><a class="navbar-brand nav-link">Add New Document</a></button>
-                
-          </nav> --}}
-
-
-
 
 
             @yield('admincontent')
