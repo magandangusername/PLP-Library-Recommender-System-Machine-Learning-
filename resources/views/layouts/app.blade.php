@@ -27,15 +27,6 @@
 
 <body style="background-image: linear-gradient(to left, green,#fde8ec);">
     <header>
-
-        <?php
-        // if (!isset($_SESSION)) {
-        //     session_start();
-        // }
-        // if (isset($_SESSION['studentnumber']) && isset($_SESSION['password'])) {
-        ?>
-
-
         <nav class="navbar navbar-light bg-light" style="background-image: linear-gradient(to left, black,green);">
             <div class="container-fluid" style="background-image: linear-gradient(to left, black,green);">
                 <a class="navbar-brand" href="#" style="color: white; "><img
@@ -89,22 +80,6 @@
 
 
 
-
-
-                        {{-- <div class="dropdown">
-                            <button class="btn btn-success dropdown-toggle" type="button" id="dropdownMenuButton"
-                                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                <?php //echo $studentname
-                                ?>
-                            </button>
-                            <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                                <a class="dropdown-item" href="profile.php">Profile</a>
-                                <a class="dropdown-item" href="recommend_test.php">Recomendation</a>
-                                <a class="dropdown-item" href="myfavorites.php">Your Favorites</a>
-                                <a class="dropdown-item" target="_blank" href="ckeditor.php">Your Editor</a>
-                                <div class="dropdown-divider"></div>
-                                <a class="dropdown-item" href="logout.php">Log out</a>
-                            </div> --}}
                     </div>
                 @endauth
             </div>
@@ -113,12 +88,12 @@
         </nav>
         <nav class="navbar navbar-light"
             style="margin:2px 0px 0px 0px;background-color:rgba(255,255,255,0); background-image: linear-gradient(to left, black,green);">
-            <div class="container-fluid">
+             <div class="container">
                 @auth
                 <button type="button"
                     class="border border-dark border border-1 btn btn-info rounded-pill text-center"><a
                         class="navbar-brand nav-link" href="{{ route('home') }}">Home</a></button>@endauth
-                <button type="button"
+                {{--<button type="button"
                     class="border border-dark border border-1 btn btn-info rounded-pill text-center"><a
                         class="navbar-brand nav-link"
                         href="{{ route('accountancy') }}">Accountancy</a></button>
@@ -144,8 +119,40 @@
                 <button type="button"
                     class="border border-dark border border-1 btn btn-info rounded-pill text-center"><a
                         class="navbar-brand nav-link" href="{{ url('hotelmanagement') }}">Hotel
-                        Management</a></button>
-            </div>
+                        Management</a></button> --}}
+            
+            <div class="dropdown mx-5">
+                {{-- <a class="btn btn-secondary dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                  Colleges
+                </a> --}}
+                <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                    Colleges
+                  </button>
+              
+                <ul class="dropdown-menu dropdown-menu-dark">
+                  <li><a
+                    class="navbar-brand nav-link dropdown-item"
+                    href="{{ route('accountancy') }}">Accountancy</a></li>
+                  <li><a
+                    class="navbar-brand nav-link dropdown-item" href="{{ route('artsandscience') }}">Arts and
+                    Science</a></li>
+                  <li><a
+                    class="navbar-brand nav-link dropdown-item" href="{{ route('computerstudies') }}">Computer
+                    Studies</a></li>
+                  <li><a
+                    class="navbar-brand nav-link dropdown-item"
+                    href="{{ route('education') }}">Education</a></li>
+                  <li><a
+                    class="navbar-brand nav-link dropdown-item"
+                    href="{{ route('engineering') }}">Engineering</a></li>
+                  <li><a
+                    class="navbar-brand nav-link dropdown-item" href="{{ url('hotelmanagement') }}">Hotel
+                    Management</a></li>
+                  <li><a
+                    class="navbar-brand nav-link dropdown-item" href="{{ url('nursing') }}">Nursing</a></li>
+                </ul>
+              </div>
+            </div> 
         </nav>
 
         </ul><span class="navbar-text actions"> </span>
@@ -155,28 +162,28 @@
         <script>
         </script>
         </nav>
-        @if (Request::url() != route('home'))
-            <form class="" method="GET">
+        {{-- @if (Request::url() != route('home')) --}}
+        <form method="GET">
 
-                <div class="container my-3">
-                    <div class="input-group mb-3">
+            <div class="container my-3">
+                <div class="input-group mb-3">
 
-                            @if (isset($search))
-                                <input type="search" class="form-control" placeholder="Search" aria-label="Search" name="search"
-                                aria-describedby="basic-addon2" value="@php
-                                    echo $search
-                                @endphp">
-                            @else
-                                <input type="search" class="form-control" placeholder="Search" aria-label="Search" name="search"
-                                aria-describedby="basic-addon2">
-                            @endif
+                        @if (isset($search))
+                            <input type="search" class="form-control" placeholder="Search" aria-label="Search" name="search"
+                            aria-describedby="basic-addon2" value="@php
+                                echo $search
+                            @endphp">
+                        @else
+                            <input type="search" class="form-control" placeholder="Search" aria-label="Search" name="search"
+                            aria-describedby="basic-addon2">
+                        @endif
 
-                        <span class="input-group-text" id="basic-addon2"><button
-                                class="btn btn-primary">Search</button></span>
-                    </div>
+                    <span class="input-group-text" id="basic-addon2"><button
+                            class="btn btn-primary">Search</button></span>
                 </div>
-            </form>
-        @endif
+            </div>
+        </form>
+        {{-- @endif --}}
         </div>
 
 
