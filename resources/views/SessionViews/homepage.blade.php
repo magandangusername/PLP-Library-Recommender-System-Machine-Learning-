@@ -7,7 +7,7 @@
                 <div class="container">
                     <div class="container-fluid">
                         <b>
-                            <h4 class = "d-inline">Recommendation</h4> 
+                            <h4 class = "d-inline">Recommendation</h4>
                         </b>
                     </div>
                     {{-- <button class="btn btn-primary d-inline marg" onClick="window.print()">Print Result</button> --}}
@@ -32,13 +32,13 @@
 
                         <br>
                         <div class="d-flex justify-content-center">
-                            
+
                         </div>
                     </div>
                 </div>
             </section>
         </main>
-        
+
         {{-- <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.1.0/js/bootstrap.bundle.min.js"></script>
         <script src="assets/js/script.min.js"></script> --}}

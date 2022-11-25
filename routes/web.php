@@ -18,7 +18,7 @@ Route::get('/education', [SessionViewsController::class, 'education'])->name('ed
 Route::get('/engineering', [SessionViewsController::class, 'engineering'])->name('engineering');
 Route::get('/hotelmanagement', [SessionViewsController::class, 'hotelmanagement'])->name('hotelmanagement');
 Route::get('/nursing', [SessionViewsController::class, 'nursing'])->name('nursing');
-Route::get('/', [SessionViewsController::class, 'homepage'])->name('home')->middleware('auth');
+Route::get('/', [SessionViewsController::class, 'homepage'])->name('home');
 Route::get('/SessionViews/recommendationpage', [SessionViewsController::class, 'recommendationpage']);
 Route::get('/SessionViews/savedpage', [SessionViewsController::class, 'savedpage']);
 Route::get('/SessionViews/profilepage', [SessionViewsController::class, 'profilepage']);

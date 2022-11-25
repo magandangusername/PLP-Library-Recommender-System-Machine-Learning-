@@ -28,7 +28,7 @@ class SessionViewsController extends Controller
         ->get();
         $name = $names[0]->firstname . " " . $names[0]->surname;
         }
-        
+
         $document_studies = DB::select("SELECT document_studies.document_id, document_studies.compiled_tag_ID, document_studies.course_ID, document_studies.document_number, document_studies.title, document_studies.date_submitted, document_studies.author, document_studies.document_type, document_studies.addedby, document_studies.document_status, document_studies.created_at, document_studies.updated_on, course.course, college.college_ID, college.college, tag.tag1_ID, tag.tag2_ID, tag.tag3_ID, tag.tag4_ID, tag1.tag1_ID, tag1.tag1, tag2.tag2_ID, tag2.tag2, tag3.tag3_ID, tag3.tag3, tag4.tag4_ID, tag4.tag4
             FROM document_studies
             LEFT JOIN course ON document_studies.course_ID = course.course_ID
@@ -774,6 +774,7 @@ class SessionViewsController extends Controller
     }
     public function homepage()
     {
+        //
         if (auth::check()){
             $userid = Auth::user()->id;
             $names = DB::table('users')
@@ -782,7 +783,7 @@ class SessionViewsController extends Controller
             ->where('id', $userid )
             ->get();
             $name = $names[0]->firstname . " " . $names[0]->surname;
-            }
+        } else return redirect('/accountancy');
         $document_studies = [];
 
 
@@ -1038,7 +1039,7 @@ class SessionViewsController extends Controller
     public function Search($college, $search)
     {
         if ($college != null) {
-            
+
             $document_studies = DB::select("SELECT document_studies.document_id, document_studies.compiled_tag_ID, document_studies.course_ID, document_studies.document_number, document_studies.title, document_studies.date_submitted, document_studies.author, document_studies.document_type, document_studies.addedby, document_studies.document_status, document_studies.created_at, document_studies.updated_on, course.course, college.college_ID, college.college, tag.tag1_ID, tag.tag2_ID, tag.tag3_ID, tag.tag4_ID, tag1.tag1_ID, tag1.tag1, tag2.tag2_ID, tag2.tag2, tag3.tag3_ID, tag3.tag3, tag4.tag4_ID, tag4.tag4
                 FROM document_studies
                 LEFT JOIN course ON document_studies.course_ID = course.course_ID
