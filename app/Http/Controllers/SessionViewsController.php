@@ -1193,4 +1193,7 @@ class SessionViewsController extends Controller
         }
     }
 
+    public function printpage(){
+        return view('SessionViews.printpage');
+    }
 }

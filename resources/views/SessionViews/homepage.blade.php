@@ -10,7 +10,8 @@
                             <h4 class = "d-inline">Recommendation</h4> 
                         </b>
                     </div>
-                    <button class="btn btn-primary d-inline marg" onClick="window.print()">Print Result</button>
+                    {{-- <button class="btn btn-primary d-inline marg" onClick="window.print()">Print Result</button> --}}
+                    <button class="btn btn-primary d-inline marg"><a class="text-light text-decoration-none" href={{ route('printpage') }}>Ready to print</a></button>
                 </div>
             </nav>
         </div>
