@@ -32,9 +32,46 @@
                 <a class="navbar-brand" href="#" style="color: white; "><img
                         src="{{ asset('img/tech/plplogo.png') }}" alt="PLP Logo" style="width: 50px; height: 50px;">PLP
                     Thesis and Research Recommender System</a>
+                
                 <div class="d-flex">
+                    <div class="dropdown mx-5">
+                        {{-- <a class="btn btn-secondary dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                          Colleges
+                        </a> --}}
+                        <button class="btn btn-secondary dropdown-toggle bg-success" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                            Colleges
+                          </button>
+                      
+                        <ul class="dropdown-menu dropdown-menu-dark">
+                          @auth
+                          <li><a
+                            class="navbar-brand nav-link dropdown-item text-light"
+                            href="{{ route('home') }}">Homepage</a></li>
+                          @endauth
+                          <li><a
+                            class="navbar-brand nav-link dropdown-item text-light"
+                            href="{{ route('accountancy') }}">Accountancy</a></li>
+                          <li><a
+                            class="navbar-brand nav-link dropdown-item text-light" href="{{ route('artsandscience') }}">Arts and
+                            Science</a></li>
+                          <li><a
+                            class="navbar-brand nav-link dropdown-item text-light" href="{{ route('computerstudies') }}">Computer
+                            Studies</a></li>
+                          <li><a
+                            class="navbar-brand nav-link dropdown-item text-light"
+                            href="{{ route('education') }}">Education</a></li>
+                          <li><a
+                            class="navbar-brand nav-link dropdown-item text-light"
+                            href="{{ route('engineering') }}">Engineering</a></li>
+                          <li><a
+                            class="navbar-brand nav-link dropdown-item text-light" href="{{ url('hotelmanagement') }}">Hotel
+                            Management</a></li>
+                          <li><a
+                            class="navbar-brand nav-link dropdown-item text-light" href="{{ url('nursing') }}">Nursing</a></li>
+                        </ul>
+                      </div>
                     @guest
-                        <a href="{{ route('login') }}"><button>Login</button></a>
+                        <a class="text-light" href="{{ route('login') }}"><button class="bg-success">Login</button></a>
                     @endguest
                     @auth
 
@@ -43,7 +80,7 @@
                         ?>"
                             {{-- data:image/jpg;charset=utf8;base64, --}}
                             style="width:40px;height:40px; border-style: solid; border-color: green; margin-right:10px;">
-                        <button class="btn btn-link btn-sm order-1 order-lg-0 me-4 me-lg-0" id="sidebarToggle"
+                        <button class="btn btn-link btn-sm order-1 order-lg-0 me-4 me-lg-0 bg-success" id="sidebarToggle"
                             href="#!"><i class="fas fa-bars"></i></button>
                         <!-- Navbar Search-->
 
@@ -51,7 +88,7 @@
                         {{-- <ul class="navbar-nav ms-auto ms-md-0 me-3 me-lg-4">
                             <li class="nav-item dropdown"> --}}
 
-                        <a class="nav-link dropdown-toggle position-absolute top-50 end-0 translate-middle-y rounded-3 bg-dark"
+                        <a class="nav-link dropdown-toggle position-absolute top-50 end-0 translate-middle-y rounded-3 bg-success"
                             id="navbarDropdown" href="#" role="button" data-bs-toggle="dropdown"
                             aria-expanded="false"><i class="fas fa-user fa-fw"></i></a>
                         <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
@@ -89,10 +126,10 @@
         <nav class="navbar navbar-light"
             style="margin:2px 0px 0px 0px;background-color:rgba(255,255,255,0); background-image: linear-gradient(to left, black,green);">
              <div class="container">
-                @auth
+                {{-- @auth
                 <button type="button"
                     class="border border-dark border border-1 btn btn-info rounded-pill text-center"><a
-                        class="navbar-brand nav-link" href="{{ route('home') }}">Home</a></button>@endauth
+                        class="navbar-brand nav-link" href="{{ route('home') }}">Home</a></button>@endauth --}}
                 {{--<button type="button"
                     class="border border-dark border border-1 btn btn-info rounded-pill text-center"><a
                         class="navbar-brand nav-link"
@@ -120,38 +157,6 @@
                     class="border border-dark border border-1 btn btn-info rounded-pill text-center"><a
                         class="navbar-brand nav-link" href="{{ url('hotelmanagement') }}">Hotel
                         Management</a></button> --}}
-            
-            <div class="dropdown mx-5">
-                {{-- <a class="btn btn-secondary dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                  Colleges
-                </a> --}}
-                <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
-                    Colleges
-                  </button>
-              
-                <ul class="dropdown-menu dropdown-menu-dark">
-                  <li><a
-                    class="navbar-brand nav-link dropdown-item"
-                    href="{{ route('accountancy') }}">Accountancy</a></li>
-                  <li><a
-                    class="navbar-brand nav-link dropdown-item" href="{{ route('artsandscience') }}">Arts and
-                    Science</a></li>
-                  <li><a
-                    class="navbar-brand nav-link dropdown-item" href="{{ route('computerstudies') }}">Computer
-                    Studies</a></li>
-                  <li><a
-                    class="navbar-brand nav-link dropdown-item"
-                    href="{{ route('education') }}">Education</a></li>
-                  <li><a
-                    class="navbar-brand nav-link dropdown-item"
-                    href="{{ route('engineering') }}">Engineering</a></li>
-                  <li><a
-                    class="navbar-brand nav-link dropdown-item" href="{{ url('hotelmanagement') }}">Hotel
-                    Management</a></li>
-                  <li><a
-                    class="navbar-brand nav-link dropdown-item" href="{{ url('nursing') }}">Nursing</a></li>
-                </ul>
-              </div>
             </div> 
         </nav>
 

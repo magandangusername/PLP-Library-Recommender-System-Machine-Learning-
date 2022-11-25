@@ -11,7 +11,7 @@
                         </b>
                     </div>
                     {{-- <button class="btn btn-primary d-inline marg" onClick="window.print()">Print Result</button> --}}
-                    <button class="btn btn-primary d-inline marg"><a class="text-light text-decoration-none" href={{ route('printpage') }}>Ready to print</a></button>
+                    <a class="text-light text-decoration-none" href={{ route('printpage') }}><button class="btn btn-primary d-inline marg">Ready to print</button></a>
                 </div>
             </nav>
         </div>
