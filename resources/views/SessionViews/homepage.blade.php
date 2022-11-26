@@ -7,7 +7,12 @@
                 <div class="container">
                     <div class="container-fluid">
                         <b>
-                            <h4 class = "d-inline">Recommendation</h4>
+                            @if (isset($search))
+                                <h4 class = "d-inline">Search Results</h4>
+                            @else
+                                <h4 class = "d-inline">Recommendation</h4>
+                            @endif
+
                         </b>
                     </div>
                     {{-- <button class="btn btn-primary d-inline marg" onClick="window.print()">Print Result</button> --}}
