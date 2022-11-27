@@ -1367,8 +1367,165 @@ class SessionViewsController extends Controller
         }
     }
 
-    public function printpage()
+    public function printpage(Request $request)
     {
-        return view('SessionViews.printpage');
+        if (auth::check()) {
+            $userid = Auth::user()->id;
+            $names = DB::table('users')
+                ->leftJoin("student_info", "users.student_info_id", "=", "student_info.student_info_ID")
+                ->select('student_info.firstname', 'student_info.surname')
+                ->where('id', $userid)
+                ->get();
+            $name = $names[0]->firstname . " " . $names[0]->surname;
+            $user_college = DB::table('users')
+                ->leftJoin('student_info', 'users.student_info_id', 'student_info.student_info_ID')
+                ->leftJoin('course', 'student_info.course_ID', 'course.college_ID')
+                //->leftJoin('college', 'course.course_ID', 'college.college_ID')
+                ->where('id', $userid)
+                ->first()
+                ->college_ID;
+        } else return redirect('/accountancy');
+
+        $allParameters = $request->query();
+        if (isset($allParameters['search'])) {
+            $search = $allParameters['search'];
+
+            if (auth::check()) {
+                $uid = Auth::user()->id;
+                $compiled_backtrack_id = Auth::user()->compiled_backtrack_id;
+                if ($compiled_backtrack_id != null) {
+                    $is_existing = false;
+                    //gets the backtrack record
+                    $backtrack_record = DB::select("SELECT * from backtrack
+                        where compiled_backtrack_ID = $compiled_backtrack_id
+                    ");
+                    $backtrack1 = $backtrack_record[0]->backtrack1;
+                    $backtrack2 = $backtrack_record[0]->backtrack2;
+                    $backtrack3 = $backtrack_record[0]->backtrack3;
+                    //compares if the search has been done before and update it
+                    if ($backtrack2 == $search) {
+                        DB::table('backtrack')
+                            ->where('compiled_backtrack_ID', $compiled_backtrack_id)
+                            ->update([
+                                'backtrack1' => $backtrack2,
+                                'backtrack2' => $backtrack1
+                            ]);
+                        $is_existing = true;
+                    }
+                    if ($backtrack3 == $search) {
+                        DB::table('backtrack')
+                            ->where('compiled_backtrack_ID', $compiled_backtrack_id)
+                            ->update([
+                                'backtrack1' => $backtrack3,
+                                'backtrack2' => $backtrack1,
+                                'backtrack2' => $backtrack2
+                            ]);
+                        $is_existing = true;
+                    }
+                    if ($backtrack1 == $search) {
+                        $is_existing = true;
+                    }
+
+                    //creates new record if the search is new
+                    if (!$is_existing) {
+                        DB::table('backtrack')
+                            ->where('compiled_backtrack_ID', $compiled_backtrack_id)
+                            ->update([
+                                'backtrack1' => $search,
+                                'backtrack2' => $backtrack1,
+                                'backtrack3' => $backtrack2
+                            ]);
+                    }
+                } else { //creates new record of backtrack if user is first time searching
+                    DB::table('backtrack')
+                        ->insert([
+                            'backtrack1' => $search,
+                        ]);
+                    $compiled_backtrack_ID = DB::select("SELECT compiled_backtrack_ID
+                    from backtrack
+                    ORDER BY compiled_backtrack_ID DESC LIMIT 1
+                    ");
+                    DB::table('users')
+                        ->where('id', $uid)
+                        ->update([
+                            'compiled_backtrack_id' => $compiled_backtrack_ID[0]->compiled_backtrack_ID
+                        ]);
+                }
+            }
+
+
+
+            $document_studies = $this->Search('', $search)[0];
+            $search = $this->Search('', $search)[1];
+            if (auth::check()) {
+                return view('SessionViews.homepage')->with(compact('document_studies', 'search', 'name'));
+            } else {
+                return view('SessionViews.homepage')->with(compact('document_studies', 'search'));
+            }
+        }
+
+        // get all the viewed documents of students
+        $documents = DB::table('document_views')
+            ->select('document_views.view1 as documents')
+            ->leftJoin('users', 'document_views.compiled_views_id', 'users.compiled_views_id')
+            ->leftJoin('student_info', 'users.student_info_id', 'student_info.student_info_ID')
+            ->leftJoin('course', 'student_info.course_ID', 'course.college_ID')
+            ->where('course.college_ID', $user_college)
+            ->pluck('documents')
+            ->toArray();
+        $documents2 = DB::table('document_views')
+            ->select('document_views.view2 as documents')
+            ->leftJoin('users', 'document_views.compiled_views_id', 'users.compiled_views_id')
+            ->leftJoin('student_info', 'users.student_info_id', 'student_info.student_info_ID')
+            ->leftJoin('course', 'student_info.course_ID', 'course.college_ID')
+            ->where('course.college_ID', $user_college)
+            ->pluck('documents')
+            ->toArray();
+        $documents3 = DB::table('document_views')
+            ->select('document_views.view3 as documents')
+            ->leftJoin('users', 'document_views.compiled_views_id', 'users.compiled_views_id')
+            ->leftJoin('student_info', 'users.student_info_id', 'student_info.student_info_ID')
+            ->leftJoin('course', 'student_info.course_ID', 'course.college_ID')
+            ->where('course.college_ID', $user_college)
+            ->pluck('documents')
+            ->toArray();
+
+        $compiled_documents = array_merge($documents, $documents2, $documents3);
+
+        //sort the array of views by number of occurences and remove duplicates
+        $view_occurences = array_count_values(array_filter($compiled_documents));
+        arsort($view_occurences);
+
+        $final_view_occurences = array();
+        foreach ($view_occurences as $key=>$value) {
+            $final_view_occurences[] = $key; // assign same name to the final array
+        }
+        $document_studies = [];
+
+        $popular_document_studies = DB::select("SELECT document_studies.document_id, document_studies.compiled_tag_ID, document_studies.course_ID, document_studies.document_number, document_studies.title, document_studies.date_submitted, document_studies.author, document_studies.document_type, document_studies.addedby, document_studies.document_status, document_studies.created_at, document_studies.updated_on, course.course, college.college_ID, college.college, tag.tag1_ID, tag.tag2_ID, tag.tag3_ID, tag.tag4_ID, tag1.tag1_ID, tag1.tag1, tag2.tag2_ID, tag2.tag2, tag3.tag3_ID, tag3.tag3, tag4.tag4_ID, tag4.tag4
+        FROM document_studies
+        LEFT JOIN course ON document_studies.course_ID = course.course_ID
+        LEFT JOIN college ON course.college_ID = college.college_ID
+        LEFT JOIN tag ON document_studies.compiled_tag_ID = tag.compiled_tag_ID
+        LEFT JOIN tag1 ON tag.tag1_ID = tag1.tag1_ID
+        LEFT JOIN tag2 ON tag.tag2_ID = tag2.tag2_ID
+        LEFT JOIN tag3 ON tag.tag3_ID = tag3.tag3_ID
+        LEFT JOIN tag4 ON tag.tag4_ID = tag4.tag4_ID
+        ORDER BY document_studies.views_count DESC
+        ");
+
+        foreach ($final_view_occurences as $id){
+            foreach($popular_document_studies as $studies) {
+                if($studies->document_id == $id){
+                    $document_studies[] = $studies;
+                    break;
+                }
+            }
+        }
+        if (auth::check()) {
+            return view('SessionViews.printpage', ['document_studies' => $document_studies, 'name' => $name]);
+        } else {
+            return view('SessionViews.printpage', ['document_studies' => $document_studies]);
+        }
     }
 }
