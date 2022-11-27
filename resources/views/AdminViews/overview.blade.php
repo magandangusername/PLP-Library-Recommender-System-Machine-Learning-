@@ -152,6 +152,7 @@
                                     <tr class="text-light bg-dark">
                                         <th>Student Information Number</th>
                                         <th>Student Number</th>
+                                        <th>Library ID Number</th>
                                         <th>Firstname</th>
                                         <th>Surname</th>
                                         <th>Year Level</th>
@@ -161,6 +162,7 @@
                                         <th>Contact Number</th>
                                         <th>Student Status</th>
                                         <th>Added By</th>
+                                        <th>Password</th>
                                         <th>Date Added</th>
                                         <th>Updated On</th>
                                     </tr>
@@ -172,6 +174,7 @@
                                     <tr>
                                         <td>{{ $student_infos->student_info_ID }}</td>
                                         <td>{{ $student_infos->student_number }}</td>
+                                        <td>{{ $student_infos->library_id_number }}</td>
                                         <td>{{ $student_infos->firstname }}</td>
                                         <td>{{ $student_infos->surname }}</td>
                                         <td>{{ $student_infos->year_level }}</td>
@@ -181,6 +184,7 @@
                                         <td>{{ $student_infos->contact_number }}</td>
                                         <td>{{ $student_infos->student_status }}</td>
                                         <td>{{ $student_infos->addedby }}</td>
+                                        <td>{{ $student_infos->password }}</td>
                                         <td>{{ $student_infos->date_added }}</td>
                                         <td>{{ $student_infos->updated_on }}</td>
 
