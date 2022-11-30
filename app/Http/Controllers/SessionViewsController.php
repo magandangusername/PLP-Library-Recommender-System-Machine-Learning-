@@ -1014,10 +1014,20 @@ class SessionViewsController extends Controller
         $document_studies = array_unique($document_studies, SORT_REGULAR);
 
 
-        if ($document_studies == []){
 
-            $document_studies = $top_documments;
+
+        $results_count = sizeof($document_studies);
+
+        if ($document_studies == [] or $results_count <= 1) {
+
+            $document_studies = array_merge($document_studies, $top_documments);
+            $document_studies = array_unique($document_studies, SORT_REGULAR);
+            $document_studies = array_slice($document_studies, 0, 15, true);
         }
+
+
+
+
 
         // OLD RECOMMENDATION
 
@@ -1446,7 +1456,7 @@ class SessionViewsController extends Controller
             return view('layouts.app');
         }
     }
-        
+
     public function changepass()
     {
         return view('SessionViews.changepass');
@@ -1473,12 +1483,12 @@ class SessionViewsController extends Controller
             'password' => Hash::make($request->new_password)
         ]);
 
-        
+
          echo '<script> alert("Password changed successfullys!");</script>';
         // return redirect(route('home'));
         return redirect('/');
-        
-        
+
+
 }
 
     public function printpage(Request $request)
