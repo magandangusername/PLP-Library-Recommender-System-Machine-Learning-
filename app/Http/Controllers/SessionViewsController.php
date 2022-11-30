@@ -1467,7 +1467,10 @@ class SessionViewsController extends Controller
             'password' => Hash::make($request->new_password)
         ]);
 
-        return back()->with("status", "Password changed successfully!");
+        echo "<script> alert('Password changed successfully!');</script>";
+        return redirect(route('home'));
+        
+        
 }
 
     public function printpage(Request $request)
