@@ -1012,6 +1012,12 @@ class SessionViewsController extends Controller
         }
         $document_studies = array_unique($document_studies, SORT_REGULAR);
 
+
+        if ($document_studies == []){
+
+            $document_studies = $top_documments;
+        }
+
         // OLD RECOMMENDATION
 
 
