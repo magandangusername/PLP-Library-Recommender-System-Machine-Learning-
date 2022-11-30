@@ -22,7 +22,10 @@ Route::get('/', [SessionViewsController::class, 'homepage'])->name('home');
 Route::get('/SessionViews/recommendationpage', [SessionViewsController::class, 'recommendationpage']);
 Route::get('/SessionViews/savedpage', [SessionViewsController::class, 'savedpage']);
 Route::get('/SessionViews/profilepage', [SessionViewsController::class, 'profilepage']);
-Route::get('/layouts/app', [SessionViewsController::class, 'fetchuser']);
+Route::get('/layouts/app', [SessionViewsController::class, 'fetchuser'])->name('fetchuser');
+Route::get('/changepass', [SessionViewsController::class, 'changepass'])->name('changepass');
+Route::post('/changepass', [SessionViewsController::class, 'updatePassword'])->name('update-password');
+//Route::post('/layouts/app/change_pass', [SessionViewsController::class, 'updatepass'])->name('updatepass');
 Route::get('/viewpage/{title}', [SessionViewsController::class, 'viewpage'])->name('viewpage');
 Route::get('/printpage', [SessionViewsController::class, 'printpage'])->name('printpage');
 
