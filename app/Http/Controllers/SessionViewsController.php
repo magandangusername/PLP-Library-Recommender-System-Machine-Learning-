@@ -905,10 +905,11 @@ class SessionViewsController extends Controller
         arsort($view_occurences);
 
         $final_view_occurences = array();
-        foreach ($view_occurences as $key=>$value) {
+        foreach ($view_occurences as $key => $value) {
             $final_view_occurences[] = $key; // assign same name to the final array
         }
         $document_studies = [];
+        $top_documments = [];
 
         $popular_document_studies = DB::select("SELECT document_studies.document_id, document_studies.compiled_tag_ID, document_studies.course_ID, document_studies.document_number, document_studies.title, document_studies.date_submitted, document_studies.author, document_studies.document_type, document_studies.addedby, document_studies.document_status, document_studies.created_at, document_studies.updated_on, course.course, college.college_ID, college.college, tag.tag1_ID, tag.tag2_ID, tag.tag3_ID, tag.tag4_ID, tag1.tag1_ID, tag1.tag1, tag2.tag2_ID, tag2.tag2, tag3.tag3_ID, tag3.tag3, tag4.tag4_ID, tag4.tag4
         FROM document_studies
@@ -922,28 +923,100 @@ class SessionViewsController extends Controller
         ORDER BY document_studies.views_count DESC
         ");
 
-        foreach ($final_view_occurences as $id){
-            foreach($popular_document_studies as $studies) {
-                if($studies->document_id == $id){
-                    $document_studies[] = $studies;
+
+
+        foreach ($final_view_occurences as $id) {
+            foreach ($popular_document_studies as $studies) {
+                if ($studies->document_id == $id) {
+                    $top_documments[] = $studies;
                     break;
                 }
             }
         }
 
+        if (isset(Auth::user()->compiled_backtrack_id) and Auth::user()->compiled_backtrack_id != null) {
+            $backtrack1 = null;
+            $backtrack2 = null;
+            $backtrack3 = null;
+            $compiled_backtrack_id = Auth::user()->compiled_backtrack_id;
+            $backtrack_record = DB::select("SELECT * from backtrack
+                    where compiled_backtrack_ID = $compiled_backtrack_id
+                ");
+            $backtrack1 = $backtrack_record[0]->backtrack1;
 
+            foreach ($top_documments as $key => $value) {
+                if (
+                    str_contains(strtolower($value->title), strtolower($backtrack1))
+                    or str_contains(strtolower($value->tag1), strtolower($backtrack1))
+                    or str_contains(strtolower($value->tag2), strtolower($backtrack1))
+                    or str_contains(strtolower($value->tag3), strtolower($backtrack1))
+                    or str_contains(strtolower($value->tag4), strtolower($backtrack1))
+                ) {
+                    $document_studies[] = $value;
+                }
+            }
+        }
 
+        if ((isset(Auth::user()->compiled_views_id) and Auth::user()->compiled_views_id != null)) {
+            //checks if user has views record
+            $view1 = null;
+            $compiled_views_id = Auth::user()->compiled_views_id;
+            $view_record = DB::select("SELECT * from document_views
+                        where compiled_views_ID = $compiled_views_id
+                    ");
+            $view1 = $view_record[0]->view1;
+            $document_studies1 = DB::select("SELECT document_studies.document_id, document_studies.compiled_tag_ID, document_studies.course_ID, document_studies.document_number, document_studies.title, document_studies.date_submitted, document_studies.author, document_studies.document_type, document_studies.addedby, document_studies.document_status, document_studies.created_at, document_studies.updated_on, course.course, college.college_ID, college.college, tag.tag1_ID, tag.tag2_ID, tag.tag3_ID, tag.tag4_ID, tag1.tag1_ID, tag1.tag1, tag2.tag2_ID, tag2.tag2, tag3.tag3_ID, tag3.tag3, tag4.tag4_ID, tag4.tag4
+                FROM document_studies
+                LEFT JOIN course ON document_studies.course_ID = course.course_ID
+                LEFT JOIN college ON course.college_ID = college.college_ID
+                LEFT JOIN tag ON document_studies.compiled_tag_ID = tag.compiled_tag_ID
+                LEFT JOIN tag1 ON tag.tag1_ID = tag1.tag1_ID
+                LEFT JOIN tag2 ON tag.tag2_ID = tag2.tag2_ID
+                LEFT JOIN tag3 ON tag.tag3_ID = tag3.tag3_ID
+                LEFT JOIN tag4 ON tag.tag4_ID = tag4.tag4_ID
+                where document_studies.document_id = $view1
+                limit 1
+                 ");
+            $tag1 = $document_studies1[0]->tag1;
+            $tag2 = $document_studies1[0]->tag2;
+            $tag3 = $document_studies1[0]->tag3;
+            $tag4 = $document_studies1[0]->tag4;
+            foreach ($top_documments as $key => $value) {
+                if (
+                    str_contains(strtolower($value->title), strtolower($tag1))
+                    or str_contains(strtolower($value->tag1), strtolower($tag1))
+                    or str_contains(strtolower($value->tag2), strtolower($tag1))
+                    or str_contains(strtolower($value->tag3), strtolower($tag1))
+                    or str_contains(strtolower($value->tag4), strtolower($tag1))
 
+                    or str_contains(strtolower($value->title), strtolower($tag2))
+                    or str_contains(strtolower($value->tag1), strtolower($tag2))
+                    or str_contains(strtolower($value->tag2), strtolower($tag2))
+                    or str_contains(strtolower($value->tag3), strtolower($tag2))
+                    or str_contains(strtolower($value->tag4), strtolower($tag2))
 
+                    or str_contains(strtolower($value->title), strtolower($tag3))
+                    or str_contains(strtolower($value->tag1), strtolower($tag3))
+                    or str_contains(strtolower($value->tag2), strtolower($tag3))
+                    or str_contains(strtolower($value->tag3), strtolower($tag3))
+                    or str_contains(strtolower($value->tag4), strtolower($tag3))
 
-
-
-
+                    or str_contains(strtolower($value->title), strtolower($tag4))
+                    or str_contains(strtolower($value->tag1), strtolower($tag4))
+                    or str_contains(strtolower($value->tag2), strtolower($tag4))
+                    or str_contains(strtolower($value->tag3), strtolower($tag4))
+                    or str_contains(strtolower($value->tag4), strtolower($tag4))
+                ) {
+                    $document_studies[] = $value;
+                }
+            }
+        }
+        $document_studies = array_unique($document_studies, SORT_REGULAR);
 
         // OLD RECOMMENDATION
 
 
-        // // recommendation for backtrack
+        // recommendation for backtrack
         // if (isset(Auth::user()->compiled_backtrack_id) and Auth::user()->compiled_backtrack_id != null and $document_studies == []) {
         //     $backtrack1 = null;
         //     $backtrack2 = null;
@@ -1181,16 +1254,16 @@ class SessionViewsController extends Controller
         //     $document_studies = array_unique($document_studies, SORT_REGULAR);
         //     $document_studies = array_slice($document_studies, 0, 15, true);
         // }
+
+
+
         if (auth::check()) {
             return view('SessionViews.homepage', ['document_studies' => $document_studies, 'name' => $name]);
         } else {
             return view('SessionViews.homepage', ['document_studies' => $document_studies]);
         }
     }
-    // public function profilepage()
-    // {
-    //     return view('SessionViews.profilepage');
-    // }
+
 
     public function Search($college, $search)
     {
@@ -1212,7 +1285,7 @@ class SessionViewsController extends Controller
                 OR tag4.tag4 LIKE '%$search%')
                 AND college.college LIKE '%" . $college . "%'
                 ");
-        }else if($college == '') {
+        } else if ($college == '') {
             $document_studies = DB::select("SELECT document_studies.document_id, document_studies.compiled_tag_ID, document_studies.course_ID, document_studies.document_number, document_studies.title, document_studies.date_submitted, document_studies.author, document_studies.document_type, document_studies.addedby, document_studies.document_status, document_studies.created_at, document_studies.updated_on, course.course, college.college_ID, college.college, tag.tag1_ID, tag.tag2_ID, tag.tag3_ID, tag.tag4_ID, tag1.tag1_ID, tag1.tag1, tag2.tag2_ID, tag2.tag2, tag3.tag3_ID, tag3.tag3, tag4.tag4_ID, tag4.tag4
                 FROM document_studies
                 LEFT JOIN course ON document_studies.course_ID = course.course_ID
@@ -1527,7 +1600,7 @@ class SessionViewsController extends Controller
         arsort($view_occurences);
 
         $final_view_occurences = array();
-        foreach ($view_occurences as $key=>$value) {
+        foreach ($view_occurences as $key => $value) {
             $final_view_occurences[] = $key; // assign same name to the final array
         }
         $document_studies = [];
@@ -1544,9 +1617,9 @@ class SessionViewsController extends Controller
         ORDER BY document_studies.views_count DESC
         ");
 
-        foreach ($final_view_occurences as $id){
-            foreach($popular_document_studies as $studies) {
-                if($studies->document_id == $id){
+        foreach ($final_view_occurences as $id) {
+            foreach ($popular_document_studies as $studies) {
+                if ($studies->document_id == $id) {
                     $document_studies[] = $studies;
                     break;
                 }
