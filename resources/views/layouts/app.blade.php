@@ -156,7 +156,7 @@
                                 <b>{{ $name }}</b>
                             </p></li>
 
-                            <li><p><a class="text-decoration-none dropdown-item" onclick="openForm()">Change Password</a></p></li>
+                            <li><p><a class="text-decoration-none dropdown-item" href="{{ route('changepass') }}">Change Password</a></p></li>
                             
                             {{-- @endforeach --}}
                             {{-- <li><a class="dropdown-item"
@@ -171,20 +171,36 @@
                                 </form>
                             </li>
                         </ul>
-                        <div class="form-popup" id="myForm">
-                            <form action="/action_page.php" class="form-container">
-                              <h1>Change Password</h1>
-                          
-                              <label for="old-psw"><b>Password</b></label>
-                              <input type="password" placeholder="Enter New Password" name="old-psw" required>
-                          
-                              <label for="new-psw"><b>Password</b></label>
-                              <input type="password" placeholder="Re-enter Password" name="new-psw" required>
+                        {{-- <div class="form-popup" id="myForm">
+                            <form action="{{ route('updatepass') }}" method="POST" class="form-container">
+                            @csrf
+                            @if (session('status'))
+                                <div class="alert alert-success" role="alert">
+                                    {{ session('status') }}
+                                </div>
+                            @elseif (session('error'))
+                                <div class="alert alert-danger" role="alert">
+                                    {{ session('error') }}
+                                </div>
+                            @endif
+                              <h4>Change Password</h4>
+                              <label class="form-label" for="old_password"><b>Old Password</b></label>
+                              <input class="form-control @error('old_password') is-invalid @enderror" type="password" placeholder="Enter Old Password" name="old_password" id="old_password" required>
+                                    @error('old_password')
+                                        <span class="text-danger">{{ $message }}</span>
+                                    @enderror
+                              <label class="form-label" for="new_password"><b>New Password</b></label>
+                              <input class="form-control @error('new_password') is-invalid @enderror" type="password" placeholder="Enter New Password" name="new_password" id="new_password" required>
+                                    @error('new_password')
+                                        <span class="text-danger">{{ $message }}</span>
+                                    @enderror
+                              <label class="form-label" for="confirm_password"><b>Confirm New Password</b></label>
+                              <input class="form-control" type="password" placeholder="Re-enter New Password" name="confirm_password" id="confirm_password" required>
                           
                               <button type="submit" class="btn">Submit</button>
                               <button type="button" class="btn cancel" onclick="closeForm()">Close</button>
                             </form>
-                          </div>
+                          </div> --}}
 
 
                     </div>

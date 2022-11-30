@@ -130,8 +130,6 @@ class AdminViewsController extends Controller
                 'nurs_docu_count' => $nurs_docu_count,
                 'th_nurs' => $th_nurs,
                 'rs_nurs' => $rs_nurs,
-
-
                 // 'student_count'=>$student_count,
                 // 'accountancy_student_count'=>$accountancy_student_count,
             ]
