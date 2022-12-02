@@ -54,7 +54,7 @@
                         </thead>
 
                         <tbody>
-                           
+
                             @foreach ($document_studies as $document_study)
                                 <tr>
                                     <td>
@@ -124,6 +124,16 @@
 
                             <div class="row my-2">
                                 <div class="col-4">
+                                    <b>Availability </b>
+                                    <select id="document_course" name="availability" required>
+                                        <option @php if($editdocument->availability == "Available") echo 'selected' @endphp value="Available">Available</option>
+                                        <option @php if($editdocument->availability == "Unavailable") echo 'selected' @endphp value="Unavailable">Unavailable</option>
+                                    </select>
+                                </div>
+                            </div>
+
+                            <div class="row my-2">
+                                <div class="col-4">
                                     <b>Title</b>
                                     <input type="text" class="form-control" id="title" name="title"
                                         value="{{ $editdocument->title }}">
@@ -143,15 +153,15 @@
                                         title="Year" value="{{ $editdocument->date_submitted }}" required>
                                 </div>
                             </div>
-                            
+
 
                             <div class="row my-3">
                                 <div class="col-4">
                                     <b>Document Type</b>
                                     <select id="document_type" name="document_type" required>
-                                        <option selected="true" value="" disabled>Document Type Selection</option>
-                                        <option value="Thesis">Thesis</option>
-                                        <option value="Research">Research</option>
+                                        <option @php if($editdocument->document_type == null) echo 'selected' @endphp value="" disabled>Document Type Selection</option>
+                                        <option @php if($editdocument->document_type == "Thesis") echo 'selected' @endphp value="Thesis">Thesis</option>
+                                        <option @php if($editdocument->document_type == "Research") echo 'selected' @endphp value="Research">Research</option>
                                     </select>
                                 </div>
 

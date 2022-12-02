@@ -247,6 +247,7 @@ class AdminViewsController extends Controller
 
             $request->validate([
                 'document_ID' => 'required',
+                'availability' => 'required',
                 'title' => 'required',
                 'author' => 'required',
                 'date_submitted' => 'required',
@@ -267,6 +268,7 @@ class AdminViewsController extends Controller
                 'date_submitted' => $request->input('date_submitted'),
                 'document_type' => $request->input('document_type'),
                 'course_id' => $request->input('course_id'),
+                'availability' => $request->input('availability'),
                 // 'tag1' => $request->input('promotion_end'),
                 // 'tag2' => $request->input('terms_conditions1'),
                 // 'tag3' => $request->input('terms_conditions2'),
