@@ -1,6 +1,5 @@
 @extends('layouts.app')
 @section('content')
-    @if(Auth::check())
         <div>
             <nav class="navbar navbar-light navbar-expand-md navigation-clean-button"
                 style="background-image: linear-gradient(to left, green,#fde8ec);">
@@ -37,7 +36,4 @@
                 </div>
             </section>
         </main>
-    @else
-        @include('GuestViews.guestaccountancy')
-    @endif
 @endsection

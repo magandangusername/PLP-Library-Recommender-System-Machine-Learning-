@@ -80,7 +80,7 @@
 .form-container .btn:hover {
   opacity: 1;
 }
-        </style> 
+        </style>
 </head>
 
 <body style="background-image: linear-gradient(to left, green,#fde8ec);">
@@ -90,7 +90,7 @@
                 <a class="navbar-brand" href="{{ route('home') }}" style="color: white; "><img
                         src="{{ asset('img/tech/plplogo.png') }}" alt="PLP Logo" style="width: 50px; height: 50px;">PLP
                     Thesis and Research Recommender System</a>
-                
+
                 <div class="d-flex">
                     <div class="dropdown mx-5">
                         {{-- <a class="btn btn-secondary dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
@@ -99,7 +99,7 @@
                         <button class="btn btn-secondary dropdown-toggle bg-success" type="button" data-bs-toggle="dropdown" aria-expanded="false">
                             Colleges
                           </button>
-                      
+
                         <ul class="dropdown-menu dropdown-menu-dark">
                           @auth
                           <li><a
@@ -140,7 +140,7 @@
                             style="width:40px;height:40px; border-style: solid; border-color: green; margin-right:10px;">
                         <button class="btn btn-link btn-sm order-1 order-lg-0 me-4 me-lg-0 bg-success" id="sidebarToggle"
                             href="#!"><i class="fas fa-bars"></i></button>
-                    
+
 
                         <a class="nav-link dropdown-toggle position-absolute top-50 end-0 translate-middle-y rounded-3 bg-success"
                             id="navbarDropdown" href="#" role="button" data-bs-toggle="dropdown"
@@ -153,7 +153,7 @@
                             </p></li>
 
                             <li><p><a class="text-decoration-none dropdown-item" href="{{ route('changepass') }}">Change Password</a></p></li>
-                            
+
                             <li>
                                 <a class="dropdown-item" href="{{ route('logout') }}"
                                     onclick="event.preventDefault(); document.getElementById('logout-form').submit();">Logout</a>
@@ -173,7 +173,7 @@
         <nav class="navbar navbar-light"
             style="margin:2px 0px 0px 0px;background-color:rgba(255,255,255,0); background-image: linear-gradient(to left, black,green);">
              <div class="container">
-            </div> 
+            </div>
         </nav>
 
         </ul><span class="navbar-text actions"> </span>
@@ -184,7 +184,7 @@
         </script>
         </nav>
         {{-- @if (Request::url() != route('home')) --}}
-        
+
         {{-- @endif --}}
         </div>
 

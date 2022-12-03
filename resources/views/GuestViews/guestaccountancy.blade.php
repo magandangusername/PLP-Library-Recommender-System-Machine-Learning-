@@ -46,15 +46,16 @@
                                                 {{ $document_study->tag4 }}</div>
                                         </span></div>
                                     </li>
-                                    
+
                                 </ul>
-                                
+
                                 <br><br>
                             </div>
                         @endforeach
                     </div>
                 </div>
-                
+
             </div>
         </section>
     </main>
+

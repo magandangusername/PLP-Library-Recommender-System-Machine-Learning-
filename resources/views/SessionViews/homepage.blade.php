@@ -1,6 +1,5 @@
 @extends('layouts.app')
 @section('content')
-    @if(Auth::check())
         <div>
             <nav class="navbar navbar-light navbar-expand-md navigation-clean-button"
                 style="background-image: linear-gradient(to left, green,#fde8ec);">
@@ -31,7 +30,7 @@
                 style="background-image: linear-gradient(to left, green,#fde8ec);">
                 <div class="container">
                     <div class="block-content" style="border-style: inset;">
-                       
+
 
                         @include("layouts.documenttitles")
 
@@ -43,14 +42,11 @@
                 </div>
             </section>
         </main>
-        
-           
 
-        
+
+
+
         {{-- <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.1.0/js/bootstrap.bundle.min.js"></script>
         <script src="assets/js/script.min.js"></script> --}}
-    @else
-        @include('GuestViews.guestaccountancy')
-    @endif
 @endsection
