@@ -1343,7 +1343,7 @@ class SessionViewsController extends Controller
             ->leftJoin("tag2", "tag.tag2_ID", "=", "tag2.tag2_ID")
             ->leftJoin("tag3", "tag.tag3_ID", "=", "tag3.tag3_ID")
             ->leftJoin("tag4", "tag.tag4_ID", "=", "tag4.tag4_ID")
-            ->where("document_studies.title", $title)->first();
+            ->where("document_studies.document_id", $title)->first();
 
         $view_count = $document_studies->views_count;
         $title_id = $document_studies->document_id;
