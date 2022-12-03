@@ -220,8 +220,8 @@ class SessionViewsController extends Controller
 
 
 
-            $document_studies = $this->Search('artsandscience', $search)[0];
-            $search = $this->Search('artsandscience', $search)[1];
+            $document_studies = $this->Search('arts and science', $search)[0];
+            $search = $this->Search('arts and science', $search)[1];
             if (auth::check()) {
                 return view('SessionViews.artsandscience')->with(compact('document_studies', 'search', 'name'));
             } else {
@@ -327,8 +327,8 @@ class SessionViewsController extends Controller
 
 
 
-            $document_studies = $this->Search('computerstudies', $search)[0];
-            $search = $this->Search('computerstudies', $search)[1];
+            $document_studies = $this->Search('computer studies', $search)[0];
+            $search = $this->Search('computer studies', $search)[1];
 
             if (auth::check()) {
                 return view('SessionViews.computerstudies')->with(compact('document_studies', 'search', 'name'));
@@ -651,8 +651,8 @@ class SessionViewsController extends Controller
 
 
 
-            $document_studies = $this->Search('hotelmanagement', $search)[0];
-            $search = $this->Search('hotelmanagement', $search)[1];
+            $document_studies = $this->Search('hotel management', $search)[0];
+            $search = $this->Search('hotel management', $search)[1];
 
             if (auth::check()) {
                 return view('SessionViews.hotelmanagement')->with(compact('document_studies', 'search', 'name'));
