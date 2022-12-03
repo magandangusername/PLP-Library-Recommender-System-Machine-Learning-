@@ -189,6 +189,7 @@
                                     <th>2nd Tag</th>
                                     <th>3rd Tag</th>
                                     <th>4th Tag</th>
+                                    <th>Availability</th>
                                     <th>Views</th>
                                     <th>Created At</th>
                                     <th>Updated On</th>
@@ -213,6 +214,7 @@
                                         <td>{{ $document_study->tag2 }}</td>
                                         <td>{{ $document_study->tag3 }}</td>
                                         <td>{{ $document_study->tag4 }}</td>
+                                        <td>{{ $document_study->availability }}</td>
                                         <td>{{ $document_study->views_count }}</td>
                                         <td>{{ $document_study->created_at }}</td>
                                         <td>{{ $document_study->updated_on }}</td>
