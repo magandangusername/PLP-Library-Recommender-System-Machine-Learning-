@@ -28,17 +28,10 @@
 <body style="background-image: linear-gradient(to left, green,#fde8ec);">
     <header>
 
-        <?php
-        // if (!isset($_SESSION)) {
-        //     session_start();
-        // }
-        // if (isset($_SESSION['studentnumber']) && isset($_SESSION['password'])) {
-        ?>
-
 
         <nav class="navbar navbar-light bg-light" style="background-image: linear-gradient(to left, green,#fde8ec);">
             <div class="container-fluid" style="background-image: linear-gradient(to left, green,#fde8ec);">
-                <a class="navbar-brand text-dark    " href="#" style="color: white; "><img
+                <a class="navbar-brand text-dark" href="{{ route('home') }}" style="color: white; "><img
                         src="img/tech/plplogo.png" alt="PLP Logo" style="width: 50px; height: 50px;">Thesis and
                     Research</a>
                 <div class="d-flex">

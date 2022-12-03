@@ -140,17 +140,13 @@
                             style="width:40px;height:40px; border-style: solid; border-color: green; margin-right:10px;">
                         <button class="btn btn-link btn-sm order-1 order-lg-0 me-4 me-lg-0 bg-success" id="sidebarToggle"
                             href="#!"><i class="fas fa-bars"></i></button>
-                        <!-- Navbar Search-->
-
-                        <!-- Navbar-->
-                        {{-- <ul class="navbar-nav ms-auto ms-md-0 me-3 me-lg-4">
-                            <li class="nav-item dropdown"> --}}
+                    
 
                         <a class="nav-link dropdown-toggle position-absolute top-50 end-0 translate-middle-y rounded-3 bg-success"
                             id="navbarDropdown" href="#" role="button" data-bs-toggle="dropdown"
                             aria-expanded="false"><i class="fas fa-user fa-fw"></i></a>
                         <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
-                            {{-- @foreach ( as  ) --}}
+
 
                             <li><p class="dropdown-item">
                                 <b>{{ $name }}</b>
@@ -158,10 +154,6 @@
 
                             <li><p><a class="text-decoration-none dropdown-item" href="{{ route('changepass') }}">Change Password</a></p></li>
                             
-                            {{-- @endforeach --}}
-                            {{-- <li><a class="dropdown-item"
-                                    href="{{ url('/SessionViews/recommendationpage') }}">Recommendations</a></li>
-                            <li><a class="dropdown-item" href="{{ url('/SessionViews/savedpage') }}">Saved</a></li> --}}
                             <li>
                                 <a class="dropdown-item" href="{{ route('logout') }}"
                                     onclick="event.preventDefault(); document.getElementById('logout-form').submit();">Logout</a>
@@ -171,37 +163,6 @@
                                 </form>
                             </li>
                         </ul>
-                        {{-- <div class="form-popup" id="myForm">
-                            <form action="{{ route('updatepass') }}" method="POST" class="form-container">
-                            @csrf
-                            @if (session('status'))
-                                <div class="alert alert-success" role="alert">
-                                    {{ session('status') }}
-                                </div>
-                            @elseif (session('error'))
-                                <div class="alert alert-danger" role="alert">
-                                    {{ session('error') }}
-                                </div>
-                            @endif
-                              <h4>Change Password</h4>
-                              <label class="form-label" for="old_password"><b>Old Password</b></label>
-                              <input class="form-control @error('old_password') is-invalid @enderror" type="password" placeholder="Enter Old Password" name="old_password" id="old_password" required>
-                                    @error('old_password')
-                                        <span class="text-danger">{{ $message }}</span>
-                                    @enderror
-                              <label class="form-label" for="new_password"><b>New Password</b></label>
-                              <input class="form-control @error('new_password') is-invalid @enderror" type="password" placeholder="Enter New Password" name="new_password" id="new_password" required>
-                                    @error('new_password')
-                                        <span class="text-danger">{{ $message }}</span>
-                                    @enderror
-                              <label class="form-label" for="confirm_password"><b>Confirm New Password</b></label>
-                              <input class="form-control" type="password" placeholder="Re-enter New Password" name="confirm_password" id="confirm_password" required>
-                          
-                              <button type="submit" class="btn">Submit</button>
-                              <button type="button" class="btn cancel" onclick="closeForm()">Close</button>
-                            </form>
-                          </div> --}}
-
 
                     </div>
                 @endauth
@@ -212,37 +173,6 @@
         <nav class="navbar navbar-light"
             style="margin:2px 0px 0px 0px;background-color:rgba(255,255,255,0); background-image: linear-gradient(to left, black,green);">
              <div class="container">
-                {{-- @auth
-                <button type="button"
-                    class="border border-dark border border-1 btn btn-info rounded-pill text-center"><a
-                        class="navbar-brand nav-link" href="{{ route('home') }}">Home</a></button>@endauth --}}
-                {{--<button type="button"
-                    class="border border-dark border border-1 btn btn-info rounded-pill text-center"><a
-                        class="navbar-brand nav-link"
-                        href="{{ route('accountancy') }}">Accountancy</a></button>
-                <button type="button"
-                    class="border border-dark border border-1 btn btn-info rounded-pill text-center"><a
-                        class="navbar-brand nav-link" href="{{ route('artsandscience') }}">Arts and
-                        Science</a></button>
-                <button type="button"
-                    class="border border-dark border border-1 btn btn-info rounded-pill text-center"><a
-                        class="navbar-brand nav-link"
-                        href="{{ route('education') }}">Education</a></button>
-                <button type="button"
-                    class="border border-dark border border-1 btn btn-info rounded-pill text-center"><a
-                        class="navbar-brand nav-link"
-                        href="{{ route('engineering') }}">Engineering</a></button>
-                <button type="button"
-                    class="border border-dark border border-1 btn btn-info rounded-pill text-center"><a
-                        class="navbar-brand nav-link" href="{{ route('computerstudies') }}">Computer
-                        Studies</a></button>
-                <button type="button"
-                    class="border border-dark border border-1 btn btn-info rounded-pill text-center"><a
-                        class="navbar-brand nav-link" href="{{ url('nursing') }}">Nursing</a></button>
-                <button type="button"
-                    class="border border-dark border border-1 btn btn-info rounded-pill text-center"><a
-                        class="navbar-brand nav-link" href="{{ url('hotelmanagement') }}">Hotel
-                        Management</a></button> --}}
             </div> 
         </nav>
 
@@ -254,26 +184,7 @@
         </script>
         </nav>
         {{-- @if (Request::url() != route('home')) --}}
-        <form method="GET">
-
-            <div class="container my-3">
-                <div class="input-group mb-3">
-
-                        @if (isset($search))
-                            <input type="search" class="form-control" placeholder="Search" aria-label="Search" name="search"
-                            aria-describedby="basic-addon2" value="@php
-                                echo $search
-                            @endphp">
-                        @else
-                            <input type="search" class="form-control" placeholder="Search" aria-label="Search" name="search"
-                            aria-describedby="basic-addon2">
-                        @endif
-
-                    <span class="input-group-text" id="basic-addon2"><button
-                            class="btn btn-primary">Search</button></span>
-                </div>
-            </div>
-        </form>
+        
         {{-- @endif --}}
         </div>
 
@@ -282,7 +193,7 @@
     </header>
 
 
-    @yield('content')
+    @yield('content3')
 
     <footer class="my-3">
         <div class="row align-items-center"

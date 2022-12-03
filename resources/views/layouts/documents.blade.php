@@ -18,6 +18,8 @@
                         &nbsp;- {{ $document_studies->course }}</span></div>
                 <div class="info" style="color:black;"><span class="text-dark">Added
                         by {{ $document_studies->addedby }}</span></div>
+                <div class="info text-dark">Availability: {{ $document_studies->availability }}</div>
+                <br>
                 <div class="info" style="color:black;"><span class="text-dark">
                         <div class="d-inline bg-success text-white rounded-pill">{{ $document_studies->tag1 }}
                         </div>&nbsp;|&nbsp;<div class="d-inline bg-success text-white rounded-pill">

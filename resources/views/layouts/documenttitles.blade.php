@@ -11,6 +11,9 @@
                         <div class="info" style="color:black;"><b>(<span class="text-dark">{{ $document_study->college }} :
                         {{ $document_study->document_type }}&nbsp;- {{ $document_study->document_number }})</b></span>
                         </div>
+                        <div class="info text-dark"><b>Availability: {{ $document_study->availability }}</b></div>
+                        {{-- <div class="info" style="color:black;"><b>{{ $document_study->availability }}</b>
+                            </div> --}}
                         <div class="info" style="color:black;"><span class="text-dark"><h6>TAGS: </h6>
                             <div class="d-inline bg-success text-white rounded-pill">{{ $document_study->tag1 }}
                             </div>&nbsp;|&nbsp;<div class="d-inline bg-success text-white rounded-pill">
