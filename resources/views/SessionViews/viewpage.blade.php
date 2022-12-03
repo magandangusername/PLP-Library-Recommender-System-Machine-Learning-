@@ -1,6 +1,5 @@
 @extends('layouts.app3')
 @section('content3')
-    @if(Auth::check())
         <br>
         <main class="page blog-post-list">
             <section class="clean-block clean-blog-list dark"
@@ -19,7 +18,4 @@
                 </div>
             </section>
         </main>
-    @else
-        @include('GuestViews.guestaccountancy')
-    @endif
 @endsection
