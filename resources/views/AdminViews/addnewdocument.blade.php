@@ -50,6 +50,7 @@
                             </div>
 
                         </div>
+
                         <div class="row my-2">
                             <div class="col-4">
                                 <b>Title</b>
@@ -58,6 +59,17 @@
                             </div>
 
                         </div>
+
+                        <div class="row my-2">
+                            <div class="col-4">
+                                <b>Availability </b>
+                                <select id="document_course" name="availability" required>
+                                    <option selected value="Available">Available</option>
+                                    <option value="Unavailable">Unavailable</option>
+                                </select>
+                            </div>
+                        </div>
+
                         <div class="row my-2">
                             <div class="col-4">
                                 <b>Author</b>
@@ -165,7 +177,7 @@
             </div>
 
 
-            
+
                 <div class="card my-5">
                     <div class="card-header">
                         <h3>Document Information</h3>
@@ -231,7 +243,7 @@
                 </div>
 
 
-            
+
 
     </main>
 

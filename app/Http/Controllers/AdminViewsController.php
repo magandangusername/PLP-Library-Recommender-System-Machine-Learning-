@@ -340,6 +340,7 @@ class AdminViewsController extends Controller
                 'document_id' => 'required',
                 'document_number' => 'required',
                 'title' => 'required',
+                'availability' => 'required',
                 'author' => 'required',
                 'date_submitted' => 'required',
                 'course_ID' => 'required',
@@ -417,6 +418,7 @@ class AdminViewsController extends Controller
                 'course_ID' => $request->input('course_ID'),
                 'document_status' => $request->input('document_status'),
                 'addedby' => $request->input('addedby'),
+                'availability' => $request->input('availability'),
                 'compiled_tag_ID' => $compiled_tag_ID
             ]);
 
