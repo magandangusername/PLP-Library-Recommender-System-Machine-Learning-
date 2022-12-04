@@ -884,7 +884,7 @@ class SessionViewsController extends Controller
             $document_studies = $this->Search('', $search)[0];
             $search = $this->Search('', $search)[1];
             if (auth::check()) {
-                return view('SessionViews.homepage')->with(compact('document_studies', 'search', 'name'));
+                return view('SessionViews.homepage')->with(compact('document_studies', 'search', 'name', 'college'));
             } else {
                 return view('SessionViews.homepage')->with(compact('document_studies', 'search'));
             }
@@ -1514,11 +1514,13 @@ class SessionViewsController extends Controller
         if (auth::check()) {
             $userid = Auth::user()->id;
             $names = DB::table('users')
-                ->leftJoin("student_info", "users.student_info_id", "=", "student_info.student_info_ID")
-                ->select('student_info.firstname', 'student_info.surname')
+                ->leftJoin('student_info', 'users.student_info_id', 'student_info.student_info_ID')
+                ->leftJoin('course', 'student_info.course_ID', 'course.course_ID')
+                ->leftJoin('college', 'course.college_ID', 'college.college_ID')
                 ->where('id', $userid)
                 ->get();
             $name = $names[0]->firstname . " " . $names[0]->surname;
+            $college = $names[0]->college;
             $user_college = DB::table('users')
                 ->leftJoin('student_info', 'users.student_info_id', 'student_info.student_info_ID')
                 ->leftJoin('course', 'student_info.course_ID', 'course.college_ID')
@@ -1600,7 +1602,7 @@ class SessionViewsController extends Controller
             $document_studies = $this->Search('', $search)[0];
             $search = $this->Search('', $search)[1];
             if (auth::check()) {
-                return view('SessionViews.homepage')->with(compact('document_studies', 'search', 'name'));
+                return view('SessionViews.homepage')->with(compact('document_studies', 'search', 'name','college'));
             } else {
                 return view('SessionViews.homepage')->with(compact('document_studies', 'search'));
             }
