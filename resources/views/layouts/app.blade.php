@@ -153,7 +153,7 @@
                             {{-- @foreach ( as  ) --}}
 
                             <li><p class="dropdown-item">
-                                <b>{{ $name }}</b>
+                                <b>{{ $name }}</b><br />{{ $college }}
                             </p></li>
 
                             <li><p><a class="text-decoration-none dropdown-item" href="{{ route('changepass') }}">Change Password</a></p></li>
