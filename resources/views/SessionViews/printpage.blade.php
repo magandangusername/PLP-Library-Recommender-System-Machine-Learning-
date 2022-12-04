@@ -15,8 +15,8 @@
 
                         </b>
                     </div>
-                    <button class="btn btn-primary d-inline marg" onClick="window.print()">Print Result</button>
-                    <a class="text-light text-decoration-none" href={{ route('home') }}><button class="btn btn-primary d-inline marg">Go Back</button></a>
+                    <button class="btn btn-primary d-inline marg" onClick="toPrint()">Print Result</button>
+                    {{-- <a class="text-light text-decoration-none" href={{ route('home') }}><button class="btn btn-primary d-inline marg">Go Back</button></a> --}}
                 </div>
             </nav>
         </div>
@@ -26,7 +26,7 @@
         </div>
         </section> --}}
         <br>
-        <main class="page blog-post-list">
+        <main class="page blog-post-list" id="toPrint">
             <section class="clean-block clean-blog-list dark"
                 style="background-image: linear-gradient(to left, green,#fde8ec);">
                 <div class="container">
@@ -50,4 +50,16 @@
     @else
         @include('GuestViews.guestaccountancy')
     @endif
+    <script>
+        function toPrint(){
+            var prtContent = document.getElementById("toPrint");
+        var WinPrint = window.open('', '', 'left=0,top=0,width=800,height=900,toolbar=0,scrollbars=0,status=0');
+        WinPrint.document.write(prtContent.innerHTML);
+        WinPrint.document.close();
+        WinPrint.focus();
+        WinPrint.print();
+        WinPrint.close();
+        }
+
+    </script>
 @endsection

@@ -1,7 +1,7 @@
 <!doctype html>
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
 
-<head>
+<head id="headcss">
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
@@ -80,7 +80,7 @@
 .form-container .btn:hover {
   opacity: 1;
 }
-        </style> 
+        </style>
 </head>
 
 <body style="background-image: linear-gradient(to left, green,#fde8ec);">
@@ -90,7 +90,7 @@
                 <a class="navbar-brand" href="{{ route('home') }}" style="color: white; "><img
                         src="{{ asset('img/tech/plplogo.png') }}" alt="PLP Logo" style="width: 50px; height: 50px;">PLP
                     Thesis and Research Recommender System</a>
-                
+
                 <div class="d-flex">
                     <div class="dropdown mx-5">
                         {{-- <a class="btn btn-secondary dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
@@ -99,7 +99,7 @@
                         <button class="btn btn-secondary dropdown-toggle bg-success" type="button" data-bs-toggle="dropdown" aria-expanded="false">
                             Colleges
                           </button>
-                      
+
                         <ul class="dropdown-menu dropdown-menu-dark">
                           @auth
                           <li><a
@@ -157,7 +157,7 @@
                             </p></li>
 
                             <li><p><a class="text-decoration-none dropdown-item" href="{{ route('changepass') }}">Change Password</a></p></li>
-                            
+
                             {{-- @endforeach --}}
                             {{-- <li><a class="dropdown-item"
                                     href="{{ url('/SessionViews/recommendationpage') }}">Recommendations</a></li>
@@ -196,7 +196,7 @@
                                     @enderror
                               <label class="form-label" for="confirm_password"><b>Confirm New Password</b></label>
                               <input class="form-control" type="password" placeholder="Re-enter New Password" name="confirm_password" id="confirm_password" required>
-                          
+
                               <button type="submit" class="btn">Submit</button>
                               <button type="button" class="btn cancel" onclick="closeForm()">Close</button>
                             </form>
@@ -243,7 +243,7 @@
                     class="border border-dark border border-1 btn btn-info rounded-pill text-center"><a
                         class="navbar-brand nav-link" href="{{ url('hotelmanagement') }}">Hotel
                         Management</a></button> --}}
-            </div> 
+            </div>
         </nav>
 
         </ul><span class="navbar-text actions"> </span>

@@ -11,7 +11,13 @@
                         <div class="info" style="color:black;"><b>(<span class="text-dark">{{ $document_study->college }} :
                         {{ $document_study->document_type }}&nbsp;- {{ $document_study->document_number }})</b></span>
                         </div>
-                        <div class="info text-dark"><b>Availability: {{ $document_study->availability }}</b></div>
+                        <div class="info text-dark"><b>Availability:</b>
+                        @if ($document_study->availability == "Available")
+                            <b class=" text-success">{{ $document_study->availability }}</b>
+                        @else
+                            <b class=" text-danger">{{ $document_study->availability }}</b>
+                        @endif
+                         </div>
                         {{-- <div class="info" style="color:black;"><b>{{ $document_study->availability }}</b>
                             </div> --}}
                         <div class="info" style="color:black;"><span class="text-dark"><h6>TAGS: </h6>

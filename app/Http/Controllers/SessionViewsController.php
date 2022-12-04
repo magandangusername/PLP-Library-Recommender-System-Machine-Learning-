@@ -777,6 +777,7 @@ class SessionViewsController extends Controller
     }
     public function homepage(Request $request)
     {
+        // checks if user is logged in
         if (auth::check()) {
             $userid = Auth::user()->id;
             $names = DB::table('users')
@@ -795,6 +796,7 @@ class SessionViewsController extends Controller
         } else return redirect('/accountancy');
 
         $allParameters = $request->query();
+        // for searching
         if (isset($allParameters['search'])) {
             $search = $allParameters['search'];
 
@@ -872,7 +874,7 @@ class SessionViewsController extends Controller
             }
         }
 
-        // get all the viewed documents of students
+        // get all the viewed documents of related students
         $documents = DB::table('document_views')
             ->select('document_views.view1 as documents')
             ->leftJoin('users', 'document_views.compiled_views_id', 'users.compiled_views_id')
@@ -1464,7 +1466,7 @@ class SessionViewsController extends Controller
 
 
     public function updatePassword(Request $request)
-{
+    {
         # Validation
         $request->validate([
             'old_password' => 'required',
@@ -1473,7 +1475,7 @@ class SessionViewsController extends Controller
 
 
         #Match The Old Password
-        if(!Hash::check($request->old_password, auth()->user()->password)){
+        if (!Hash::check($request->old_password, auth()->user()->password)) {
             return back()->with("error", "Old Password Doesn't match!");
         }
 
@@ -1484,12 +1486,10 @@ class SessionViewsController extends Controller
         ]);
 
 
-         echo '<script> alert("Password changed successfullys!");</script>';
+        echo '<script> alert("Password changed successfullys!");</script>';
         // return redirect(route('home'));
         return redirect('/');
-
-
-}
+    }
 
     public function printpage(Request $request)
     {
