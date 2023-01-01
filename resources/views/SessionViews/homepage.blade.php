@@ -4,7 +4,7 @@
         <nav class="navbar navbar-light navbar-expand-md navigation-clean-button"
             style="background-image: linear-gradient(to left, green,#fde8ec);">
             <div class="container">
-                <div class="container-fluid">
+                <div>
                     <b>
                         @if (isset($search))
                             <h4 class="d-inline">Search Results</h4>

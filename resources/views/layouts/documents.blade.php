@@ -35,7 +35,7 @@
                 </div>&nbsp;|&nbsp;<div class="d-inline bg-success text-white rounded-pill">
                     {{ $document_studies->tag4 }}</div>
             </span></div></div>
-              <div class="col-4 info text-dark"><b>Abstract: </b><br>ddljkjasljdljasjdjaksdkjlaksjdjaklsjdlajskldjdjksahjkdhkjahsjhdakshdkhajkshdhaskjdhjahsd
+              <div class="col-4 info text-dark" style="text-align: justify" ><b>Abstract: </b><br>ddljkjasljdljasjdjaksdkjlaksjdjaklsjdlajskldjdjksahjkdhkjahsjhdakshdkhajkshdhaskjdhjahsd
                 jhdkahsdhjkashkjdhajkshdhajkshdkahskjdhkajs
                 jskdhjkahsjkdhjkahsjkdhajksdjkhlkajskasdasdkjlaklsjdkljklasjd
                 klhjasjkdjkladshkjajskdlasjkahdk
