@@ -16,7 +16,7 @@
                 </div>
                 {{-- <button class="btn btn-primary d-inline marg" onClick="window.print()">Print Result</button> --}}
                 <a class="text-light text-decoration-none" href="" onClick="toPrint()"><button
-                        class="btn btn-primary d-inline marg">Ready to print</button></a>
+                        class="btn btn-primary d-inline marg">Print / Save</button></a>
             </div>
         </nav>
     </div>

@@ -13,10 +13,13 @@
             </nav>
         </div>
         <section class="clean-block clean-blog-list dark" style="background-image: linear-gradient(to left, green,#fde8ec);">
-            <div class="container">
-                <img class="imghover" src="{{ asset('img/course/nursing_cover.jpg') }}" alt="Accountancy Banner"
-                    style="height:300px; width:100%; border-style: inset;">
+            <div class="container d-flex justify-content-center">
+                <img class="imghover" src="{{ asset('img/course/Nursing.jfif') }}" alt="Nursing Logo"
+                    style="height:300px; width:300px; border-style: inset;">
             </div>
+            <b>
+                <h4 class="d-block d-flex justify-content-center">Nursing</h4>
+            </b>
         </section>
         <br>
         <main class="page blog-post-list">

@@ -13,10 +13,13 @@
             </nav>
         </div>
         <section class="clean-block clean-blog-list dark" style="background-image: linear-gradient(to left, green,#fde8ec);">
-            <div class="container">
-                <img class="imghover" src="{{ asset('img/course/hotel_management_cover.jpg') }}" alt="Hotel Management Cover"
-                    style="height:300px; width:100%; border-style: inset;">
+            <div class="container d-flex justify-content-center">
+                <img class="imghover" src="{{ asset('img/course/Hospitality Management.jfif') }}" alt="Hospitality Management Logo"
+                    style="height:300px; width:300px; border-style: inset;">
             </div>
+            <b>
+                <h4 class="d-block d-flex justify-content-center">College of Hospitality Management</h4>
+            </b>
         </section>
         <br>
         <main class="page blog-post-list">

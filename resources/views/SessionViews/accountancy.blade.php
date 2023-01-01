@@ -1,6 +1,6 @@
 @extends('layouts.app')
 @section('content')
-        <div>
+        {{-- <div>
             <nav class="navbar navbar-light navbar-expand-md navigation-clean-button"
                 style="background-image: linear-gradient(to left, green,#fde8ec);">
                 <div class="container">
@@ -11,12 +11,15 @@
                     </div>
                 </div>
             </nav>
-        </div>
+        </div> --}}
         <section class="clean-block clean-blog-list dark" style="background-image: linear-gradient(to left, green,#fde8ec);">
-            <div class="container">
-                <img class="imghover" src="{{ asset('img/course/accountancy_cover.jpg') }}" alt="Accountancy Cover"
-                    style="height:300px; width:100%; border-style: inset;">
+            <div class="container d-flex justify-content-center">
+                <img class="imghover" src="{{ asset('img/course/accountancy.jfif') }}" alt="Accountancy Logo"
+                    style="height:300px; width:300px; border-style: inset;">
             </div>
+            <b>
+                <h4 class="d-block d-flex justify-content-center">College of Accountancy</h4>
+            </b>
         </section>
         <br>
         <main class="page blog-post-list">

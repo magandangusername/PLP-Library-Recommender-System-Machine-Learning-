@@ -11,7 +11,7 @@
                     <form method="POST" action="{{ route('login') }}">
                         @csrf
                         <div class="row mb-3">
-                            <label for="library_ID_number" class="col-md-4 col-form-label text-md-end">{{ __('Library Number:') }}</label>
+                            <label for="library_ID_number" class="col-md-4 col-form-label text-md-end">{{ __('Library ID Number:') }}</label>
 
                             <div class="col-md-6">
                                 <input id="library_ID_number" type="text" class="form-control @error('library_ID_number') is-invalid @enderror" name="library_ID_number" value="{{ old('library_ID_number') }}" required autocomplete="library_ID_number" autofocus>

@@ -13,10 +13,13 @@
             </nav>
         </div>
         <section class="clean-block clean-blog-list dark" style="background-image: linear-gradient(to left, green,#fde8ec);">
-            <div class="container">
-                <img class="imghover" src="{{ asset('img/course/cas_banner.jpg') }}" alt="Arts and Science Cover"
-                    style="height:300px; width:100%; border-style: inset;">
+            <div class="container d-flex justify-content-center">
+                <img class="imghover" src="{{ asset('img/course/Arts and Science.jfif') }}" alt="Arts and Science Logo"
+                    style="height:300px; width:300px; border-style: inset;">
             </div>
+            <b>
+                <h4 class="d-block d-flex justify-content-center">College of Arts and Science</h4>
+            </b>
         </section>
         <br>
         <main class="page blog-post-list">

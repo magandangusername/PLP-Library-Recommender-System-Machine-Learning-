@@ -5,7 +5,48 @@
                 Sorry, no documents found.
             </div>
         @endif
-            <div class="col-lg-7">
+        <div class="container">
+            <div class="row">
+              <div class="col-9"><h3 style="color:black;">{{ $document_studies->title }}</h3></div>
+              <div class="col-4"><div class="info" style="color:black;"><span class="text-dark">Submitted on
+                <b>{{ $document_studies->date_submitted }}</b> by:</span></div>
+        <div class="info" style="color:black;"><span class="text-dark"><b>{{ $document_studies->author }}</b></span>
+        </div>
+        <div class="info" style="color:black;">(<span class="text-dark">Document
+                Type: <b>{{ $document_studies->document_type }}&nbsp;- {{ $document_studies->document_number }}</b>)</span>
+        </div>
+        <div class="info" style="color:black;"><span class="text-dark"><b>{{ $document_studies->college }}</b>
+                &nbsp;- <b>{{ $document_studies->course }}</b></span></div>
+        <div class="info" style="color:black;"><span class="text-dark">Added
+                by <b>{{ $document_studies->addedby }}</b></span></div>
+        <div class="info text-dark">
+            @if ($document_studies->availability == "Available")
+                            <b class=" text-success">{{ $document_studies->availability }}</b>
+                        @else
+                            <b class=" text-danger">{{ $document_studies->availability }}</b>
+                        @endif
+        </div>
+        <br>
+        <div class="info" style="color:black;"><span class="text-dark">
+                <div class="d-inline bg-success text-white rounded-pill">{{ $document_studies->tag1 }}
+                </div>&nbsp;|&nbsp;<div class="d-inline bg-success text-white rounded-pill">
+                    {{ $document_studies->tag2 }}</div>&nbsp;|&nbsp;<div
+                    class="d-inline bg-success text-white rounded-pill"> {{ $document_studies->tag3 }}
+                </div>&nbsp;|&nbsp;<div class="d-inline bg-success text-white rounded-pill">
+                    {{ $document_studies->tag4 }}</div>
+            </span></div></div>
+              <div class="col-4 info text-dark"><b>Abstract: </b><br>ddljkjasljdljasjdjaksdkjlaksjdjaklsjdlajskldjdjksahjkdhkjahsjhdakshdkhajkshdhaskjdhjahsd
+                jhdkahsdhjkashkjdhajkshdhajkshdkahskjdhkajs
+                jskdhjkahsjkdhjkahsjkdhajksdjkhlkajskasdasdkjlaklsjdkljklasjd
+                klhjasjkdjkladshkjajskdlasjkahdk
+                jakshdklaklsjdkljalksdj
+                kljaslkjdlkajskldjdjajskdjadskjhajkshdjhajkshdhak
+                kladsjkjashkjdhjakshdjk
+                ajkshdjkhajkshdjka
+                jakshdjkhajsdhjkjlkajskldjaklsjdklajskldjlkSubsequent columns continue along the new line.</div>
+            </div>
+          </div>
+            {{-- <div class="col-lg-7">
                 <h3 style="color:black;">{{ $document_studies->title }}</h3>
                 <div class="info" style="color:black;"><span class="text-dark">Submitted on
                         {{ $document_studies->date_submitted }} by:</span></div>
@@ -29,6 +70,6 @@
                             {{ $document_studies->tag4 }}</div>
                     </span></div>
                 <br> <br>
-            </div>
+            </div> --}}
     </div>
 </div>

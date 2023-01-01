@@ -23,6 +23,10 @@ footer{
   margin-top: 0%;
   margin-bottom: 0%;
 }
+.z-index-master{
+  z-index: 1090;
+  position: relative;
+}
 .search-width{
   width: 90%;
 }
@@ -4085,6 +4089,9 @@ textarea.form-control-lg {
   flex-wrap: inherit;
   align-items: center;
   justify-content: space-between;
+}
+.navbar-brands{
+  text-decoration: none;
 }
 .navbar-brand {
   padding-top: 0.3125rem;
@@ -11327,6 +11334,7 @@ textarea.form-control-lg {
 html,
 body {
   height: 100%;
+  width: 100%;
 }
 
 #layoutAuthentication {

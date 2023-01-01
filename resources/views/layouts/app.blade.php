@@ -84,93 +84,112 @@
 </head>
 
 <body style="background-image: linear-gradient(to left, green,#fde8ec);">
-    <header>
-        <nav class="navbar navbar-light bg-light" style="background-image: linear-gradient(to left, black,green);">
-            <div class="container-fluid" style="background-image: linear-gradient(to left, black,green);">
-                <a class="navbar-brand" href="{{ route('home') }}" style="color: white; "><img
-                        src="{{ asset('img/tech/plplogo.png') }}" alt="PLP Logo" style="width: 50px; height: 50px;">PLP
-                    Thesis and Research Recommender System</a>
+    <header class="container-fluid">
+        <div class="container-fluid" style="background-image: linear-gradient(to left, black,green);">
+            <div class="row justify-content-between">
+              <div class="col">
+                {{-- <a class="navbar-brand" href="{{ route('home') }}" style="color: white; "><img
+                    src="{{ asset('img/tech/plplogo.png') }}" alt="PLP Logo" style="width: 50px; height: 50px;">PLP
+                Thesis and Research Recommender System</a> --}}
+                <img class="d-inline" src="{{ asset('img/tech/plplogo.png') }}" alt="PLP Logo" style="width: 50px; height: 50px;">
+                    <a href="{{ route('home') }}" class="stretched-link text-light text-decoration-none d-inline" style="position: relative;">PLP
+                        Thesis and Research Recommender System</a>
+              </div>
+              <div class="col text-light position-relative" style="z-index: 2000">
+                <div class="position-absolute top-50 end-0 translate-middle-y row"> 
+                        <div class="row">
+                            <div class="col">
+                                @guest
+                                    <a class="text-light" href="{{ route('login') }}"><button class="bg-success">Login</button></a>
+                                @endguest
+                            </div>
+                            {{-- <img class="col rounded-circle" src="{{ asset('img/avatars/profiles.png') }}" style="width:60px;height:40px; border-style: solid; border-color: green;"> --}}
+                            {{-- <button><i class="bi bi-person-circle "></i></button> --}}
+                            <div class="col">
+                                <button class="btn btn-secondary dropdown-toggle bg-success" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                    Colleges
+                                  </button>
+        
+                                <ul class="dropdown-menu dropdown-menu-dark" >
+                                  @auth
+                                  <li><a
+                                    class="navbar-brand nav-link dropdown-item text-light"
+                                    href="{{ route('home') }}">Homepage</a></li>
+                                  @endauth
+                                  <li><a
+                                    class="navbar-brand nav-link dropdown-item text-light"
+                                    href="{{ route('accountancy') }}">Accountancy</a></li>
+                                  <li><a
+                                    class="navbar-brand nav-link dropdown-item text-light" href="{{ route('artsandscience') }}">Arts and
+                                    Science</a></li>
+                                  <li><a
+                                    class="navbar-brand nav-link dropdown-item text-light" href="{{ route('computerstudies') }}">Computer
+                                    Studies</a></li>
+                                  <li><a
+                                    class="navbar-brand nav-link dropdown-item text-light"
+                                    href="{{ route('education') }}">Education</a></li>
+                                  <li><a
+                                    class="navbar-brand nav-link dropdown-item text-light"
+                                    href="{{ route('engineering') }}">Engineering</a></li>
+                                  <li><a
+                                    class="navbar-brand nav-link dropdown-item text-light" href="{{ url('hotelmanagement') }}">Hotel
+                                    Management</a></li>
+                                  <li><a
+                                    class="navbar-brand nav-link dropdown-item text-light" href="{{ url('nursing') }}">Nursing</a></li>
+                                </ul>
+                            </div>
 
-                <div class="d-flex">
-                    <div class="dropdown mx-5">
-                        {{-- <a class="btn btn-secondary dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                          Colleges
-                        </a> --}}
-                        <button class="btn btn-secondary dropdown-toggle bg-success" type="button" data-bs-toggle="dropdown" aria-expanded="false">
-                            Colleges
-                          </button>
-
-                        <ul class="dropdown-menu dropdown-menu-dark">
-                          @auth
-                          <li><a
-                            class="navbar-brand nav-link dropdown-item text-light"
-                            href="{{ route('home') }}">Homepage</a></li>
-                          @endauth
-                          <li><a
-                            class="navbar-brand nav-link dropdown-item text-light"
-                            href="{{ route('accountancy') }}">Accountancy</a></li>
-                          <li><a
-                            class="navbar-brand nav-link dropdown-item text-light" href="{{ route('artsandscience') }}">Arts and
-                            Science</a></li>
-                          <li><a
-                            class="navbar-brand nav-link dropdown-item text-light" href="{{ route('computerstudies') }}">Computer
-                            Studies</a></li>
-                          <li><a
-                            class="navbar-brand nav-link dropdown-item text-light"
-                            href="{{ route('education') }}">Education</a></li>
-                          <li><a
-                            class="navbar-brand nav-link dropdown-item text-light"
-                            href="{{ route('engineering') }}">Engineering</a></li>
-                          <li><a
-                            class="navbar-brand nav-link dropdown-item text-light" href="{{ url('hotelmanagement') }}">Hotel
-                            Management</a></li>
-                          <li><a
-                            class="navbar-brand nav-link dropdown-item text-light" href="{{ url('nursing') }}">Nursing</a></li>
-                        </ul>
-                      </div>
-                    @guest
-                        <a class="text-light" href="{{ route('login') }}"><button class="bg-success">Login</button></a>
-                    @endguest
-                    @auth
-
-
-                        <img class="rounded-circle"src="{{ asset('img/avatars/profiles.png') }}<?php //echo base64_encode($profilepic);
-                        ?>"
-                            {{-- data:image/jpg;charset=utf8;base64, --}}
-                            style="width:40px;height:40px; border-style: solid; border-color: green; margin-right:10px;">
-                        <button class="btn btn-link btn-sm order-1 order-lg-0 me-4 me-lg-0 bg-success" id="sidebarToggle"
-                            href="#!"><i class="fas fa-bars"></i></button>
+                            @auth
+                            <div class="col me-4">
+                                <img class="col rounded-circle" src="{{ asset('img/avatars/profiles.png') }}" style="width:40px;height:40px; border-style: solid; border-color: green;">
+                            </div>
+                            <div class="col">
+                            {{-- <div class="col me-3">
+                                <img class="col rounded-circle me-1" src="{{ asset('img/avatars/profiles.png') }}" style="width:40px;height:40px; border-style: solid; border-color: green;">
+                            </div> --}}
+                                <a class="col nav-link dropdown-toggle position-absolute top-50 end-0 translate-middle-y rounded-3 bg-success me-2"
+                                id="navbarDropdown" href="#" role="button" data-bs-toggle="dropdown"
+                                aria-expanded="false">
+                                </a>
+                                {{-- <a class="col nav-link dropdown-toggle position-absolute top-50 end-0 translate-middle-y rounded-3 bg-success me-2"
+                                id="navbarDropdown" href="#" role="button" data-bs-toggle="dropdown"
+                                aria-expanded="false">
+                                </a> --}}
+                            <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
+                                {{-- @foreach ( as  ) --}}
+    
+                                <li><p class="dropdown-item">
+                                    <b>{{ $name }}</b><br />{{ $college }}
+                                </p></li>
+    
+                                <li><p><a class="text-decoration-none dropdown-item" href="{{ route('changepass') }}">Change Password</a></p></li>
+    
+                                {{-- @endforeach --}}
+                                {{-- <li><a class="dropdown-item"
+                                        href="{{ url('/SessionViews/recommendationpage') }}">Recommendations</a></li>
+                                <li><a class="dropdown-item" href="{{ url('/SessionViews/savedpage') }}">Saved</a></li> --}}
+                                <li>
+                                    <a class="dropdown-item" href="{{ route('logout') }}"
+                                        onclick="event.preventDefault(); document.getElementById('logout-form').submit();">Logout</a>
+                                    <form id="logout-form" action="{{ route('logout') }}" method="POST"
+                                        style="display: none;">
+                                        {{ csrf_field() }}
+                                    </form>
+                                </li>
+                            </ul>
+                        </div>
+                        </div>
+                        
                         <!-- Navbar Search-->
 
                         <!-- Navbar-->
                         {{-- <ul class="navbar-nav ms-auto ms-md-0 me-3 me-lg-4">
                             <li class="nav-item dropdown"> --}}
 
-                        <a class="nav-link dropdown-toggle position-absolute top-50 end-0 translate-middle-y rounded-3 bg-success"
+                        {{-- <a class="col nav-link dropdown-toggle position-absolute top-50 end-0 translate-middle-y rounded-3 bg-success"
                             id="navbarDropdown" href="#" role="button" data-bs-toggle="dropdown"
-                            aria-expanded="false"><i class="fas fa-user fa-fw"></i></a>
-                        <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
-                            {{-- @foreach ( as  ) --}}
-
-                            <li><p class="dropdown-item">
-                                <b>{{ $name }}</b><br />{{ $college }}
-                            </p></li>
-
-                            <li><p><a class="text-decoration-none dropdown-item" href="{{ route('changepass') }}">Change Password</a></p></li>
-
-                            {{-- @endforeach --}}
-                            {{-- <li><a class="dropdown-item"
-                                    href="{{ url('/SessionViews/recommendationpage') }}">Recommendations</a></li>
-                            <li><a class="dropdown-item" href="{{ url('/SessionViews/savedpage') }}">Saved</a></li> --}}
-                            <li>
-                                <a class="dropdown-item" href="{{ route('logout') }}"
-                                    onclick="event.preventDefault(); document.getElementById('logout-form').submit();">Logout</a>
-                                <form id="logout-form" action="{{ route('logout') }}" method="POST"
-                                    style="display: none;">
-                                    {{ csrf_field() }}
-                                </form>
-                            </li>
-                        </ul>
+                            aria-expanded="false"><i class="fas fa-user fa-fw"></i></a> --}}
+                        
                         {{-- <div class="form-popup" id="myForm">
                             <form action="{{ route('updatepass') }}" method="POST" class="form-container">
                             @csrf
@@ -201,14 +220,15 @@
                               <button type="button" class="btn cancel" onclick="closeForm()">Close</button>
                             </form>
                           </div> --}}
-
-
-                    </div>
+                    /</div>
                 @endauth
+                </div>
+              </div>
             </div>
-            </div>
-
-        </nav>
+          </div>
+        {{-- <nav class="navbar navbar-light bg-light" style="background-image: linear-gradient(to left, black,green);">
+            ;sdl;as;dlk;
+        </nav> --}}
         <nav class="navbar navbar-light"
             style="margin:2px 0px 0px 0px;background-color:rgba(255,255,255,0); background-image: linear-gradient(to left, black,green);">
              <div class="container">
@@ -285,81 +305,57 @@
     @yield('content')
 
     <footer class="my-3">
-        <div class="row align-items-center"
-            style="background-image: linear-gradient(to left, green,black); padding: 2%;">
-            <div class="col-4">
-                <div class="librMisandVis">
-                    <center>
-                        <h3>Mission</h3>
-                    </center>
-                    <h5>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;As
-                        the source of knowledge in the university, the library strives to acquire substantial
-                        collections,
-                        and render services that meet standards of excellence to support quality education, research
-                        productivity and the extension programs of the institution thru dissemination.</h5>
-                </div>
+        
+        <div style="background-image: linear-gradient(to left, green,black); padding: 2%;">
+            <div>
+                        <center>
+                            <h3>Mission</h3>
+                        </center>
+                        <h5 style="text-align: justify">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;As
+                            the source of knowledge in the university, the library strives to acquire substantial
+                            collections,
+                            and render services that meet standards of excellence to support quality education, research
+                            productivity and the extension programs of the institution thru dissemination.</h5>
+                        <center>
+                            <h3>Vision</h3>
+                        </center>
+                        <h5 style="text-align: justify">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;The
+                            Library envisions to evolve as the best intellectual resource of the academic community through
+                            an
+                            automated library system that will contribute sustantially in the education of Pasigueños to
+                            become
+                            a world-class citizen in the global information network. </h5>
             </div>
-            <div class="col-4">
-                <div class="librMisandVis">
-                    <center>
-                        <h3>Vision</h3>
-                    </center>
-                    <h5>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;The
-                        Library envisions to evolve as the best intellectual resource of the academic community through
-                        an
-                        automated library system that will contribute sustantially in the education of Pasigueños to
-                        become
-                        a world-class citizen in the global information network. </h5>
-                </div>
+            <br><br>
+            <div class="row">
+            <div class="col">
+                    <h3>Republic of the Philippines</h3>
+                    <p>All content is in the public domain unless otherwise stated</p>
+                    <br>
+                    <h3>Government Links</h3>
+                    <li><a class="text-decoration-none" href="http://op-proper.gov.ph/">Office of the President</a></li>
+                    <li><a class="text-decoration-none" href="http://www.ovp.gov.ph/">Office of the Vice President</a></li>
+                    <li><a class="text-decoration-none" href="https://www.senate.gov.ph/">Senate of the Philippines</a></li>
+                    <li><a class="text-decoration-none" href="http://www.congress.gov.ph/">House of the Representatives</a></li>
+                    <li><a class="text-decoration-none" href="http://sc.judiciary.gov.ph/">Supreme Court</a></li>
+                    <li><a class="text-decoration-none" href="https://ca2.judiciary.gov.ph/caws-war/">Court of Appeals</a></li>
+                    <li><a class="text-decoration-none" href="http://sb.judiciary.gov.ph/">Sandiganbayan</a></li>
             </div>
-            <div class="col-4">
+            <div class="col">
                 <h3>contact us</h3>
-                <li style="color: black;"><strong>PHONE: 628 – 1013, 628 – 1014, 643 – 9558 </strong></li>
-                <li style="color: black;"><strong>EMAIL: plpasigpresidentsoffice@gmail.com </strong></li>
-                <li><a href="https://www.facebook.com/PLPasig-102897094582245/">Pamantasan ng Lungsod ng Pasig Official
+                <li>PHONE: 628 – 1013, 628 – 1014, 643 – 9558</li>
+                <li>EMAIL: plpasigpresidentsoffice@gmail.com</li>
+                <li><a class="text-decoration-none" href="https://www.facebook.com/PLPasig-102897094582245/">Pamantasan ng Lungsod ng Pasig Official
                         FB
                         Page</a></li>
 
                 <h3>downloads</h3>
-                <li><a href="assets/docs/STUDENT-PRIMER-2020-2021.pdf">Student Handbook Version 2020-2021</a></li>
+                <li><a class="text-decoration-none" href="assets/docs/STUDENT-PRIMER-2020-2021.pdf">Student Handbook Version 2020-2021</a></li>
 
                 <h3>archives</h3>
-                <li style="color: black;"><strong>Archives from 2017 - 2021</strong></li>
-                {{-- <li style="color: black;"><strong>Archive 2020</strong></li>
-            <li style="color: black;"><strong>Archive 2019</strong></li>
-            <li style="color: black;"><strong>Archive 2018</strong></li>
-            <li style="color: black;"><strong>Archive 2017</strong></li> --}}
+                <li>Archives from 2017 - 2021</li>
             </div>
         </div>
-        <div class="row align-items-center"
-            style="background-image: linear-gradient(to left, green,black); padding: 2%;">
-            <div class="col-4">
-                <div class="librMisandVis">
-                    <p class="right">All Rights Reserved.</p>
-                    <p class="right"><a href="terms-and-conditions.php">
-                            Terms and Conditions</a></p>
-                    <p class="right"><a href="privacy-policy.php">Privacy
-                            Policy</a></p>
-                </div>
-            </div>
-            <div class="col-4">
-                <div class="librMisandVis">
-                    <h3>Republic of the Philippines</h3>
-                    <p>All content is in the public domain unless otherwise stated</p>
-                    <h3>Privacy Statement</h3>
-                </div>
-            </div>
-            <div class="col-4">
-                <h3>Government Links</h3>
-                <li><a href="http://op-proper.gov.ph/">Office of the President</a></li>
-                <li><a href="http://www.ovp.gov.ph/">Office of the Vice President</a></li>
-                <li><a href="https://www.senate.gov.ph/">Senate of the Philippines</a></li>
-                <li><a href="http://www.congress.gov.ph/">House of the Representatives</a></li>
-                <li><a href="http://sc.judiciary.gov.ph/">Supreme Court</a></li>
-                <li><a href="https://ca2.judiciary.gov.ph/caws-war/">Court of Appeals</a></li>
-                <li><a href="http://sb.judiciary.gov.ph/">Sandiganbayan</a></li>
-
-            </div>
         </div>
     </footer>
     <script>
