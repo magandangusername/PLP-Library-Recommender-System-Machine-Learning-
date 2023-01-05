@@ -9,11 +9,12 @@
             <div class="row">
               <div class="col-12 d-flex justify-content-center mb-4"><h3 style="color:black;">{{ $document_studies->title }}</h3> </div>
               <div class="col-6"><div class="info" style="color:black;"><span class="text-dark">Submitted on
-                <b>{{ $document_studies->date_submitted }}</b> by:</span></div>
-        <div class="info" style="color:black;"><span class="text-dark"><b>{{ $document_studies->author }}</b></span>
+                <b>20{{ $document_studies->date_submitted }}</b></span></div>
+        <div class="info" style="color:black;"><span class="text-dark">by:&nbsp;<b>{{ $document_studies->author }}</b></span>
         </div>
         <div class="info" style="color:black;">(<span class="text-dark">Document
-                Type: <b>{{ $document_studies->document_type }}&nbsp;- {{ $document_studies->document_number }}</b>)</span>
+                Type: <b>{{ $document_studies->document_type }})</b> <br>
+                (Document ID:&nbsp; <b>{{ $document_studies->document_number }}</b>)</span>
         </div>
         <div class="info" style="color:black;">(<span class="text-dark">Document
             Status: <b>{{ $document_studies->document_status }}</b>)</span>
