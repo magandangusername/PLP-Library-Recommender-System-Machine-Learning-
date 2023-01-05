@@ -120,13 +120,13 @@ class SessionViewsController extends Controller
             if (auth::check()) {
                 return view('SessionViews.accountancy')->with(compact('document_studies', 'search', 'name', 'college'));
             } else {
-                return view('SessionViews.accountancy')->with(compact('document_studies', 'search'));
+                return view('SessionViews.homepage')->with(compact('document_studies', 'search'));
             }
         } else {
             if (auth::check()) {
                 return view('SessionViews.accountancy', ['document_studies' => $document_studies, 'name' => $name, 'college' => $college]);
             } else {
-                return view('SessionViews.accountancy', ['document_studies' => $document_studies]);
+                return view('SessionViews.homepage', ['document_studies' => $document_studies]);
             }
         }
     }
@@ -1558,7 +1558,7 @@ class SessionViewsController extends Controller
                 ->where('id', $userid)
                 ->first()
                 ->college_ID;
-        } else return redirect('/accountancy');
+        } else return redirect('/');
 
         $allParameters = $request->query();
         if (isset($allParameters['search'])) {
