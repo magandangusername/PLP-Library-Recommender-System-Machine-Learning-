@@ -26,6 +26,7 @@ return new class extends Migration
             $table->string('document_status');
             $table->string('availability');
             $table->integer('views_count')->default(0);
+            $table->text('abstract');
             $table->timestamp('created_at')->default(\DB::raw('CURRENT_TIMESTAMP'));
             $table->timestamp('updated_on')->default(\DB::raw('CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP'));
         });

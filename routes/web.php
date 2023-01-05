@@ -19,6 +19,7 @@ Route::get('/engineering', [SessionViewsController::class, 'engineering'])->name
 Route::get('/hotelmanagement', [SessionViewsController::class, 'hotelmanagement'])->name('hotelmanagement');
 Route::get('/nursing', [SessionViewsController::class, 'nursing'])->name('nursing');
 Route::get('/', [SessionViewsController::class, 'homepage'])->name('home');
+Route::get('/guesthomepage', [SessionViewsController::class, 'guesthomepage'])->name('guesthomepage');
 Route::get('/SessionViews/recommendationpage', [SessionViewsController::class, 'recommendationpage']);
 Route::get('/SessionViews/savedpage', [SessionViewsController::class, 'savedpage']);
 Route::get('/SessionViews/profilepage', [SessionViewsController::class, 'profilepage']);

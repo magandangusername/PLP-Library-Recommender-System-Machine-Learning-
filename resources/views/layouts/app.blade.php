@@ -117,7 +117,7 @@
                     class="navbar-brand nav-link dropdown-item text-light"
                     href="{{ route('engineering') }}">Engineering</a></li>
                   <li><a
-                    class="navbar-brand nav-link dropdown-item text-light" href="{{ url('hotelmanagement') }}">Hotel
+                    class="navbar-brand nav-link dropdown-item text-light" href="{{ url('hotelmanagement') }}">Hospitality
                     Management</a></li>
                   <li><a
                     class="navbar-brand nav-link dropdown-item text-light" href="{{ url('nursing') }}">Nursing</a></li>
