@@ -97,16 +97,23 @@
 
             var cssLinkTag = document.getElementById("headcss");
             var prtContent = document.getElementById("toPrint");
+            var elements = document.querySelectorAll("#tags");
+
+            for (var i = 0; i < elements.length; i++) {
+                elements[i].style.display = "none";
+            }
+
 
             var WinPrint = window.open('', '', 'left=0,top=0,width=800,height=900,toolbar=0,scrollbars=0,status=0');
+
             WinPrint.document.write(prtContent.innerHTML);
-            WinPrint.document.write(cssLinkTag.innerHTML)
+            WinPrint.document.write(cssLinkTag.innerHTML);
             WinPrint.document.close();
             sleep(80).then(() => {
                 WinPrint.focus();
                 WinPrint.print();
                 WinPrint.close();
-
+                //tags.style.display === "block";
             });
 
 
