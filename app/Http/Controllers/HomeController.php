@@ -28,7 +28,7 @@ class HomeController extends Controller
             return redirect(route('home'));
         }
         else{
-            return redirect(route('accountancy'));
+            return redirect(route('home'));
         }
     }
 }

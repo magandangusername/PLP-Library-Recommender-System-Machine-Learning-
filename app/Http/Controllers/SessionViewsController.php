@@ -809,7 +809,37 @@ class SessionViewsController extends Controller
                 ->where('id', $userid)
                 ->first()
                 ->college_ID;
-        } else return redirect('/accountancy');
+        } else {
+            $document_studies = DB::select("SELECT document_studies.document_id, document_studies.compiled_tag_ID, document_studies.course_ID, document_studies.document_number, document_studies.title, document_studies.date_submitted, document_studies.author, document_studies.document_type, document_studies.availability, document_studies.addedby, document_studies.document_status, document_studies.created_at, document_studies.updated_on, course.course, college.college_ID, college.college, tag.tag1_ID, tag.tag2_ID, tag.tag3_ID, tag.tag4_ID, tag1.tag1_ID, tag1.tag1, tag2.tag2_ID, tag2.tag2, tag3.tag3_ID, tag3.tag3, tag4.tag4_ID, tag4.tag4
+            FROM document_studies
+            LEFT JOIN course ON document_studies.course_ID = course.course_ID
+            LEFT JOIN college ON course.college_ID = college.college_ID
+            LEFT JOIN tag ON document_studies.compiled_tag_ID = tag.compiled_tag_ID
+            LEFT JOIN tag1 ON tag.tag1_ID = tag1.tag1_ID
+            LEFT JOIN tag2 ON tag.tag2_ID = tag2.tag2_ID
+            LEFT JOIN tag3 ON tag.tag3_ID = tag3.tag3_ID
+            LEFT JOIN tag4 ON tag.tag4_ID = tag4.tag4_ID
+            ");
+        $allParameters = $request->query();
+        if (isset($allParameters['search'])) {
+            $search = $allParameters['search'];
+
+            
+
+
+
+            $document_studies = $this->Search('', $search)[0];
+            $search = $this->Search('', $search)[1];
+
+           
+                return view('SessionViews.homepage')->with(compact('document_studies', 'search'));
+            
+        } else {
+           
+                return view('SessionViews.homepage', ['document_studies' => $document_studies]);
+            
+        }
+        }
 
         $allParameters = $request->query();
         // for searching

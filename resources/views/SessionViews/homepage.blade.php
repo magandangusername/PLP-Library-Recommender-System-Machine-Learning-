@@ -1,5 +1,6 @@
 @extends('layouts.app')
 @section('content')
+    @auth
     <div>
         <nav class="navbar navbar-light navbar-expand-md navigation-clean-button"
             style="background-image: linear-gradient(to left, green,#fde8ec);">
@@ -20,12 +21,58 @@
             </div>
         </nav>
     </div>
+    @endauth
     {{-- <section class="clean-block clean-blog-list dark" style="background-image: linear-gradient(to left, green,#fde8ec);">
         <div class="container">
             <img class="imghover" src="{{ asset('img/course/PLP_cover.jpg') }}" alt="PLP Cover" style="height:300px; width:100%; border-style: inset;" >
         </div>
         </section> --}}
     <br>
+    @guest
+    <main class="page blog-post-list" id="toPrint">
+        <section class="clean-block clean-blog-list dark"
+            style="background-image: linear-gradient(to left, green,#fde8ec);">
+            <div class="container">
+                <div class="block-content">
+                    @if (!isset($search))
+                    <br><br><br><br>
+                        @endif
+                    
+                    <form method="GET">
+
+                        <div class="container my-3">
+                            <div class="input-group mb-3">
+                                    @if (isset($search))
+                                        <input type="search" class="form-control" placeholder="Search" aria-label="Search" name="search"
+                                        aria-describedby="basic-addon2" value="@php
+                                            echo $search
+                                        @endphp">
+                                    @else
+                                        <input type="search" class="form-control" placeholder="Search" aria-label="Search" name="search"
+                                        aria-describedby="basic-addon2">
+                                    @endif
+            
+                                <span class="input-group-text" id="basic-addon2"><button
+                                        class="btn btn-primary">Search</button></span>                                
+                            </div>
+                        </div>
+                    </form>
+                    @if (!isset($search))
+                    <br><br><br><br>
+                        @endif
+                    <b>
+                        @if (isset($search))
+                            <h4 class="d-inline">Search Results</h4>
+                            @include('layouts.documenttitles')
+                        @endif
+
+                    </b>
+                </div>
+            </div>
+        </section>
+    </main>
+    @endguest
+    @auth
     <main class="page blog-post-list" id="toPrint">
         <section class="clean-block clean-blog-list dark"
             style="background-image: linear-gradient(to left, green,#fde8ec);">
@@ -43,6 +90,7 @@
             </div>
         </section>
     </main>
+    @endauth
 
     <script>
         function toPrint() {
