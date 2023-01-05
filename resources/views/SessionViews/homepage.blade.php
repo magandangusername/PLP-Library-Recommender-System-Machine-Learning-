@@ -1,5 +1,5 @@
-@extends('layouts.app')
-@section('content')
+@extends('layouts.homeapp')
+@section('homecontent')
     @auth
     <div>
         <nav class="navbar navbar-light navbar-expand-md navigation-clean-button"

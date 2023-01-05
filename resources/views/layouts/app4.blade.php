@@ -96,11 +96,11 @@
               </button>
 
             <ul class="dropdown-menu dropdown-menu-dark" >
-              @auth
+              
               <li><a
                 class="navbar-brand nav-link dropdown-item text-light"
                 href="{{ route('home') }}">Homepage</a></li>
-              @endauth
+              
               <li><a
                 class="navbar-brand nav-link dropdown-item text-light"
                 href="{{ route('accountancy') }}">Accountancy</a></li>

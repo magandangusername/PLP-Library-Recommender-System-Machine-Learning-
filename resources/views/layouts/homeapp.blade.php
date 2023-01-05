@@ -155,7 +155,7 @@
                 @endauth
             </div>
           </div>
-          
+          @auth
           <form method="GET">
 
             <div class="container my-3">
@@ -176,6 +176,7 @@
                 </div>
             </div>
         </form>
+        @endauth
         
         <br>
 
@@ -184,7 +185,7 @@
     <br>
 
 
-    @yield('content')
+    @yield('homecontent')
 
     <footer class="my-3">
         
