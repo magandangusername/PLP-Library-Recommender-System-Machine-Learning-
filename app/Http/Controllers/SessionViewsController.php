@@ -120,13 +120,13 @@ class SessionViewsController extends Controller
             if (auth::check()) {
                 return view('SessionViews.accountancy')->with(compact('document_studies', 'search', 'name', 'college'));
             } else {
-                return view('SessionViews.homepage')->with(compact('document_studies', 'search'));
+                return view('SessionViews.accountancy')->with(compact('document_studies', 'search'));
             }
         } else {
             if (auth::check()) {
                 return view('SessionViews.accountancy', ['document_studies' => $document_studies, 'name' => $name, 'college' => $college]);
             } else {
-                return view('SessionViews.homepage', ['document_studies' => $document_studies]);
+                return view('SessionViews.accountancy', ['document_studies' => $document_studies]);
             }
         }
     }
@@ -824,20 +824,20 @@ class SessionViewsController extends Controller
         if (isset($allParameters['search'])) {
             $search = $allParameters['search'];
 
-            
+
 
 
 
             $document_studies = $this->Search('', $search)[0];
             $search = $this->Search('', $search)[1];
 
-           
+
                 return view('SessionViews.homepage')->with(compact('document_studies', 'search'));
-            
+
         } else {
-           
+
                 return view('SessionViews.homepage', ['document_studies' => $document_studies]);
-            
+
         }
         }
 
@@ -1719,20 +1719,20 @@ class SessionViewsController extends Controller
         if (isset($allParameters['search'])) {
             $search = $allParameters['search'];
 
-            
+
 
 
 
             $document_studies = $this->Search('', $search)[0];
             $search = $this->Search('', $search)[1];
 
-           
+
                 return view('SessionViews.guesthomepage')->with(compact('document_studies', 'search'));
-            
+
         } else {
-           
+
                 return view('SessionViews.guesthomepage', ['document_studies' => $document_studies]);
-            
+
         }
     }
 }

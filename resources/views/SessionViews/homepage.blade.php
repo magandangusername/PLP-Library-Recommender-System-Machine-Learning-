@@ -37,7 +37,7 @@
                     @if (!isset($search))
                     <br><br><br><br>
                         @endif
-                    
+
                     <form method="GET">
 
                         <div class="container my-3">
@@ -51,22 +51,22 @@
                                         <input type="search" class="form-control" placeholder="Search" aria-label="Search" name="search"
                                         aria-describedby="basic-addon2">
                                     @endif
-            
+
                                 <span class="input-group-text" id="basic-addon2"><button
-                                        class="btn btn-primary">Search</button></span>                                
+                                        class="btn btn-primary">Search</button></span>
                             </div>
                         </div>
                     </form>
                     @if (!isset($search))
                     <br><br><br><br>
                         @endif
-                    <b>
+
                         @if (isset($search))
                             <h4 class="d-inline">Search Results</h4>
                             @include('layouts.documenttitles')
                         @endif
 
-                    </b>
+
                 </div>
             </div>
         </section>
