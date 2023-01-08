@@ -158,7 +158,34 @@ class AdminViewsController extends Controller
         if (isset($_POST['delete'])) {
             // $deleted = DB::table('document_studies')->delete();
 
-            $deleted = DB::table('document_studies')->where('document_studies.document_id', '=', $_POST['delete'])->delete();
+            $deleted = DB::table('document_studies')
+            ->leftJoin('course', 'document_studies.course_ID', '=', 'course.course_ID')
+            ->leftJoin('college', 'course.college_ID', '=', 'college.college_ID')
+            ->leftjoin('tag', 'document_studies.compiled_tag_ID', '=', 'tag.compiled_tag_ID')
+            ->leftjoin('tag1', 'tag.tag1_ID', '=', 'tag1.tag1_ID')
+            ->leftjoin('tag2', 'tag.tag2_ID', '=', 'tag2.tag2_ID')
+            ->leftjoin('tag3', 'tag.tag3_ID', '=', 'tag3.tag3_ID')
+            ->leftjoin('tag4', 'tag.tag4_ID', '=', 'tag4.tag4_ID')
+            ->where('document_studies.document_id', '=', $_POST['delete'])->delete();
+
+            DB::table('document_views')
+            ->where('view1', '=', $_POST['delete'])
+            ->update([
+                'view1' => 'view2',
+                'view2' => 'view3',
+                'view3' => null
+            ]);
+            DB::table('document_views')
+            ->where('view2', '=', $_POST['delete'])
+            ->update([
+                'view2' => 'view3',
+                'view3' => null
+            ]);
+            DB::table('document_views')
+            ->where('view3', '=', $_POST['delete'])
+            ->update([
+                'view3' => null
+            ]);
             // $documentID = $_POST['documentID'];
 
             // $delete_user = $conn->query("DELETE FROM tnr_dataset
@@ -212,8 +239,37 @@ class AdminViewsController extends Controller
 
             if ($docucheck != 0) {
                 DB::table('document_studies')
+                    ->leftJoin('course', 'document_studies.course_ID', '=', 'course.course_ID')
+                    ->leftJoin('college', 'course.college_ID', '=', 'college.college_ID')
+                    ->leftjoin('tag', 'document_studies.compiled_tag_ID', '=', 'tag.compiled_tag_ID')
+                    ->leftjoin('tag1', 'tag.tag1_ID', '=', 'tag1.tag1_ID')
+                    ->leftjoin('tag2', 'tag.tag2_ID', '=', 'tag2.tag2_ID')
+                    ->leftjoin('tag3', 'tag.tag3_ID', '=', 'tag3.tag3_ID')
+                    ->leftjoin('tag4', 'tag.tag4_ID', '=', 'tag4.tag4_ID')->select('document_studies.*', 'course.course', 'college.college_ID', 'college.college', 'tag.tag1_ID', 'tag.tag2_ID', 'tag.tag3_ID', 'tag.tag4_ID', 'tag1.tag1_ID', 'tag1.tag1', 'tag2.tag2_ID', 'tag2.tag2', 'tag3.tag3_ID', 'tag3.tag3', 'tag4.tag4_ID', 'tag4.tag4')
                     ->where('document_id', $request->input('deletedocument'))
                     ->delete();
+
+                DB::statement('UPDATE document_views SET view1 = view2, view2 = view3, view3 = null where view1 = '.$request->input('deletedocument'));
+                DB::statement('UPDATE document_views SET view2 = view3, view3 = null where view1 = '.$request->input('deletedocument'));
+
+                // DB::table('document_views')
+                // ->where('view1', '=', $request->input('deletedocument'))
+                // ->update([
+                //     'view1' => 'view2',
+                //     'view2' => 'view3',
+                //     'view3' => null
+                // ]);
+                // DB::table('document_views')
+                // ->where('view2', '=', $request->input('deletedocument'))
+                // ->update([
+                //     'view2' => 'view3',
+                //     'view3' => null
+                // ]);
+                DB::table('document_views')
+                ->where('view3', '=', $request->input('deletedocument'))
+                ->update([
+                    'view3' => null
+                ]);
             } else {
                 return redirect(route('managedocument') . '?error=Problem deleting document');
             }
@@ -258,7 +314,8 @@ class AdminViewsController extends Controller
                 'tag3' => 'required',
                 'tag4' => 'required',
                 'submitedit' => 'required',
-                'document_status' => 'required'
+                'document_status' => 'required',
+                'abstract' => 'required'
             ]);
             DB::table('document_studies')
             ->where('document_id', $request->input('document_ID'))
@@ -273,7 +330,8 @@ class AdminViewsController extends Controller
                 // 'tag2' => $request->input('terms_conditions1'),
                 // 'tag3' => $request->input('terms_conditions2'),
                 // 'tag4' => $request->input('terms_conditions3'),
-                'document_status' => $request->input('document_status')
+                'document_status' => $request->input('document_status'),
+                'abstract' => $request->input('abstract')
             ]);
             DB::table('tag')
             ->leftjoin('tag1', 'tag.tag1_ID', '=', 'tag1.tag1_ID')
@@ -337,7 +395,6 @@ class AdminViewsController extends Controller
 
         if ($request->input('adddocument') != null) {
             $request->validate([
-                'document_id' => 'required',
                 'document_number' => 'required',
                 'title' => 'required',
                 'availability' => 'required',
@@ -350,7 +407,8 @@ class AdminViewsController extends Controller
                 'tag2' => 'required',
                 'tag3' => 'required',
                 'tag4' => 'required',
-                'addedby' => 'required'
+                'addedby' => 'required',
+                'abstract' => 'required'
 
             ]);
 
@@ -419,7 +477,8 @@ class AdminViewsController extends Controller
                 'document_status' => $request->input('document_status'),
                 'addedby' => $request->input('addedby'),
                 'availability' => $request->input('availability'),
-                'compiled_tag_ID' => $compiled_tag_ID
+                'compiled_tag_ID' => $compiled_tag_ID,
+                'abstract' => $request->input('abstract')
             ]);
 
 

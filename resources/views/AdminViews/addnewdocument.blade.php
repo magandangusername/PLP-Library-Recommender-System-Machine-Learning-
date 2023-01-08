@@ -37,12 +37,7 @@
                                 @endforeach
                             </div>
                         @endif
-                        <div class="row my-2">
-                            <div class="col-4">
-                                <b>Document ID</b>
-                                <input type="text" class="form-control" name="document_id" readonly value='{{ $document_count + 1 }}'>
-                            </div>
-                        </div>
+
                         <div class="row my-2">
                             <div class="col-4">
                                 <b>Document Number</b>
@@ -60,15 +55,7 @@
 
                         </div>
 
-                        <div class="row my-2">
-                            <div class="col-4">
-                                <b>Availability </b>
-                                <select id="document_course" name="availability" required>
-                                    <option selected value="Available">Available</option>
-                                    <option value="Unavailable">Unavailable</option>
-                                </select>
-                            </div>
-                        </div>
+
 
                         <div class="row my-2">
                             <div class="col-4">
@@ -121,6 +108,15 @@
                             </div>
 
                         </div>
+                        <div class="row my-2">
+                            <div class="col-4">
+                                <b>Availability </b>
+                                <select id="document_course" name="availability" required>
+                                    <option selected value="Available">Available</option>
+                                    <option value="Unavailable">Unavailable</option>
+                                </select>
+                            </div>
+                        </div>
                         <input type="text" name="addnew" value="" hidden>
                         <div class="row my-2">
                             <div class="col-4">
@@ -169,6 +165,14 @@
 
                         </div>
 
+                        <div class="row my-2">
+                            <div class="col-4">
+                                <b>Abstract</b>
+                                <textarea class="form-control" id="abstract" name="abstract"
+                                    value="" rows="10"></textarea>
+                            </div>
+                        </div>
+
                         <input type="hidden" name="adddocument" value="{{ $document_count + 1 }}">
                         <button type="submit" class="btn btn-dark mt-2">Create New Document Record</button>
                     </fieldset>
@@ -187,7 +191,6 @@
                         <table id="datatablerr">
                             <thead>
                                 <tr class="text-light bg-dark">
-                                    <th>Document ID</th>
                                     <th>Document Number</th>
                                     <th>Title</th>
                                     <th>Author</th>
@@ -203,6 +206,7 @@
                                     <th>4th Tag</th>
                                     <th>Availability</th>
                                     <th>Views</th>
+                                    <th>Abstract</th>
                                     <th>Created At</th>
                                     <th>Updated On</th>
                                 </tr>
@@ -212,7 +216,6 @@
 
                                 @foreach ($document_studies as $document_study)
                                     <tr>
-                                        <td>{{ $document_study->document_id }}</td>
                                         <td>{{ $document_study->document_number }}</td>
                                         <td>{{ $document_study->title }}</td>
                                         <td>{{ $document_study->author }}</td>
@@ -228,6 +231,7 @@
                                         <td>{{ $document_study->tag4 }}</td>
                                         <td>{{ $document_study->availability }}</td>
                                         <td>{{ $document_study->views_count }}</td>
+                                        <td>{{ $document_study->abstract }}</td>
                                         <td>{{ $document_study->created_at }}</td>
                                         <td>{{ $document_study->updated_on }}</td>
                                     </tr>

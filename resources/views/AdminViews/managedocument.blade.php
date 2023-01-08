@@ -33,7 +33,6 @@
                         <thead>
                             <tr class="text-light bg-dark">
                                 <th></th>
-                                <th>Document ID</th>
                                 <th>Document Number</th>
                                 <th>Title</th>
                                 <th>Author</th>
@@ -49,6 +48,7 @@
                                 <th>4th Tag</th>
                                 <th>Availability</th>
                                 <th>Views</th>
+                                <th>Abstract</th>
                                 <th>Created At</th>
                                 <th>Updated On</th>
                             </tr>
@@ -74,7 +74,6 @@
                                                     class="fas fa-pen"></i></button>
                                         </form>
                                     </td>
-                                    <td>{{ $document_study->document_id }}</td>
                                     <td>{{ $document_study->document_number }}</td>
                                     <td>{{ $document_study->title }}</td>
                                     <td>{{ $document_study->author }}</td>
@@ -90,6 +89,7 @@
                                     <td>{{ $document_study->tag4 }}</td>
                                     <td>{{ $document_study->availability }}</td>
                                     <td>{{ $document_study->views_count }}</td>
+                                    <td>{{ $document_study->abstract }}</td>
                                     <td>{{ $document_study->created_at }}</td>
                                     <td>{{ $document_study->updated_on }}</td>
                                 </tr>
@@ -231,6 +231,14 @@
                                     </select>
                                 </div>
 
+                            </div>
+
+                            <div class="row my-2">
+                                <div class="col-4">
+                                    <b>Abstract</b>
+                                    <textarea class="form-control" id="abstract" name="abstract"
+                                         rows="10">{{ $editdocument->abstract }}</textarea>
+                                </div>
                             </div>
 
 
