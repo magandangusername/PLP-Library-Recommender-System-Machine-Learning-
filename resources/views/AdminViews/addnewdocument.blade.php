@@ -191,6 +191,7 @@
                         <table id="datatablerr">
                             <thead>
                                 <tr class="text-light bg-dark">
+                                    <th>Document ID</th>
                                     <th>Document Number</th>
                                     <th>Title</th>
                                     <th>Author</th>
@@ -216,6 +217,7 @@
 
                                 @foreach ($document_studies as $document_study)
                                     <tr>
+                                        <td>{{ $document_study->document_id }}</td>
                                         <td>{{ $document_study->document_number }}</td>
                                         <td>{{ $document_study->title }}</td>
                                         <td>{{ $document_study->author }}</td>
